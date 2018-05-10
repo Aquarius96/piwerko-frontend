@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchBeers } from '../actions/index';
+import '../styles/main.scss';
 
 
 
@@ -23,7 +24,11 @@ class BeerBasePage extends Component {
     
     render() {
         return (
-        <div className="BeerBasePage">BeerBasePage works!</div>
+        <div className="BeerBasePage">BeerBasePage works!
+        <button className="btn btn-danger" >przycisk</button>
+        </div>
+        
+        
         );
     }
 }
@@ -32,4 +37,7 @@ BeerBasePage.propTypes = {
     fetchBeers: PropTypes.func
 }
 export default connect(null, mapDispatchToProps)(BeerBasePage);
+
+
+
 
