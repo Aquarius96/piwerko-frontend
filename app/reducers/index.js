@@ -11,7 +11,17 @@ const filter = (state = '', action) => {
     }
 };
 
+const beers = (state = {}, action) => {
+    switch (action.type) {
+        case types.FETCH_BEERS_DATA:
+            return action.data;
+        default:
+            return state;
+    }
+};
+
 const rootReducer = combineReducers({
+    beers,
     filter,
     routing
 });
