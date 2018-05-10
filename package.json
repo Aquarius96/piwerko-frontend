@@ -18,7 +18,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap": "^4.1.1",
     "file-loader": "^0.9.0",
+    "material-ui": "^1.0.0-beta.47",
     "prop-types": "^15.5.9",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
