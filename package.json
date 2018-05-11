@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
-    "bootstrap": "^4.1.1",
+    "bootstrap": "3.3.7",
     "file-loader": "^0.9.0",
     "material-ui": "^1.0.0-beta.47",
     "prop-types": "^15.5.9",
@@ -29,7 +29,8 @@
     "react-redux": "^4.4.5",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "next",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
