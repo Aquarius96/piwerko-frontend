@@ -33,3 +33,97 @@ export function fetchBeers() {
             });
     }
 }
+
+export function addBeerBegin() {
+    return {
+        type: types.ADD_BEER_BEGIN
+    }
+}
+
+export function addBeerSuccess(beer) {
+    return {
+        type: types.ADD_BEER_SUCCESS,
+        payload: {beer}
+    }
+}
+
+export function addBeerFailure(error) {
+    return {
+        type: types.ADD_BEER_FAILURE,
+        payload: {error}
+    }
+}
+
+export function addBeer(beer) {
+    return function action(dispatch) {
+        dispatch(addBeerBegin());
+        return axios.post('http://localhost:8080/api/beer/add', beer)
+        .then(response => dispatch(addBeerSuccess(response.data)))
+        .catch(error => {
+            dispatch(addBeerFailure(error.message));
+        })
+    }
+}
+
+export function deleteBeerBegin() {
+    return {
+        type: types.DELETE_BEER_BEGIN
+    }
+}
+
+export function deleteBeerSuccess(id) {
+    return {
+        type: types.DELETE_BEER_SUCCESS,
+        payload: {id}
+    }
+}
+
+export function deleteBeerFailure(error) {
+    return {
+        type: types.DELETE_BEER_FAILURE,
+        payload: {error}
+    }
+}
+
+export function deleteBeer(beer) {
+    return function action(dispatch) {
+        dispatch(deleteBeerBegin());
+        return axios.post('http://localhost:8080/api/beer/delete', beer)
+        .then(() => dispatch(deleteBeerSuccess(beer.id)))
+        .catch(error => {
+            dispatch(deleteBeerFailure(error.message));
+        })
+    }
+}
+
+export function updateBeerBegin() {
+    return {
+        type: types.UPDATE_BEER_BEGIN
+    }
+}
+
+export function updateBeerSuccess(beer) {
+    return {
+        type: types.UPDATE_BEER_SUCCESS,
+        payload: {beer}
+    }
+}
+
+export function updateBeerFailure(error) {
+    return {
+        type: types.UPDATE_BEER_FAILURE,
+        payload: {error}
+    }
+}
+
+export function updateBeer(beer) {
+    return function action(dispatch) {
+        dispatch(updateBeerBegin());
+        return axios.post('http://localhost:8080/api/beer/update', beer)
+        .then(() => dispatch(updateBeerSuccess(beer)))
+        .catch(error => {
+            dispatch(updateBeerFailure(error.message));
+        })
+    }
+}
+
