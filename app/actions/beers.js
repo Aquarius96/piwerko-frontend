@@ -119,11 +119,12 @@ export function updateBeerFailure(error) {
 export function updateBeer(beer) {
     return function action(dispatch) {
         dispatch(updateBeerBegin());
-        return axios.post('http://localhost:8080/api/beer/update', beer)
+        return axios.put('http://localhost:8080/api/beer/update', beer)
         .then(() => dispatch(updateBeerSuccess(beer)))
         .catch(error => {
             dispatch(updateBeerFailure(error.message));
         })
     }
 }
+
 
