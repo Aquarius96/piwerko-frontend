@@ -6,7 +6,7 @@ class ProfilePage extends Component {
     }
     render() {
         return (
-        <div className="ProfilePage">ProfilePage works!</div>
+        <div className="ProfilePage container">ProfilePage works!</div>
         );
     }
 }

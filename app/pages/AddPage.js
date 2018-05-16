@@ -6,7 +6,7 @@ class AddPage extends Component {
     }
     render() {
         return (
-        <div className="AddPage">AddPage works!</div>
+        <div className="AddPage container">AddPage works!</div>
         );
     }
 }

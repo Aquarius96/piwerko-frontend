@@ -6,7 +6,7 @@ class SingleBreweryPage extends Component {
     }
     render() {
         return (
-        <div className="SingleBreweryPage">SingleBreweryPage works!</div>
+        <div className="SingleBreweryPage container">SingleBreweryPage works!</div>
         );
     }
 }
