@@ -7,6 +7,7 @@ import '../styles/main.scss';
 import Loader from '../components/Loader';
 
 const myBeer = {
+    'user_id': 1,
     'name': 'harnaś',
     'alcohol': 5.7,
     'ibu': 12,
@@ -14,7 +15,6 @@ const myBeer = {
     'servingTemp': 25,
     'type': 'gowno',
     'description': 'zaq',
-    'added_by': 'ja'
 }
 
 const updBeer = {

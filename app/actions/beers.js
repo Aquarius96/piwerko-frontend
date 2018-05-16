@@ -60,6 +60,8 @@ export function addBeer(beer, file) {
         return axios.post('http://localhost:8080/api/beer/add', beer, file)
         .then(response => dispatch(addBeerSuccess(response.data)))
         .catch(error => {
+            console.log('err' + error);
+            console.log('resp' + error.response);
             dispatch(addBeerFailure(error.message));
         })
     }

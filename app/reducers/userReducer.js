@@ -1,7 +1,6 @@
 import * as types from '../types/index';
 
 const initialState = {
-    logged: false,
     loading: false,
     error: null
 }
@@ -18,8 +17,7 @@ export default function userReducer(state = initialState, action) {
         case types.LOGIN_SUCCESS:
             return {
                 ...state,
-                loading: false,
-                logged: true
+                loading: false
             }
         case types.REGISTER_SUCCESS:
             return {
