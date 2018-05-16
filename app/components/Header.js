@@ -18,6 +18,9 @@ class Header extends Component {
                 
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
+                    <Link className="a nav-link" to="/test"> Test </Link>
+                    </li>
+                    <li className="nav-item">
                     <Link className="a nav-link" to="/brewerybase"> Baza Browarów </Link>
                     </li>
                     <li className="nav-item">

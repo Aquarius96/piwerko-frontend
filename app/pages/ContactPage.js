@@ -6,7 +6,7 @@ class ContactPage extends Component {
     }
     render() {
         return (
-        <div className="ContactPage">ContactPage works!</div>
+        <div className="ContactPage container">ContactPage works!</div>
         );
     }
 }

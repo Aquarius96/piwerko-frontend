@@ -6,8 +6,8 @@ class BreweryBasePage extends Component {
     }
     render() {
         return (
-        <div className="BreweryBasePage">
-        
+        <div className="BreweryBasePage container">
+            <p>BreweryBasePage works!</p>
         </div>
         
         );

@@ -6,7 +6,7 @@ class SingleBeerPage extends Component {
     }
     render() {
         return (
-        <div className="SingleBeerPage">SingleBeerPage works!</div>
+        <div className="SingleBeerPage container">SingleBeerPage works!</div>
         );
     }
 }

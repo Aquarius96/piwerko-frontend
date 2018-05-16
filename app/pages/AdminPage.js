@@ -6,7 +6,7 @@ class AdminPage extends Component {
     }
     render() {
         return (
-        <div className="AdminPage">AdminPage works!</div>
+        <div className="AdminPage container">AdminPage works!</div>
         );
     }
 }

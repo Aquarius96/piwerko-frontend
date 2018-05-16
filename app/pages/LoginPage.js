@@ -12,7 +12,7 @@ class LoginPage extends Component {
     }
     render() {
         return (
-            <div className="LoginPage">
+            <div className="LoginPage container">
             
             <div className="form">
  

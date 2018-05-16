@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import SingleBeerPage from './pages/SingleBeerPage';
 import SingleBreweryPage from './pages/SingleBreweryPage';
+import TestPage from './pages/TestPage';
 
 export default (
 	<Switch>
@@ -23,5 +24,6 @@ export default (
 		<Route exact path="/profile" component= {ProfilePage} />
 		<Route exact path="/beer" component= {SingleBeerPage} />
 		<Route exact path="/brewery" component= {SingleBreweryPage} />
+		<Route exact path="/test" component= {TestPage} />
 	</Switch>
 );
