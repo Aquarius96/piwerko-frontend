@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
-    "bootstrap": "3.3.7",
+    "bootstrap": "4.1.1",
     "file-loader": "^0.9.0",
     "material-ui": "^1.0.0-beta.47",
     "prop-types": "^15.5.9",
