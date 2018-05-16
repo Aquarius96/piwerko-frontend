@@ -1,4 +1,4 @@
-import * as types from '../types/beers';
+import * as types from '../types/index';
 import axios from 'axios';
 
 export function fetchBeersBegin() {
@@ -40,10 +40,10 @@ export function addBeerBegin() {
     }
 }
 
-export function addBeerSuccess(beer) {
+export function addBeerSuccess(beer, file) {
     return {
         type: types.ADD_BEER_SUCCESS,
-        payload: {beer}
+        payload: {beer, file}
     }
 }
 
@@ -54,10 +54,10 @@ export function addBeerFailure(error) {
     }
 }
 
-export function addBeer(beer) {
+export function addBeer(beer, file) {
     return function action(dispatch) {
         dispatch(addBeerBegin());
-        return axios.post('http://localhost:8080/api/beer/add', beer)
+        return axios.post('http://localhost:8080/api/beer/add', beer, file)
         .then(response => dispatch(addBeerSuccess(response.data)))
         .catch(error => {
             dispatch(addBeerFailure(error.message));

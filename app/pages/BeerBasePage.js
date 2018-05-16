@@ -14,7 +14,6 @@ const myBeer = {
     'servingTemp': 25,
     'type': 'gowno',
     'description': 'zaq',
-    'photo_URL': 'X',
     'added_by': 'ja'
 }
 
@@ -50,7 +49,7 @@ class BeerBasePage extends Component {
     constructor(props) {
         super(props);
         this.add = this.add.bind(this);
-        this.state = ({file: ''});
+        this.state = ({file: '', formData: {}});
         this.handleImageChange = this.handleImageChange.bind(this);             
     }
 
@@ -61,10 +60,10 @@ class BeerBasePage extends Component {
         const formData = new FormData();
         e.preventDefault();
         formData.append('file', this.state.file);
+        this.setState({formData: formData});
         
-        
-        fetch('http://localhost:8080/api/beer/gowno', {method: 'POST', body: formData}).then(x => x.json()).then(res => console.log(res));
-        console.log('handle uploading', this.state.file);
+        // fetch('http://localhost:8080/api/beer/gowno', {method: 'POST', body: formData}).then(x => x.json()).then(res => console.log(res));
+        console.log('handle uploading', this.state.formData);
     }
 
     handleImageChange(e) {
@@ -96,7 +95,7 @@ class BeerBasePage extends Component {
                 <p>BeerBasePage works!</p>
                 <p>and is fully loaded!</p>
                 <p>beers length is {this.props.beers.length}</p>                
-                <button onClick = {() => this.props.addBeer(myBeer)}>Click to add beer</button>
+                <button onClick = {() => this.props.addBeer(myBeer, this.state.formData)}>Click to add beer</button>
                 <button onClick = {() => this.props.deleteBeer(delBeer)}>Click to delete beer with id 1</button>
                 <button onClick = {() => this.props.updateBeer(updBeer)}>Click to update beer with id 20002</button>
                 <form onSubmit={(e)=>this.add(e)}>

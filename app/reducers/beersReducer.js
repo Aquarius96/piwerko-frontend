@@ -1,4 +1,4 @@
-import * as types from '../types/beers';
+import * as types from '../types/index';
 
 const initialState = {
     beers: [],
