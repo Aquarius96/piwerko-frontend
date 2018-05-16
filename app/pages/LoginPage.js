@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../styles/LoginPage.scss';
+import '../styles/button.scss';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -13,7 +14,6 @@ class LoginPage extends Component {
         return (
             <div className="LoginPage">
             
- 
             <div className="form">
  
             <form className={(this.state.visible === 'register' ? 'shown' : 'hidden')}>
@@ -32,9 +32,9 @@ class LoginPage extends Component {
                 <input name="lastname" type="text" placeholder="Nazwisko"/>
                 <input name="phone" type="text" placeholder="Numer telefonu*"/>
  
-                <button className="przyciskZaloguj" onClick={this.register}>Stwórz konto</button>
+                <button className="zaloguj-zarejestruj" onClick={this.register}>Stwórz konto</button>
                 <p className="message">Jesteś już zarejestrowany?
-                <a className="beniz" onClick={() => this.switchForm('login')}>Zaloguj się!</a>
+                <a className="beniz" onClick={() => this.switchForm('login')}> Zaloguj się!</a>
                 </p>
                 <p className="message">Pola oznaczone * są obowiązkowe</p>
             </form>
@@ -43,12 +43,12 @@ class LoginPage extends Component {
                 <h1>Logowanie</h1>
                 <input name="login" type="text" placeholder="Login..." required/>
                 <input name="password" type="password" placeholder="Hasło..." required/>
-                <button className="przyciskZaloguj" onClick={this.login}>Zaloguj</button>
+                <button className="zaloguj-zarejestruj" onClick={this.login}>Zaloguj</button>
                 <p className="message">Nie masz konta?
-                <a className="beniz" onClick={() => this.switchForm('register')}>Zarejestruj się!</a>
+                <a className="beniz" onClick={() => this.switchForm('register')}> Zarejestruj się!</a>
                 </p>
                 <p className="message">Zapomniałeś hasła?
-                <a className="beniz" onClick={() => this.switchForm('forgot')}>Przypomnij hasło!</a>
+                <a className="beniz" onClick={() => this.switchForm('forgot')}> Przypomnij hasło!</a>
                 </p>
             </form>
  
@@ -57,7 +57,7 @@ class LoginPage extends Component {
                 <input name="email" type="text" placeholder="Adres e-mail..." required/>
                 <button className="przyciskZaloguj" onClick={this.forgotPassword}>Przypomnij</button>
                 <p className="message">
-                <a className="beniz" onClick={() => this.switchForm('login')}>Wróć do logowania</a>
+                <a className="beniz" onClick={() => this.switchForm('login')}> Wróć do logowania</a>
                 </p>
             </form>
             </div>
