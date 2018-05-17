@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchBeers } from '../actions/beers';
-
 import '../styles/main.scss';
 import Loader from '../components/Loader';
 import BeersList from '../components/BeersList';

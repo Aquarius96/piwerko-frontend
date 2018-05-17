@@ -26,7 +26,7 @@ export function login(user) {
         dispatch(loginBegin());
         return axios.post('http://localhost:8080/api/user/signin', user)
         .then(response => {
-            localStorage.setItem('token',response.data);
+            localStorage.setItem('token', response.data);
             dispatch(loginSuccess(response.data));            
         })
         .catch(error => {
@@ -57,8 +57,9 @@ export function registerFailure(error) {
 
 export function register(user) {
     return function action(dispatch) {
+        console.log('rejestruje');
         dispatch(registerBegin());
-        return axios.post('http://localhost:8080/api/user/signup', user)
+        return axios.post('http://localhost:8080/api/user/register', user)
         .then(response => dispatch(registerSuccess(response.data)))
         .catch(error => {
             dispatch(registerFailure(error.message));
