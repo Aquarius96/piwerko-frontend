@@ -61,7 +61,8 @@ export function addBeer(beer, file) {
         .then(response => dispatch(addBeerSuccess(response.data)))
         .catch(error => {
             console.log('err' + error);
-            console.log('resp' + error.response);
+            console.log('resp' + error.response.data);
+            console.log('req' + error.request);
             dispatch(addBeerFailure(error.message));
         })
     }

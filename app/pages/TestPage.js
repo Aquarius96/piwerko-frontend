@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchBeers, addBeer, deleteBeer, updateBeer } from '../actions/beers';
+import { addBrewery, deleteBrewery, updateBrewery } from '../actions/breweries';
 
 import '../styles/main.scss';
 import Loader from '../components/Loader';
@@ -18,6 +19,24 @@ const myBeer = {
 }
 
 const updBeer = {
+    'id': 20002,
+    'name': 'tyskie',
+    'alcohol': 5.7,
+    'ibu': 12
+}
+
+const myBrewery = {
+    'user_id': 1,
+    'name': 'browar kormoran',
+    'city': 'Olsztyn',
+    'street': 'Sloneczna',
+    'streetNumber': 15,
+    'servingTemp': 25,
+    'description': 'robi sie tam piwo',
+    'web_Url': 'https://www.kormoran.pl',
+}
+
+const updBrewery = {
     'id': 20002,
     'name': 'tyskie',
     'alcohol': 5.7,
@@ -41,7 +60,10 @@ const mapDispatchToProps = dispatch => {
         fetchBeers: () => dispatch(fetchBeers()),
         addBeer: beer => dispatch(addBeer(beer)),
         deleteBeer: id => dispatch(deleteBeer(id)),
-        updateBeer: beer => dispatch(updateBeer(beer)) 
+        updateBeer: beer => dispatch(updateBeer(beer)),
+        addBrewery: brewery => dispatch(addBrewery(brewery)),
+        deleteBrewery: id => dispatch(deleteBrewery(id)),
+        updateBrewery: brewery => dispatch(updateBrewery(brewery)) 
     };
 };
 
@@ -98,6 +120,9 @@ class TestPage extends Component {
                 <button onClick = {() => this.props.addBeer(myBeer, this.state.formData)}>Click to add beer</button>
                 <button onClick = {() => this.props.deleteBeer(delBeer)}>Click to delete beer with id 1</button>
                 <button onClick = {() => this.props.updateBeer(updBeer)}>Click to update beer with id 20002</button>
+                <button onClick = {() => this.props.addBrewery(myBrewery, this.state.formData)}>Click to add Brewery</button>
+                <button onClick = {() => this.props.deleteBrewery(delBeer)}>Click to delete Brewery with id 1</button>
+                <button onClick = {() => this.props.updateBrewery(updBrewery)}>Click to update Brewery with id 20002</button>
                 <form onSubmit={(e)=>this.add(e)}>
                     <input className="fileInput" 
                         type="file" 
@@ -116,6 +141,9 @@ TestPage.propTypes = {
     addBeer: PropTypes.func,
     deleteBeer: PropTypes.func,
     updateBeer: PropTypes.func,
+    addBrewery: PropTypes.func,
+    deleteBrewery: PropTypes.func,
+    updateBrewery: PropTypes.func,
     beers: PropTypes.array,
     loading: PropTypes.bool,
     error: PropTypes.string
