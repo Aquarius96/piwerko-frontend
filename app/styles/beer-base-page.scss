@@ -1,5 +1,7 @@
+:root {
+    --rows: 5;
+}
 .beers-list{
-
 .form {
     z-index: 1;
     background: #FFFFFF;
@@ -8,7 +10,6 @@
     padding: 25px;
     text-align: center;
     border: 2px solid #683C1F;
-    height: 1500px;
 }
 
 .beer-form{
@@ -25,7 +26,7 @@
 .wrapper {
     display: grid;
     grid-template-columns: 500px 615px;
-    grid-template-rows: 300px 300px 300px 300px 300px;
+    grid-template-rows: repeat(var(--rows), 300px);
 }
 
 .image-form{

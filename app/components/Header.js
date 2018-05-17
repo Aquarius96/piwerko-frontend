@@ -24,7 +24,7 @@ class Header extends Component {
                     <Link className="a nav-link" to="/brewerybase"> Baza Browarów </Link>
                     </li>
                     <li className="nav-item">
-                    <Link className="a nav-link" to="/beerbase"> Baza Piw </Link>
+                    <Link className="a nav-link" to="/beerbase/1"> Baza Piw </Link>
                     </li>
                     <li className="nav-item">
                     <Link className="a nav-link" to="/contact"> Kontakt </Link>

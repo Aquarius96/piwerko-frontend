@@ -19,10 +19,16 @@ const myBeer = {
 }
 
 const updBeer = {
-    'id': 20002,
-    'name': 'tyskie',
+    'id': 50002,
+    'user_id': 1,
+    'name': 'harnaś',
     'alcohol': 5.7,
-    'ibu': 12
+    'ibu': 12,
+    'breweryId': 1,
+    'servingTemp': 25,
+    'type': 'gowno',
+    'description': 'zaq',
+    'photo_URL': 'http://www.uncommonsnyc.com/wp-content/uploads/2015/06/beer-bottle.png'
 }
 
 const myBrewery = {
@@ -44,7 +50,7 @@ const updBrewery = {
 }
 
 const delBeer = {
-    'id': 2
+    'id': 20002
 }
 
 const mapStateToProps = state => {

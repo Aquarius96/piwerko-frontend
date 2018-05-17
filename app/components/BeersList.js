@@ -11,59 +11,35 @@ class BeersList extends Component {
     render() {
         return (
             <div className="beers-list">
-            <div className="select">
-            <select>
-                <option selected value="xD">Sortuj po nazwie</option>
-                <option value="xDD">Malejąco</option>
-                <option value="xDDD">Rosnąco</option>
-            </select>
-            </div>
-            <div className="form">
-            <div className="wrapper">
-            <div className="beer-form">
-            <div className="beer-wrapper">
-            <div className="image-form">
-            <img src={this.props.beers[0].photo_URL} height="195"/>
-            </div>
-            <div className="info-form">
-            <h1>Harnaś</h1>
-            <p> Alkohol: 4,5%, IBU: 20,</p>
-            <p> Browar: Kormoran</p>
-            <p> Ocena: 0,1/5 </p>
-            <button className="sprawdz-szczegoly">Sprawdź Szczegóły</button>
-            </div>
-            </div>
-            </div>
-            <div className="beer-form">
-            <div>1</div>
-            </div>
-            <div className="beer-form">
-            <div>1</div>
-            </div>
-            <div className="beer-form">
-            <div>1</div>
-            </div>
-            <div className="beer-form">
-            <div>1</div>
-            </div>
-            <div className="beer-form">
-            <div>1</div>
-            </div>
-            <div className="beer-form">
-            <div>1</div>
-            </div>
-            <div className="beer-form">
-            <div>1</div>
-            </div>
-            <div className="beer-form">
-            <div>1</div>
-            </div>
-            <div className="beer-form">
-            <div>1</div>
-            </div>
-
-            </div>
-            </div>
+            {this.props.beers.length}
+                <div className="select">
+                    <select>
+                        <option selected value="xD">Sortuj po nazwie</option>
+                        <option value="xDD">Malejąco</option>
+                        <option value="xDDD">Rosnąco</option>
+                    </select>
+                </div>
+                    <div className="form">
+                        <div className="wrapper">
+                        {this.props.beers.map(beer => {
+                            return (
+                            <div className="beer-form">
+                            <div className="beer-wrapper">
+                                <div className="image-form">
+                                    <img src={beer.photo_URL} height="195"/>
+                                </div>
+                                <div className="info-form">
+                                    <h1>{beer.name}</h1>
+                                    <p> Alkohol: {beer.alcohol}, IBU: {beer.ibu},</p>
+                                    <p> Browar: Kormoran</p>
+                                    <p> Ocena: 0,1/5 </p>
+                                    <button className="sprawdz-szczegoly">Sprawdź Szczegóły</button>
+                                </div>
+                            </div>
+                        </div>);
+                        })}
+                        </div>
+                    </div>
             </div>
         );
     }
