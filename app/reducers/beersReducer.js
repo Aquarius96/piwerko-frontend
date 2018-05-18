@@ -3,7 +3,8 @@ import * as types from '../types/index';
 const initialState = {
     beers: [],
     loading: false,
-    error: null
+    error: null,
+    filterText: ''
 }
 
 export default function beersReducer(state = initialState, action) {
@@ -57,6 +58,11 @@ export default function beersReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: action.payload.error
+            }
+        case types.FILTER_BEERS:
+            return {
+                ...state,
+                filterText: action.payload.text
             }
         default:
             return state;

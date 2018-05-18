@@ -130,4 +130,11 @@ export function updateBeer(beer) {
     }
 }
 
+export function filterBeers(text) {
+    return {
+        type: types.FILTER_BEERS,
+        payload: {text}
+    }
+}
+
 

@@ -10,15 +10,7 @@ class BeersList extends Component {
     }
     render() {
         return (
-            <div className="beers-list">
-            {this.props.beers.length}
-                <div className="select">
-                    <select>
-                        <option selected value="xD">Sortuj po nazwie</option>
-                        <option value="xDD">Malejąco</option>
-                        <option value="xDDD">Rosnąco</option>
-                    </select>
-                </div>
+            <div className="beers-list">                          
                     <div className="form">
                         <div className="wrapper">
                         {this.props.beers.map(beer => {
