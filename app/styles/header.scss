@@ -1,12 +1,11 @@
 //https://color.adobe.com/pl/create/color-wheel/?base=2&rule=Complementary&selected=0&name=M%C3%B3j%20motyw%20Color&mode=rgb&rgbvalues=0.7078431372549019,0.363784585889047,0.14020739064856716,0.7078431372549019,0.449592953615783,0.2817760180995475,0.40784313725490196,0.23432483132549117,0.12156862745098042,0.06942307692307699,0.6796989316769875,0.7078431372549019,0.12156862745098042,0.3952229688794744,0.40784313725490196&swatchOrder=0,1,2,3,4
-.Header{
+.header{
     ul {
         position: relative;
         float: right;
         padding-top: 10px;
         padding-bottom: 10px;
       }
-      
       nav {
         height: 50px;
         background-color: inherit;
@@ -14,22 +13,18 @@
         background-color: #8D8D8D;
         margin-bottom: 15px;
       }
-      
       .navbar {
         background-color: inherit;
         z-index: 2;
       }
-      
       .logo {
         color: white;
         padding-top: 10px;
         padding-bottom: 10px;
         text-align: center;
       }
-      
       .navbar-custom {
         background-color: #3D4944;
-        
         .navbar-brand, .navbar-text, .navbar-nav .nav-link {
           color: white;
         }

@@ -10,19 +10,22 @@ class ContactPage extends Component {
     render() {
         return (
         <div className="contact-page container">
-            <div className="frame">
             <p>Chcesz skontaktować się z administratorem? Wypełnij poniższy formularz!</p>
-            </div>
             <div className="form">
-            <input className="myInput"type="text"
+            <input className="my-input"type="text"
                   placeholder="Jak masz na imię?"
                   title="Wpisz miasto"></input>
-            <input className="myInput"type="text"
+            <input className="my-input"type="text"
                   placeholder="Twój adres e-mail"
                   title="Wpisz miasto"></input>
-            <input className="myInput"type="text"
+            <input className="my-input"type="text"
                   placeholder="Temat Twojego zgłoszenia"
                   title="Wpisz miasto"></input>
+            <textarea className="textarea"type="text"
+                  placeholder="Tekst Twojego zgłoszenia..."
+                  title="Wpisz miasto"></textarea>
+
+            <button className="wyslij-zgloszenie">Wyślij zgłoszenie</button>      
 
             </div>
         </div>

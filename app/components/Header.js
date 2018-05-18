@@ -9,7 +9,7 @@ class Header extends Component {
     }
     render() {
         return (
-            <div className="Header">
+            <div className="header">
             
             <nav className="navbar navbar-expand-lg navbar-custom">
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -17,6 +17,12 @@ class Header extends Component {
                 <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">                    
                 
                 <ul className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                    <Link className="a nav-link" to="/profile"> profil </Link>
+                    </li>
+                    <li className="nav-item">
+                    <Link className="a nav-link" to="/error"> error </Link>
+                    </li>
                     <li className="nav-item">
                     <Link className="a nav-link" to="/test"> Test </Link>
                     </li>

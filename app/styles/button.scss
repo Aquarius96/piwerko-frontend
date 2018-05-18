@@ -1,14 +1,14 @@
-.button{
+.button {
 background: white;
 color: black;
 border: 2px solid #683C1F;
 font-size: 18px;
 transition: .6s;
 overflow: hidden;
-&:focus{
+&:focus {
 outline: 0;
 }
-&:before{
+&:before {
 content: '';
 display: block;
 position: absolute;
@@ -18,7 +18,7 @@ left: 0;
 top: 0;
 opacity: .5;
 }
-&:after{
+&:after {
 content: '';
 display: block;
 position: absolute;
@@ -28,41 +28,43 @@ left: 30px;
 top: 0;
 opacity: 0;
 }
-&:hover{
+&:hover {
 background: #683C1F;
 color:white;
 cursor: pointer;
-&:before{
+&:before {
   opacity: 0.6;
   transition: .7s;
 }
-&:after{
+&:after {
   opacity: 1;
   transition: .7s;
 }
 }
 }
 
-.zaloguj-zarejestruj{
+.zaloguj-zarejestruj {
     @extend .button;
     width:100%;
     height: 45px;
 }
-
-.sprawdz-szczegoly-beer{
+.sprawdz-szczegoly-beer {
   @extend .button;
   width:95%;
   height:30px;
 }
-
-.sprawdz-szczegoly-brewery{
+.sprawdz-szczegoly-brewery {
   @extend .button;
   width:100%;
   height:30px;
 }
-
-.wyslij-zgloszenie{
+.wyslij-zgloszenie {
   @extend .button;
   width:20%;
-  height:30px;
+  height:50px;
+  margin: 15px 450px;
+}
+.zmien-avatar {
+  @extend .button;
+  width:20%;
 }

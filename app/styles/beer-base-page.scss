@@ -1,7 +1,7 @@
 :root {
     --rows: 5;
 }
-.beers-list{
+.beers-list {
 .form {
     z-index: 1;
     background: #FFFFFF;
@@ -11,8 +11,7 @@
     text-align: center;
     border: 2px solid #683C1F;
 }
-
-.beer-form{
+.beer-form {
     z-index: 1;
     background: #FFFFFF;
     width:500px;
@@ -22,35 +21,28 @@
     text-align: center;
     border: 2px solid #683C1F;
 }
-
 .wrapper {
     display: grid;
     grid-template-columns: 500px 615px;
     grid-template-rows: repeat(var(--rows), 300px);
 }
-
-.image-form{
+.image-form {
     z-index: 1;
     background: #FFFFFF;
     height: 195px;
 }
-
-.info-form{
+.info-form {
     z-index: 1;
     background: #FFFFFF;
     max-height: 195px;
 
 }
-
-.beer-wrapper{
+.beer-wrapper {
     display: grid;
     grid-template-columns: 30% 70%;
 }
-
-h1{
+h1 {
     color:#B45D24;
     font-size:31px;
 }
-
-
 }

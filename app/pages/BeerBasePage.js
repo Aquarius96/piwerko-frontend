@@ -97,15 +97,15 @@ class BeerBasePage extends Component {
                 <p>These are your beers: {this.props.beers.length}</p>
                 <p>Strona {this.props.match.params.page}</p>
                 <Pagination history={this.props.history} dataLength={this.props.beers.length} dataPerPage={10} route="/beerbase/" current ={this.props.match.params.page}/>
-                <div className="ustawienieInputa">
+                <div className="ustawienie-inputa">
                 <input
                   type="text"
-                  id="myInput"
+                  className="my-input"
                   placeholder="Wyszukaj obiekt..."
                   title="Wpisz miasto"
                   onChange={this.handleTextChange}></input>
               </div>
-              <div className="ustawienieInputa">
+              <div className="ustawienie-inputa">
 
                 <div className="select">
                     <select onChange={this.handleSortChange}>

@@ -1,0 +1,48 @@
+.profile-page{
+    .form {
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 100%;
+        margin: 0 auto 100px;
+        padding: 25px;
+        text-align: center;
+        border: 2px solid #683C1F;
+        height:500px;
+    }
+    .wrapper {
+        display: grid;
+        grid-template-columns: 600px 400px;
+    }
+    .profile-info-form {
+        z-index: 1;
+        background: #FFFFFF;
+        width:500px;
+        height: 250px;
+        margin: 0 auto 100px;
+        padding: 25px;
+        text-align: center;
+        border: 2px solid #683C1F;
+    }
+    .image-form {
+        z-index: 1;
+        background: #FFFFFF;
+        height: 250px;
+        border: 2px solid #683C1F;
+    }
+    h1 {
+        color:#B45D24;
+        font-size:31px;
+        padding-bottom:15px;
+    }
+    p {
+        float:left;
+        margin: 0px;
+    }
+
+
+
+
+
+
+
+}

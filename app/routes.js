@@ -11,6 +11,9 @@ import ProfilePage from './pages/ProfilePage';
 import SingleBeerPage from './pages/SingleBeerPage';
 import SingleBreweryPage from './pages/SingleBreweryPage';
 import TestPage from './pages/TestPage';
+import ErrorPage from './pages/ErrorPage';
+
+
 
 export default (
 	<Switch>
@@ -25,5 +28,8 @@ export default (
 		<Route exact path="/beer" component= {SingleBeerPage} />
 		<Route exact path="/brewery" component= {SingleBreweryPage} />
 		<Route exact path="/test" component= {TestPage} />
+		<Route exact path="/error" component= {ErrorPage} />
+
+
 	</Switch>
 );
