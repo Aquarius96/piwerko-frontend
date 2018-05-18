@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import '../styles/select.scss';
 import '../styles/beer-base-page.scss';
 
-
 class BeersList extends Component {
     constructor(props) {
         super(props);

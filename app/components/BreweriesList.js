@@ -8,23 +8,34 @@ class BreweriesList extends Component {
         super(props);
     }
     render() {
+        if(this.props.breweries.length === 0) {
+            return (
+                <div className="brewery-list">
+                    <center>Brak wyników wyszukiwania</center>
+                </div>
+            );
+        }
         return (
             <div className="brewery-list">
                 <div className="form">
                     <div className="wrapper">
-                        <div className="brewery-form">
-                        <h1>Browar Amber</h1>
+                        {this.props.breweries.map(brewery => {
+                            return (
+                                <div className="brewery-form">
+                        <h1>{brewery.name}</h1>
                             <div className="brewery-wrapper">
                                 <div className="image-form">
-                                <img src={'http://przegladhandlowy.pl/wp-content/uploads/2012/05/Browar-Amber.jpg'} width="230"/>
+                                <img src={brewery.photo_URL} width="230"/>
                                 </div>
                                 <div className="info-form">
-                                <p> ul. Browarna 88</p>
-                                <p>34-300 Żywiec</p>
+                                <p> ul.{brewery.street} {brewery.streetNumber}</p>
+                                <p>34-300 {brewery.city}</p>
                                 </div>
                             </div>
                             <button className="sprawdz-szczegoly-brewery">Sprawdź szczegóły</button>
-                        </div>        
+                        </div>     
+                            );
+                        })}   
                     </div>
                 </div>
             </div>

@@ -137,7 +137,7 @@ export function filterBeers(text) {
     }
 }
 
-export function sortBeers(sortType) {
+export function sortBeersByName(sortType) {
     return {
         type: types.SORT_BEERS,
         payload: {sortType}

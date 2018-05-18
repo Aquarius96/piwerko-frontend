@@ -21,7 +21,7 @@ export default (
 		<Route exact path="/add" component= {AddPage} />
 		<Route exact path="/admin" component= {AdminPage} />
 		<Route exact path="/beerbase/:page" component= {BeerBasePage} />
-		<Route exact path="/brewerybase" component= {BreweryBasePage} />
+		<Route exact path="/brewerybase/:page" component= {BreweryBasePage} />
 		<Route exact path="/contact" component= {ContactPage} />
 		<Route exact path="/login" component= {LoginPage} />
 		<Route exact path="/profile" component= {ProfilePage} />

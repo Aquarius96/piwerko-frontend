@@ -74,7 +74,7 @@ export default function beersReducer(state = initialState, action) {
                 filterText: action.payload.text,
                 filteredBeers: state.beers.filter((beer) => beer.name.indexOf(action.payload.text) !== -1)
             }
-        case types.SORT_BEERS:
+        case types.SORT_BEERS_BY_NAME:
             return {
                 ...state,
                 sortType: action.payload.sortType 
