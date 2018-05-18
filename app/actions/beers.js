@@ -137,4 +137,11 @@ export function filterBeers(text) {
     }
 }
 
+export function sortBeers(sortType) {
+    return {
+        type: types.SORT_BEERS,
+        payload: {sortType}
+    }
+}
+
 
