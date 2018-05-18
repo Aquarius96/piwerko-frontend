@@ -9,6 +9,13 @@ class BeersList extends Component {
         super(props);
     }
     render() {
+        if(this.props.beers.length === 0) {
+            return (
+                <div className="beers-list">
+                    <center>Brak wyników wyszukiwania</center>
+                </div>
+            );
+        }
         return (
             <div className="beers-list">                          
                     <div className="form">

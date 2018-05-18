@@ -4,7 +4,9 @@ const initialState = {
     beers: [],
     loading: false,
     error: null,
-    filterText: ''
+    filterText: '',
+    filteredBeers: [],
+    sortType: ''
 }
 
 export default function beersReducer(state = initialState, action) {
@@ -22,25 +24,31 @@ export default function beersReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                beers: action.payload.beers
+                beers: action.payload.beers,
+                filteredBeers: action.payload.beers
             }
         case types.ADD_BEER_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                beers: [...state.beers, action.payload.beer]
+                beers: [...state.beers, action.payload.beer],
+                filteredBeers: [...state.beers, action.payload.beer]
             }
         case types.DELETE_BEER_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                beers: state.beers.filter(beer => beer.id !== action.payload.id)
+                beers: state.beers.filter(beer => beer.id !== action.payload.id),
+                filteredBeers: state.beers.filter(beer => beer.id !== action.payload.id)
             }
         case types.UPDATE_BEER_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 beers: state.beers.map(beer => {
+                    return beer.id !== action.payload.beer.id ? beer : action.payload.beer;
+                }),
+                filteredBeers: state.beers.map(beer => {
                     return beer.id !== action.payload.beer.id ? beer : action.payload.beer;
                 })
             }
@@ -49,7 +57,8 @@ export default function beersReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: action.payload.error,
-                beers: []
+                beers: [],
+                filteredBeers: []
             }
         case types.ADD_BEER_FAILURE:
         case types.DELETE_BEER_FAILURE:
@@ -62,7 +71,13 @@ export default function beersReducer(state = initialState, action) {
         case types.FILTER_BEERS:
             return {
                 ...state,
-                filterText: action.payload.text
+                filterText: action.payload.text,
+                filteredBeers: state.beers.filter((beer) => beer.name.indexOf(action.payload.text) !== -1)
+            }
+        case types.SORT_BEERS:
+            return {
+                ...state,
+                sortType: action.payload.sortType 
             }
         default:
             return state;
