@@ -21,7 +21,7 @@ class Header extends Component {
                     <Link className="a nav-link" to="/test"> Test </Link>
                     </li>
                     <li className="nav-item">
-                    <Link className="a nav-link" to="/brewerybase"> Baza Browarów </Link>
+                    <Link className="a nav-link" to="/brewerybase/1"> Baza Browarów </Link>
                     </li>
                     <li className="nav-item">
                     <Link className="a nav-link" to="/beerbase/1"> Baza Piw </Link>

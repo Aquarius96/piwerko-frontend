@@ -127,4 +127,17 @@ export function updateBrewery(brewery) {
     }
 }
 
+export function filterBreweries(text) {
+    return {
+        type: types.FILTER_BREWERIES,
+        payload: {text}
+    }
+}
+
+export function sortBreweriesByName(sortType) {
+    return {
+        type: types.SORT_BREWERIES_BY_NAME,
+        payload: {sortType}
+    }
+}
 

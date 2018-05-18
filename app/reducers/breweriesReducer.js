@@ -3,7 +3,10 @@ import * as types from '../types/index';
 const initialState = {
     breweries: [],
     loading: false,
-    error: null
+    error: null,
+    filterText: '',
+    filteredBreweries: [],
+    sortType: ''
 }
 
 export default function breweriesReducer(state = initialState, action) {
@@ -21,25 +24,31 @@ export default function breweriesReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                breweries: action.payload.breweries
+                breweries: action.payload.breweries,
+                filteredBreweries: action.payload.breweries
             }
         case types.ADD_BREWERY_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                breweries: [...state.breweries, action.payload.brewery]
+                breweries: [...state.breweries, action.payload.brewery],
+                filteredBreweries: [...state.breweries, action.payload.brewery]
             }
         case types.DELETE_BREWERY_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                breweries: state.breweries.filter(brewery => brewery.id !== action.payload.id)
+                breweries: state.breweries.filter(brewery => brewery.id !== action.payload.id),
+                filteredBreweries: state.breweries.filter(brewery => brewery.id !== action.payload.id)
             }
         case types.UPDATE_BREWERY_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 breweries: state.breweries.map(brewery => {
+                    return brewery.id !== action.payload.brewery.id ? brewery : action.payload.brewery;
+                }),
+                filteredBreweries: state.breweries.map(brewery => {
                     return brewery.id !== action.payload.brewery.id ? brewery : action.payload.brewery;
                 })
             }
@@ -48,7 +57,8 @@ export default function breweriesReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: action.payload.error,
-                breweries: []
+                breweries: [],
+                filteredBreweries: []
             }
         case types.ADD_BREWERY_FAILURE:
         case types.DELETE_BREWERY_FAILURE:
@@ -57,6 +67,17 @@ export default function breweriesReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: action.payload.error
+            }
+        case types.FILTER_BREWERIES:
+            return {
+                ...state,
+                filterText: action.payload.text,
+                filteredBreweries: state.breweries.filter((brewery) => brewery.name.indexOf(action.payload.text) !== -1)
+            }
+        case types.SORT_BREWERIES_BY_NAME:
+            return {
+                ...state,
+                sortType: action.payload.sortType 
             }
         default:
             return state;

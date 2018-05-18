@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { fetchBeers, filterBeers, sortBeers } from '../actions/beers';
+import { fetchBeers, filterBeers, sortBeersByName } from '../actions/beers';
 import Loader from '../components/Loader';
 import BeersList from '../components/BeersList';
 import Pagination from '../components/Pagination';
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchBeers: () => dispatch(fetchBeers()),
         filterBeers: text => dispatch(filterBeers(text)),
-        sortBeers: (type) => dispatch(sortBeers(type))
+        sortBeersByName: (type) => dispatch(sortBeersByName(type))
     };
 };
 
@@ -63,8 +63,6 @@ class BeerBasePage extends Component {
             default:
                 break;
         }
-
-        
         this.setState({pickedBeers: pickedBeersArray, dataReady: true});
         this.setWrapperWidth(pickedBeersArray.length);
     }
@@ -74,7 +72,7 @@ class BeerBasePage extends Component {
     }
 
     handleSortChange = (e) => {
-        this.props.sortBeers(e.target.value);
+        this.props.sortBeersByName(e.target.value);
     }
 
     render() {
@@ -132,7 +130,7 @@ class BeerBasePage extends Component {
 BeerBasePage.propTypes = {
     fetchBeers: PropTypes.func,
     filterBeers: PropTypes.func,
-    sortBeers: PropTypes.func,
+    sortBeersByName: PropTypes.func,
     beers: PropTypes.array,
     loading: PropTypes.bool,
     error: PropTypes.string,
