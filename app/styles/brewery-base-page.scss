@@ -1,7 +1,7 @@
 :root {
     --rows: 5;
 }
-.beers-list{
+.brewery-list{
 .form {
     z-index: 1;
     background: #FFFFFF;
@@ -12,7 +12,7 @@
     border: 2px solid #683C1F;
 }
 
-.beer-form{
+.brewery-form{
     z-index: 1;
     background: #FFFFFF;
     width:500px;
@@ -29,28 +29,31 @@
     grid-template-rows: repeat(var(--rows), 300px);
 }
 
+.brewery-wrapper{
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
 .image-form{
     z-index: 1;
     background: #FFFFFF;
-    height: 195px;
+    height: 110px;
 }
 
 .info-form{
     z-index: 1;
     background: #FFFFFF;
-    max-height: 195px;
-
-}
-
-.beer-wrapper{
-    display: grid;
-    grid-template-columns: 30% 70%;
+    max-height: 110px;
+    padding-top:15px;
 }
 
 h1{
     color:#B45D24;
     font-size:31px;
+    padding-bottom:15px;
 }
-
-
+p{
+    float:left;
+    margin: 0px;
+}
 }

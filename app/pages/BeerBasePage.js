@@ -87,7 +87,9 @@ class BeerBasePage extends Component {
                   placeholder="Wyszukaj obiekt..."
                   title="Wpisz miasto"
                   onChange={this.handleTextChange}></input>
-              </div>         
+              </div>
+              <div className="ustawienieInputa">
+
                 <div className="select">
                     <select>
                         <option selected value="xD">Sortuj po nazwie</option>
@@ -95,8 +97,15 @@ class BeerBasePage extends Component {
                         <option value="xDDD">Rosnąco</option>
                     </select>
                 </div>
-                
-                       
+                </div>
+
+                <div className="select">
+                    <select>
+                        <option selected value="xD">Sortuj po ocenie</option>
+                        <option value="xDD">Malejąco</option>
+                        <option value="xDDD">Rosnąco</option>
+                    </select>
+                </div>
                 <BeersList beers={this.state.pickedBeers} page={this.props.match.params.page} />
             </div>
             );

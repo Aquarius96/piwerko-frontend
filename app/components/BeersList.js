@@ -25,7 +25,7 @@ class BeersList extends Component {
                                     <p> Alkohol: {beer.alcohol}, IBU: {beer.ibu},</p>
                                     <p> Browar: Kormoran</p>
                                     <p> Ocena: 0,1/5 </p>
-                                    <button className="sprawdz-szczegoly">Sprawdź Szczegóły</button>
+                                    <button className="sprawdz-szczegoly-beer">Sprawdź Szczegóły</button>
                                 </div>
                             </div>
                         </div>);

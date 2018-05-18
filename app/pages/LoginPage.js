@@ -110,7 +110,7 @@ class LoginPage extends Component {
             <form className={(this.state.visible === 'forgot' ? 'shown' : 'hidden')}>
                 <h1>Zapomniałeś hasła?</h1>
                 <input name="email" type="text" placeholder="Adres e-mail..." required/>
-                <button className="przyciskZaloguj" onClick={this.forgotPassword}>Przypomnij</button>
+                <button className="zaloguj-zarejestruj" onClick={this.forgotPassword}>Przypomnij</button>
                 <p className="message">
                 <a className="beniz" onClick={() => this.switchForm('login')}> Wróć do logowania</a>
                 </p>
