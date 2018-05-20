@@ -2,11 +2,12 @@ import * as types from '../types/index';
 
 const initialState = {
     breweries: [],
+    singleBrewery: {},
     loading: false,
     error: null,
     filterText: '',
     filteredBreweries: [],
-    sortType: ''
+    sortType: '',
 }
 
 export default function breweriesReducer(state = initialState, action) {
@@ -78,6 +79,11 @@ export default function breweriesReducer(state = initialState, action) {
             return {
                 ...state,
                 sortType: action.payload.sortType 
+            }
+        case types.FETCH_SINGLE_BREWERY:
+            return {
+                ...state,
+                singleBrewery: state.breweries.filter((brewery) => brewery.id === action.payload.id)[0]
             }
         default:
             return state;

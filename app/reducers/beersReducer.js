@@ -2,6 +2,7 @@ import * as types from '../types/index';
 
 const initialState = {
     beers: [],
+    singleBeer: {},
     loading: false,
     error: null,
     filterText: '',
@@ -78,6 +79,11 @@ export default function beersReducer(state = initialState, action) {
             return {
                 ...state,
                 sortType: action.payload.sortType 
+            }
+        case types.FETCH_SINGLE_BEER:
+            return {
+                ...state,
+                singleBeer: state.beers.filter((beer) => beer.id === action.payload.id)[0]
             }
         default:
             return state;

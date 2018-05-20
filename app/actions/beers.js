@@ -34,6 +34,13 @@ export function fetchBeers() {
     }
 }
 
+export function fetchSingleBeer(id) {
+    return {
+        type: types.FETCH_SINGLE_BEER,
+        payload: {id}
+    }
+}
+
 export function addBeerBegin() {
     return {
         type: types.ADD_BEER_BEGIN

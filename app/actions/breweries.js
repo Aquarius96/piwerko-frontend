@@ -34,6 +34,13 @@ export function fetchBreweries() {
     }
 }
 
+export function fetchSingleBrewery(id) {
+    return {
+        type: types.FETCH_SINGLE_BREWERY,
+        payload: {id}
+    }
+}
+
 export function addBreweryBegin() {
     return {
         type: types.ADD_BREWERY_BEGIN
