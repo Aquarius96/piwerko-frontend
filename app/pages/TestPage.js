@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { fetchBeers, addBeer, deleteBeer, updateBeer } from '../actions/beers';
-import { addBrewery, deleteBrewery, updateBrewery } from '../actions/breweries';
+import { fetchBeers, addBeer, deleteBeer, updateBeer, fetchSingleBeer } from '../actions/beers';
+import { addBrewery, deleteBrewery, updateBrewery, fetchSingleBrewery } from '../actions/breweries';
 
 import '../styles/main.scss';
 import Loader from '../components/Loader';
@@ -69,7 +69,9 @@ const mapDispatchToProps = dispatch => {
         updateBeer: beer => dispatch(updateBeer(beer)),
         addBrewery: brewery => dispatch(addBrewery(brewery)),
         deleteBrewery: id => dispatch(deleteBrewery(id)),
-        updateBrewery: brewery => dispatch(updateBrewery(brewery)) 
+        updateBrewery: brewery => dispatch(updateBrewery(brewery)),
+        fetchSingleBeer: id => dispatch(fetchSingleBeer(id)),
+        fetchSingleBrewery: id => dispatch(fetchSingleBrewery(id))
     };
 };
 
@@ -129,6 +131,8 @@ class TestPage extends Component {
                 <button onClick = {() => this.props.addBrewery(myBrewery, this.state.formData)}>Click to add Brewery</button>
                 <button onClick = {() => this.props.deleteBrewery(delBeer)}>Click to delete Brewery with id 1</button>
                 <button onClick = {() => this.props.updateBrewery(updBrewery)}>Click to update Brewery with id 20002</button>
+                <button onClick = {() => this.props.fetchSingleBeer(20003)}>Click to fetch beer with id 20003</button>
+                <button onClick = {() => this.props.fetchSingleBrewery(1)}>Click to fetch brewery with id 1</button>
                 <form onSubmit={(e)=>this.add(e)}>
                     <input className="fileInput" 
                         type="file" 
@@ -144,12 +148,14 @@ class TestPage extends Component {
 
 TestPage.propTypes = {
     fetchBeers: PropTypes.func,
+    fetchSingleBeer: PropTypes.func,
     addBeer: PropTypes.func,
     deleteBeer: PropTypes.func,
     updateBeer: PropTypes.func,
     addBrewery: PropTypes.func,
     deleteBrewery: PropTypes.func,
     updateBrewery: PropTypes.func,
+    fetchSingleBrewery: PropTypes.func,
     beers: PropTypes.array,
     loading: PropTypes.bool,
     error: PropTypes.string
