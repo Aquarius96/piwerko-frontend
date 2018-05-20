@@ -64,7 +64,15 @@ cursor: pointer;
   height:50px;
   margin: 15px 450px;
 }
+.edytuj-dane {
+  @extend .button;
+  width:60%;
+}
+.zmien-haslo {
+  @extend .button;
+  width:75%;
+}
 .zmien-avatar {
   @extend .button;
-  width:20%;
+  width:60%;
 }

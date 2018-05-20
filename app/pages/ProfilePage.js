@@ -10,17 +10,22 @@ class ProfilePage extends Component {
         return (
         <div className="profile-page container">
             <div className="form">
+            <div className="new-form">
                 <div className="wrapper">
                     <div className="profile-info-form">
-                    <h1>Dane konta</h1>
-                    <p>Login: Marcien</p><br />
-                    <p>E-mail: Marcien@wp.pl</p><br />
-                    <p>Imię: Marcien</p><br />
-                    <p>Nazwisko: Zapadka</p><br />
+                    <h1>Marcien</h1>
+                    <p>Imię: Marcien</p>
+                    <p>Nazwisko: Zapadka</p>
+                    <p>Data urodzenia: 25.05.1996</p>
+                    <p>E-mail: Marcien@wp.pl</p>
                     </div>
                     <div className="image-form">
-                    <img src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'} height="200"/>
+                    <div className="sep"></div>
+                    <img src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'} height="150"/>
                     </div>
+                    <div className="item1"><button className="edytuj-dane">Edytuj dane</button></div>
+                    <div className="item1"><button className="zmien-avatar">Zmień avatar</button></div>
+                </div>
                 </div>
             </div>
         </div>
