@@ -9,19 +9,16 @@ class ProfilePage extends Component {
         this.state = {
             editing: false
         }
-
-        this.handleEditProfileData = this.handleEditProfileData.bind(this);
-        this.handleSaveProfileData = this.handleSaveProfileData.bind(this);
     }
 
-    handleEditProfileData(e) {
+    handleEditProfileData = (e) => {
         e.preventDefault();
         this.setState({
             editing: !this.state.editing
         });
     }
 
-    handleSaveProfileData(e) {
+    handleSaveProfileData = (e) => {
         e.preventDefault();
         this.setState({
             editing: !this.state.editing
@@ -79,6 +76,7 @@ class ProfilePage extends Component {
                                     <div className="fav-beer-rating"> Ocena: 3/5 </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
