@@ -6,7 +6,7 @@
         margin: 0 auto 100px;
         padding: 25px;
         border: 2px solid #683C1F;
-        height:500px;
+        height: 600px;
     }
     .wrapper {
         display: grid;
@@ -16,7 +16,7 @@
     .new-form {
         z-index: 1;
         background: white;
-        width:650px;
+        width: 650px;
         height: 250px;
         margin: 0 auto 100px;
         border: 2px solid #683C1F;
@@ -33,13 +33,14 @@
         background: white;
         height: 200px;
         text-align: center;
-        width:246px;
+        width: 246px;
 
     }
     h1 {
         color:#B45D24;
-        font-size:31px;
-        padding-bottom:8px;
+        font-size: 31px;
+        padding-bottom: 8px;
+        text-align: center;
     }
     p {
         text-align:center;
@@ -56,5 +57,43 @@
     }
     .item1 {
         text-align: center;
+    }
+    .fav-beer {
+        border: 2px solid #683C1F;
+        height: 50px;
+        width: 630px;
+        margin: 0 auto;
+    }
+    .fav-beer-logo {
+        float: left;
+        margin-top: 3px;
+        margin-left: 10px;
+    }
+    .fav-beer-name {
+        float: left;
+        color: #B45D24;
+        font-weight: 600;
+        font-size: 22px;
+        margin-top: 4px;
+        margin-left: 20px;
+    }
+    .fav-beer-desc {
+        float: left;
+        font-size: 16px;
+        font-weight: 400;
+        margin-top: 11px;
+        margin-left: 20px;
+    }
+    .fav-beer-alcohol {
+        float: left;
+        margin-left: 50px;
+    }
+    .fav-beer-IBU {
+        float: left;
+        margin-left: 50px;
+    }
+    .fav-beer-rating {
+        float: left;
+        margin-left: 50px;
     }
 }
