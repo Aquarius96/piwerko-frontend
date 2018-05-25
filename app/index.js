@@ -5,6 +5,8 @@ import { configureStore, history } from './store/configureStore';
 import Root from './containers/Root';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import './styles/main.scss'
+
 const store = configureStore();
 
 render(
