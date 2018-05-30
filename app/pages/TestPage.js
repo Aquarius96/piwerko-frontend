@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { fetchBeers, addBeer, deleteBeer, updateBeer, fetchSingleBeer } from '../actions/beers';
+import { fetchBeers, addBeer, deleteBeer, updateBeer, fetchSingleBeer, fetchFavoriteBeers, addFavoriteBeer } from '../actions/beers';
 import { addBrewery, deleteBrewery, updateBrewery, fetchSingleBrewery } from '../actions/breweries';
 
 import '../styles/main.scss';
@@ -53,6 +53,11 @@ const delBeer = {
     'id': 20002
 }
 
+const favBeer = {
+    'user_id': 1,
+    'id_beer': 20007
+}
+
 const mapStateToProps = state => {
     return {
         beers: state.beersReducer.beers,
@@ -71,7 +76,9 @@ const mapDispatchToProps = dispatch => {
         deleteBrewery: id => dispatch(deleteBrewery(id)),
         updateBrewery: brewery => dispatch(updateBrewery(brewery)),
         fetchSingleBeer: id => dispatch(fetchSingleBeer(id)),
-        fetchSingleBrewery: id => dispatch(fetchSingleBrewery(id))
+        fetchSingleBrewery: id => dispatch(fetchSingleBrewery(id)),
+        fetchFavoriteBeers: id => dispatch(fetchFavoriteBeers(id)),
+        addFavoriteBeer: (userId, beerId) => dispatch(addFavoriteBeer(userId, beerId))
     };
 };
 
@@ -85,6 +92,8 @@ class TestPage extends Component {
 
     componentDidMount() {
         this.props.fetchBeers();
+        this.props.fetchFavoriteBeers(1);
+        this.props.addFavoriteBeer(favBeer);
     }
     add(e) {
         const formData = new FormData();
@@ -149,7 +158,9 @@ class TestPage extends Component {
 TestPage.propTypes = {
     fetchBeers: PropTypes.func,
     fetchSingleBeer: PropTypes.func,
+    fetchFavoriteBeers: PropTypes.func,
     addBeer: PropTypes.func,
+    addFavoriteBeer: PropTypes.func,
     deleteBeer: PropTypes.func,
     updateBeer: PropTypes.func,
     addBrewery: PropTypes.func,

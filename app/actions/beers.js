@@ -24,12 +24,53 @@ export function fetchBeersFailure(error) {
 export function fetchBeers() {
     return function action(dispatch) {
         dispatch(fetchBeersBegin());
-        return axios.get('http://localhost:8080/api/beer/get/unconfirmed')
+        return axios.get('http://localhost:8080/api/beer/get/confirmed')
             .then(response => {
-                dispatch(fetchBeersSuccess(response.data));
+                console.log(response.data);
+                const arr = [];                
+                for(let i = 0; i < response.data.length; i++) {
+                    arr.push(response.data[i].beer);
+                    arr[i].rate = response.data[i].rate;
+                }
+                console.log(arr);
+                dispatch(fetchBeersSuccess(arr));
             })
             .catch(error => {
                 dispatch(fetchBeersFailure(error.message));
+            });
+    }
+}
+
+export function fetchFavoriteBeersBegin() {
+    return {
+        type: types.FETCH_FAVORITE_BEERS_DATA_BEGIN
+    }
+}
+
+export function fetchFavoriteBeersSuccess(beers) {
+    return {
+        type: types.FETCH_FAVORITE_BEERS_DATA_SUCCESS,
+        payload: {beers}
+    }
+}
+
+export function fetchFavoriteBeersFailure(error) {
+    return {
+        type: types.FETCH_FAVORITE_BEERS_DATA_FAILURE,
+        payload: {error}
+    }
+}
+
+export function fetchFavoriteBeers(id) {
+    return function action(dispatch) {
+        dispatch(fetchFavoriteBeersBegin());
+        return axios.get('http://localhost:8080/api/Favorite/find/' + id)
+            .then(response => {
+                console.log(response.data);                            
+                dispatch(fetchFavoriteBeersSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchFavoriteBeersFailure(error.message));
             });
     }
 }
@@ -71,6 +112,40 @@ export function addBeer(beer, file) {
             console.log('resp' + error.response.data);
             console.log('req' + error.request);
             dispatch(addBeerFailure(error.message));
+        })
+    }
+}
+
+export function addFavoriteBeerBegin() {
+    return {
+        type: types.ADD_FAVORITE_BEER_BEGIN
+    }
+}
+
+export function addFavoriteBeerSuccess(beer, file) {
+    return {
+        type: types.ADD_FAVORITE_BEER_SUCCESS,
+        payload: {beer, file}
+    }
+}
+
+export function addFavoriteBeerFailure(error) {
+    return {
+        type: types.ADD_FAVORITE_BEER_FAILURE,
+        payload: {error}
+    }
+}
+
+export function addFavoriteBeer(beer) {
+    return function action(dispatch) {
+        dispatch(addFavoriteBeerBegin());        
+        return axios.post('http://localhost:8080/api/Favorite/add', beer)
+        .then(response => dispatch(addFavoriteBeerSuccess(response.data)))
+        .catch(error => {
+            console.log('err' + error);
+            console.log('resp' + error.response.data);
+            console.log('req' + error.request);
+            dispatch(addFavoriteBeerFailure(error.message));
         })
     }
 }

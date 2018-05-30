@@ -21,6 +21,9 @@ class Header extends Component {
                     <Link className="a nav-link" to="/profile"> profil </Link>
                     </li>
                     <li className="nav-item">
+                    <Link className="a nav-link" to="/add"> Dodaj piwo/browar </Link>
+                    </li>
+                    <li className="nav-item">
                     <Link className="a nav-link" to="/error"> error </Link>
                     </li>
                     <li className="nav-item">

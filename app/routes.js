@@ -12,7 +12,8 @@ import SingleBeerPage from './pages/SingleBeerPage';
 import SingleBreweryPage from './pages/SingleBreweryPage';
 import TestPage from './pages/TestPage';
 import ErrorPage from './pages/ErrorPage';
-
+import ConfirmPage from './pages/ConfirmPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 
 export default (
@@ -29,7 +30,8 @@ export default (
 		<Route exact path="/brewery" component= {SingleBreweryPage} />
 		<Route exact path="/test" component= {TestPage} />
 		<Route exact path="/error" component= {ErrorPage} />
-
+		<Route exact path="/confirm/:id/:code" component= {ConfirmPage} />
+		<Route exact path="/forgot/:id/:code" component= {ForgotPasswordPage} />
 
 	</Switch>
 );

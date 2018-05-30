@@ -7,8 +7,8 @@ import '../styles/button.scss';
 
 const mapDispatchToProps = dispatch => {
     return {
-        login: () => dispatch(login()),
-        register: () => dispatch(register())
+        login: (user) => dispatch(login(user)),
+        register: (user) => dispatch(register(user))
     };
 };
 
@@ -56,13 +56,13 @@ class LoginPage extends Component {
     login = (e) => {
         e.preventDefault();
         console.log(this.state.loginData);
-        this.props.login();
+        this.props.login(this.state.loginData);
     }
 
     register = (e) => {
         e.preventDefault();
         console.log(this.state.registerData);
-        this.props.register();
+        this.props.register(this.state.registerData);
     }
 
     render() {

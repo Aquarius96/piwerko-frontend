@@ -4,18 +4,20 @@ const initialState = {
     beers: [],
     singleBeer: {},
     loading: false,
-    error: null,
+    error: null,   
     filterText: '',
     filteredBeers: [],
+    favoriteBeers: [],
     sortType: ''
 }
 
 export default function beersReducer(state = initialState, action) {
     switch (action.type) {
         case types.FETCH_BEERS_DATA_BEGIN:
+        case types.FETCH_FAVORITE_BEERS_DATA_BEGIN:
         case types.ADD_BEER_BEGIN:
         case types.DELETE_BEER_BEGIN:
-        case types.UPDATE_BEER_BEGIN:
+        case types.UPDATE_BEER_BEGIN:        
             return {
                 ...state,
                 loading: true,
@@ -27,6 +29,12 @@ export default function beersReducer(state = initialState, action) {
                 loading: false,
                 beers: action.payload.beers,
                 filteredBeers: action.payload.beers
+            }
+        case types.FETCH_FAVORITE_BEERS_DATA_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                favoriteBeers: action.payload.beers
             }
         case types.ADD_BEER_SUCCESS:
             return {
@@ -52,7 +60,7 @@ export default function beersReducer(state = initialState, action) {
                 filteredBeers: state.beers.map(beer => {
                     return beer.id !== action.payload.beer.id ? beer : action.payload.beer;
                 })
-            }
+            }        
         case types.FETCH_BEERS_DATA_FAILURE:
             return {
                 ...state,
@@ -61,14 +69,16 @@ export default function beersReducer(state = initialState, action) {
                 beers: [],
                 filteredBeers: []
             }
-        case types.ADD_BEER_FAILURE:
-        case types.DELETE_BEER_FAILURE:
-        case types.UPDATE_BEER_FAILURE:
+        case types.FETCH_FAVORITE_BEERS_DATA_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error
+                error: action.payload.error,
+                favoriteBeers: []
             }
+        case types.ADD_BEER_FAILURE:
+        case types.DELETE_BEER_FAILURE:
+        case types.UPDATE_BEER_FAILURE:        
         case types.FILTER_BEERS:
             return {
                 ...state,
