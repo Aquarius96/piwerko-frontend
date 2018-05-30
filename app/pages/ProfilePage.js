@@ -70,11 +70,7 @@ class ProfilePage extends Component {
                                     <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="40" />
                                 </div>
                                 <div className="fav-beer-name"> Kormoran </div>
-                                <div className="fav-beer-desc">
-                                    <div className="fav-beer-alcohol"> Alkohol: 5% </div>
-                                    <div className="fav-beer-IBU"> IBU: 3 </div>
-                                    <div className="fav-beer-rating"> Ocena: 3/5 </div>
-                                </div>
+                                <div className="fav-beer-rating"> Ocena: 3/5 </div>
                             </div>
                             
                         </div>

@@ -6,6 +6,8 @@ import Root from './containers/Root';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/main.scss';
 
+import './styles/main.scss'
+
 const store = configureStore();
 
 render(

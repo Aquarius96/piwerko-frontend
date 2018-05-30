@@ -59,41 +59,27 @@
         text-align: center;
     }
     .fav-beer {
+        display: grid;
+        grid-template-columns: 40px 290px 80px;
+        grid-template-rows: 50px;
+        width: 450px;
+
         border: 2px solid #683C1F;
-        height: 50px;
-        width: 630px;
         margin: 0 auto;
     }
     .fav-beer-logo {
-        float: left;
-        margin-top: 3px;
-        margin-left: 10px;
+        height: 40px;
+        margin: 3px;
     }
     .fav-beer-name {
-        float: left;
         color: #B45D24;
         font-weight: 600;
         font-size: 22px;
-        margin-top: 4px;
-        margin-left: 20px;
-    }
-    .fav-beer-desc {
-        float: left;
-        font-size: 16px;
-        font-weight: 400;
-        margin-top: 11px;
-        margin-left: 20px;
-    }
-    .fav-beer-alcohol {
-        float: left;
-        margin-left: 50px;
-    }
-    .fav-beer-IBU {
-        float: left;
-        margin-left: 50px;
+        margin-top: 5px;
     }
     .fav-beer-rating {
-        float: left;
-        margin-left: 50px;
+        font-size: 16px;
+        font-weight: 400;
+        margin-top: 10px;
     }
 }
