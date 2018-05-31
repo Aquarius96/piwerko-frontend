@@ -64,8 +64,17 @@ export function addBreweryFailure(error) {
 export function addBrewery(brewery, file) {
     return function action(dispatch) {
         dispatch(addBreweryBegin());
-        return axios.post('http://localhost:8080/api/brewery/add', brewery, file)
-        .then(response => dispatch(addBrewerySuccess(response.data)))
+        return axios.post('http://localhost:8080/api/brewery/add', brewery)
+        .then(res => {
+            console.log(res.data);            
+            axios.post('http://localhost:8080/api/brewery/addphoto/' + res.data.id, file, {headers: {'username': 'Admin', 'Content-Type': 'application/json'}})
+            .then(response => {
+                console.log(response.data);
+                dispatch(addBrewerySuccess(response.data));
+            }
+            )
+            .catch(error => console.log(error.response.data))
+        })        
         .catch(error => {
             dispatch(addBreweryFailure(error.response.data));
         })

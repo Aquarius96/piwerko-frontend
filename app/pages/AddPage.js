@@ -1,16 +1,39 @@
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import '../styles/add-beer-brewery.scss';
 import '../styles/button.scss';
+import { addBeer } from '../actions/beers';
+import { fetchBreweries, addBrewery } from '../actions/breweries';
+import Loader from '../components/Loader';
  
- 
+const mapStateToProps = state => {
+    return {
+        breweries: state.breweriesReducer.breweries,
+        loading: state.breweriesReducer.loading,
+        error: state.breweriesReducer.error,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addBeer: (beer, file) => dispatch(addBeer(beer, file)),
+        addBrewery: (brewery, file) => dispatch(addBrewery(brewery, file)),
+        fetchBreweries: () => dispatch(fetchBreweries()),
+    }
+}
+
 class AddPage extends Component {
     constructor(props) {
         super(props);
-        this.state = ({beer: {}, file: '', formData: {}});        
+        this.state = ({beer: {}, brewery: {}, file: '', formData: {}, showForm: 'beer'});        
+    }
+
+    componentDidMount() {
+        this.props.fetchBreweries();
     }
  
-    handleImageChange = (e) => {
-        e.preventDefault();    
+    handleImageChange = (e) => {            
         const reader = new FileReader();
         const file = e.target.files[0];    
         reader.onloadend = () => {
@@ -19,18 +42,48 @@ class AddPage extends Component {
                 imagePreviewUrl: reader.result
             });
         }    
-        reader.readAsDataURL(file);
-        const formData = new FormData();
-        formData.append('file', this.state.file);
-        this.setState({formData: formData});
+        reader.readAsDataURL(file);                
     }
  
-    handleInputChange = (e) => {
+    handleBeerInputChange = (e) => {
         const beer = Object.assign({}, this.state.beer);
         beer[e.target.name] = e.target.value;
         this.setState({beer: beer});
         console.log('dziala');
         console.log(this.state.beer);
+    }
+
+    handleBreweryInputChange = (e) => {
+        const brewery = Object.assign({}, this.state.brewery);
+        brewery[e.target.name] = e.target.value;
+        this.setState({brewery: brewery});
+        console.log('dziala');
+        console.log(this.state.brewery);
+    }
+
+    addBeer = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', this.state.file);
+        this.props.addBeer(this.state.beer, formData);
+    }
+
+    addBrewery = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', this.state.file);
+        this.props.addBrewery(this.state.brewery, formData);
+    }
+
+    handleFormChange = (e) => {
+        this.setState({showForm: e.target.value, beer: {}, brewery: {}});
+    }
+
+    handleInputs = () => {
+        if(this.state.showForm === 'beer') {
+            return 'this.handleBeerInputChange';
+        } 
+        return 'this.handleBreweryInputChange';                
     }
  
     render() {
@@ -39,75 +92,147 @@ class AddPage extends Component {
         if (imagePreviewUrl) {
             $imagePreview = (<img src={imagePreviewUrl} height="360"/>);
         } else {
-            $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+            $imagePreview = (<div className="previewText">Wybierz zdjęcie</div>);
+        }
+        if(this.props.loading) {
+            return <Loader />
+        }
+        if(!this.props.loading && this.props.error) {
+            return (
+                <div className="AddPage container">
+                    <p>Something went wrong. Your data was not loaded properly.</p>
+                    <p>{this.props.error}</p>
+                </div>
+                );
         }
         return (
         <div className="add-page container">
-            <form onChange={this.handleInputChange}>
+            <form onChange={(this.state.showForm === 'beer') ? this.handleBeerInputChange : this.handleBreweryInputChange}>
             <div className="wrapper">
                 <div className="info-form">
                 <div className="select">
-                    <select>
-                        <option selected value="xD">Piwo</option>
-                        <option value="xDD">Browar</option>
+                    <select onChange={this.handleFormChange}>
+                        <option selected value="beer">Piwo</option>
+                        <option value="brewery">Browar</option>
                     </select>
                 </div>
+                {(this.state.showForm === 'beer') ?
+                <div className="beerData">
                 <input
+                  name="name"  
                   type="text"
                   className="my-input"
                   placeholder="Nazwa"
-                  title="Wpisz miasto"
+                  title="Wpisz nazwę piwa"
                   ></input>
                   <input
+                  name="alcohol"
                   type="text"
                   className="my-input"
                   placeholder="Alkohol"
-                  title="Wpisz miasto"
+                  title="Wpisz % alkoholu"
                   ></input>
                   <input
+                  name="ibu"
                   type="text"
                   className="my-input"
                   placeholder="IBU"
-                  title="Wpisz miasto"
+                  title="Wpisz IBU"
                   ></input>
                   <div className="select">
-                    <select>
-                        <option selected value="xD">Typ Piwa</option>
-                        <option value="xDD">Browar</option>
+                    <select name="type">
+                        <option selected value="gowno">Typ Piwa</option>
+                        <option value="inny typ">Browar</option>
                     </select>
                 </div>
                 <div className="select">
-                    <select>
-                        <option selected value="xD">Browar</option>
-                        <option value="xDD">Browar</option>
+                    <select name="breweryId">
+                        <option selected value="">Browar</option>
+                        {this.props.breweries.map(brewery => {
+                            return <option value={brewery.id}>{brewery.name}</option>
+                        })}
+                        
                     </select>
                 </div>
                   <input
+                  name="servingTemp"
                   type="text"
                   className="my-input2"
                   placeholder="Temperatura podawania"
                   title="Wpisz miasto"
                   ></input>
+                </div> :
+                <div className="brewery-data">
+                    <input
+                  name="name"  
+                  type="text"
+                  className="my-input"
+                  placeholder="Nazwa"
+                  title="Wpisz nazwę browaru"
+                  ></input>
+                  <input
+                  name="city"  
+                  type="text"
+                  className="my-input"
+                  placeholder="Miasto"
+                  title="Wpisz miasto"
+                  ></input>
+                  <input
+                  name="street"  
+                  type="text"
+                  className="my-input"
+                  placeholder="Ulica"
+                  title="Wpisz ulicę"
+                  ></input>
+                  <input
+                  name="streetNumber"  
+                  type="text"
+                  className="my-input"
+                  placeholder="Nr budynku"
+                  title="Wpisz nr budynku"
+                  ></input>
+                    </div>
+                }
+                
                 </div>
+
+                
+                
                 <div className="avatar-form">
                 <div className="image-form">
                 {$imagePreview}
                 </div>
                 <div className="button-form">
-                <button className="wybierz-plik">Wybierz plik z dysku</button>
+                <input id="file" className="fileInput" 
+                        type="file"                    
+                        onChange={(e)=>this.handleImageChange(e)} />
+                        <button className="wybierz-plik" htmlFor="file">Wybierz plik</button>
                 </div>
             </div>
             </div>
-            <textarea name="body" className="textarea"type="text"
+            <textarea name="description" className="textarea"type="text"
                   placeholder="Dodaj opis piwa..."
                   title="Wpisz miasto"></textarea>
             <div className="add-beer-button-form">
-            <button className="dodaj-piwo">Dodaj Piwo</button>            
+            {(this.state.showForm === 'beer') ? 
+                <button className="dodaj-piwo" onClick={this.addBeer}>Dodaj Piwo</button> :
+                <button className="dodaj-piwo" onClick={this.addBrewery}>Dodaj Browar</button>
+            }
+                        
             </div>
             </form>
         </div>
         );
     }
 }
+
+AddPage.propTypes = {
+    addBeer: PropTypes.func,
+    addBrewery: PropTypes.func,
+    breweries: PropTypes.array,
+    fetchBreweries: PropTypes.func,
+    loading: PropTypes.bool,
+    error: PropTypes.string,
+}
  
-export default AddPage;
+export default connect(mapStateToProps, mapDispatchToProps)(AddPage);
