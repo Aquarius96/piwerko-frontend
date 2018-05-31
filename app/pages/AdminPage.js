@@ -1,4 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import '../styles/admin-page.scss';
+import '../styles/button.scss';
+import ExpectingBeers from '../components/ExpectingBeers';
+import ExpectingBreweries from '../components/ExpectingBreweries';
 
 class AdminPage extends Component {
     constructor(props) {
@@ -6,7 +10,16 @@ class AdminPage extends Component {
     }
     render() {
         return (
-        <div className="AdminPage container">AdminPage works!</div>
+            <div className="admin-page container">
+                <div className="form1">
+                    <div className="item1">
+                        <ExpectingBeers/>
+                    </div>
+                    <div className="item2">
+                        <ExpectingBreweries/>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
