@@ -1,0 +1,110 @@
+.add-page{
+    .wrapper {
+        display: grid;
+        grid-template-columns:50% 50%;
+    }
+    .info-form{
+    z-index: 1;
+    background: #FFFFFF;
+    width: 100%;
+    margin: 0 auto 50px;
+    padding: 25px;
+    border: 2px solid #683C1F;
+    max-height: 476px;
+    }
+    .avatar-form{
+    z-index: 1;
+    background: #FFFFFF;
+    width: 92%;
+    margin: 0 auto 50px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid #683C1F;
+    max-height: 476px;
+    }
+    .my-input {
+        width: 500px;
+        height: 50px;
+        font-size: 16px;
+        padding: 10px 20px 12px ;
+        border: 2px solid #683C1F;
+        margin-bottom: 12px;
+      }
+      .my-input2 {
+        width: 500px;
+        height: 50px;
+        font-size: 16px;
+        padding: 10px 20px 12px ;
+        border: 2px solid #683C1F;
+      }
+      select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        outline: 0;
+        box-shadow: none;
+        border: 2px solid #683C1F;
+        background: white;
+        background-image: none;
+      }
+      .select {
+        position: relative;
+        display: block;
+        width: 500px;
+        height: 50px;
+        line-height: 3;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+      select {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0 0 0 .5em;
+        color: black;
+        cursor: pointer;
+        &::-ms-expand {
+          display: none;
+        }
+      }
+      .select {
+        &::after {
+          content: '\25BC';
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          padding: 0 1em;
+          background: white;
+          pointer-events: none;
+          border: 2px solid #683C1F;
+          color: #3D4944;
+        }
+        &:hover::after {
+          color: #683C1F;
+        }
+        &::after {
+          -webkit-transition: .5s all ease;
+          -o-transition: .5s all ease;
+          transition: .5s all ease;
+        }
+      }
+     .image-form{
+         height: 380px;
+     }
+     .button-form{
+     }
+     .textarea{
+        width: 98%;
+        height: 200px;
+        font-size: 16px;
+        border: 2px solid #683C1F;
+        padding:10px;
+        resize: none;
+    }
+    .add-beer-button-form{
+        text-align: center;
+    }
+
+}

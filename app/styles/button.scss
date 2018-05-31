@@ -76,3 +76,12 @@ cursor: pointer;
   @extend .button;
   width:60%;
 }
+.wybierz-plik {
+  @extend .button;
+  width:70%;
+}
+.dodaj-piwo{
+  @extend .button;
+  width:170px;
+  margin-top:20px;
+}
