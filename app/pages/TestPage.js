@@ -112,12 +112,20 @@ class TestPage extends Component {
         reader.onloadend = () => {
             this.setState({
                 file: file,
+                imagePreviewUrl: reader.result
             });
         }    
         reader.readAsDataURL(file)
     }
 
     render() {
+        let {imagePreviewUrl} = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl) {
+            $imagePreview = (<img src={imagePreviewUrl} />);
+        } else {
+            $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+        }
         if(this.props.loading) {
             return <Loader />
         }
@@ -132,6 +140,7 @@ class TestPage extends Component {
         return (
             <div className="TestPage container">
                 <p>TestPage works!</p>
+                {$imagePreview}
                 <p>and is fully loaded!</p>
                 <p>beers length is {this.props.beers.length}</p>                
                 <button onClick = {() => this.props.addBeer(myBeer, this.state.formData)}>Click to add beer</button>
@@ -143,9 +152,10 @@ class TestPage extends Component {
                 <button onClick = {() => this.props.fetchSingleBeer(20003)}>Click to fetch beer with id 20003</button>
                 <button onClick = {() => this.props.fetchSingleBrewery(1)}>Click to fetch brewery with id 1</button>
                 <form onSubmit={(e)=>this.add(e)}>
-                    <input className="fileInput" 
-                        type="file" 
+                    <input id="file" className="fileInput" 
+                        type="file"                    
                         onChange={(e)=>this.handleImageChange(e)} />
+                        <button htmlFor="file">Select file</button>
                     <button className="submitButton" 
                         type="submit" 
                         onClick={(e)=>this.add(e)}>Upload Image</button>

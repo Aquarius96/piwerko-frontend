@@ -32,6 +32,9 @@ export default (
 		<Route exact path="/error" component= {ErrorPage} />
 		<Route exact path="/confirm/:id/:code" component= {ConfirmPage} />
 		<Route exact path="/forgot/:id/:code" component= {ForgotPasswordPage} />
+		<Route exact path="/beer/:page" component= {SingleBeerPage} />
+		<Route exact path="/brewery/:page" component= {SingleBreweryPage} />
+
 
 	</Switch>
 );

@@ -110,7 +110,7 @@ class BreweryBasePage extends Component {
                         <option value="asc">Rosnąco</option>
                     </select>
                 </div>                            
-                <BreweriesList breweries={this.state.pickedBreweries} page={this.props.match.params.page} />
+                <BreweriesList history={this.props.history} breweries={this.state.pickedBreweries} page={this.props.match.params.page} />
             </div>
             );
     }
