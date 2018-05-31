@@ -121,7 +121,7 @@ class BeerBasePage extends Component {
                         <option value="xDDD">Rosnąco</option>
                     </select>
                 </div>
-                <BeersList beers={this.state.pickedBeers} page={this.props.match.params.page} />
+                <BeersList history={this.props.history} beers={this.state.pickedBeers} page={this.props.match.params.page} />
             </div>
             );
     }

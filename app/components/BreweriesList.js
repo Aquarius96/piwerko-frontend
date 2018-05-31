@@ -7,6 +7,11 @@ class BreweriesList extends Component {
     constructor(props) {
         super(props);
     }
+
+    switchPage = (id) => {
+        this.props.history.push('/brewery/' + id);
+    }
+
     render() {
         if(this.props.breweries.length === 0) {
             return (
@@ -32,7 +37,7 @@ class BreweriesList extends Component {
                                 <p>34-300 {brewery.city}</p>
                                 </div>
                             </div>
-                            <button className="sprawdz-szczegoly-brewery">Sprawdź szczegóły</button>
+                            <button className="sprawdz-szczegoly-brewery" onClick={() => this.switchPage(brewery.id)}>Sprawdź szczegóły</button>
                         </div>     
                             );
                         })}   
@@ -44,7 +49,8 @@ class BreweriesList extends Component {
 }
 
 BreweriesList.propTypes = {
-    breweries: PropTypes.array
+    breweries: PropTypes.array,
+    history: PropTypes.object
 }
 
 export default BreweriesList;
