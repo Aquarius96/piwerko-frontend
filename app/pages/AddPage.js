@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import '../styles/add-beer-brewery.scss';
 import '../styles/button.scss';
-
-
+ 
+ 
 class AddPage extends Component {
     constructor(props) {
         super(props);
         this.state = ({beer: {}, file: '', formData: {}});        
     }
-
+ 
     handleImageChange = (e) => {
         e.preventDefault();    
         const reader = new FileReader();
@@ -19,9 +19,12 @@ class AddPage extends Component {
                 imagePreviewUrl: reader.result
             });
         }    
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(file);
+        const formData = new FormData();
+        formData.append('file', this.state.file);
+        this.setState({formData: formData});
     }
-
+ 
     handleInputChange = (e) => {
         const beer = Object.assign({}, this.state.beer);
         beer[e.target.name] = e.target.value;
@@ -29,7 +32,7 @@ class AddPage extends Component {
         console.log('dziala');
         console.log(this.state.beer);
     }
-
+ 
     render() {
         let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
@@ -40,7 +43,8 @@ class AddPage extends Component {
         }
         return (
         <div className="add-page container">
-            <form className="wrapper">
+            <form onChange={this.handleInputChange}>
+            <div className="wrapper">
                 <div className="info-form">
                 <div className="select">
                     <select>
@@ -93,16 +97,17 @@ class AddPage extends Component {
                 <button className="wybierz-plik">Wybierz plik z dysku</button>
                 </div>
             </div>
-            </form>
+            </div>
             <textarea name="body" className="textarea"type="text"
                   placeholder="Dodaj opis piwa..."
                   title="Wpisz miasto"></textarea>
             <div className="add-beer-button-form">
-            <button className="dodaj-piwo">Dodaj Piwo</button>
+            <button className="dodaj-piwo">Dodaj Piwo</button>            
             </div>
+            </form>
         </div>
         );
     }
 }
-
+ 
 export default AddPage;
