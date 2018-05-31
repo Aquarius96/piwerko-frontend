@@ -86,3 +86,9 @@ cursor: pointer;
   margin-top:20px;
   margin-right: 25px;
 }
+.dodaj-komentarz{
+  @extend .button;
+  width:20%;
+  float: right;
+  margin:10px 0 10px 0;
+}

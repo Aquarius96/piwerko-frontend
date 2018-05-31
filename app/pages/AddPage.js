@@ -102,7 +102,7 @@ class AddPage extends Component {
                   placeholder="Dodaj opis piwa..."
                   title="Wpisz miasto"></textarea>
             <div className="add-beer-button-form">
-            <button className="dodaj-piwo">Dodaj Piwo</button>            
+            <button className="dodaj-piwo">Dodaj Piwo</button>     
             </div>
             </form>
         </div>
