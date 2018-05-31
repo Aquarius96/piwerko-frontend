@@ -98,3 +98,22 @@ cursor: pointer;
   float: right;
   margin:10px 0 10px 0;
 }
+
+.exp-beer-1{
+  @extend .button;
+  width: 100px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.exp-beer-2{
+  @extend .button;
+  width: 100px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.exp-beer-3{
+  @extend .button;
+  width: 100px;
+  margin-right: 5px;
+  margin-left: 5px;
+}

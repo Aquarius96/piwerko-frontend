@@ -72,7 +72,7 @@ class ProfilePage extends Component {
                                 <div className="fav-beer-name"> Kormoran </div>
                                 <div className="fav-beer-rating"> Ocena: 3/5 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
