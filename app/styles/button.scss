@@ -92,3 +92,9 @@ cursor: pointer;
   position: absolute;
   width: 50%;
 }
+.dodaj-komentarz{
+  @extend .button;
+  width:20%;
+  float: right;
+  margin:10px 0 10px 0;
+}
