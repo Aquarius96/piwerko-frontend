@@ -168,7 +168,7 @@ export function changeAvatar(file) {
     return function action(dispatch) {
         console.log('zmieniam avatar');
         dispatch(changeAvatarBegin());
-        return axios.post('http://localhost:8080/api/user/avatar', file)
+        return axios.post('http://localhost:8080/api/user/avatar', file, {headers: {'Content-Type': 'application/json', 'username': 'Admin'}})
         .then(response => dispatch(changeAvatarSuccess(response.data.message)))
         .catch(error => {
             console.log('err' + error);
