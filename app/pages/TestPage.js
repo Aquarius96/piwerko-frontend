@@ -15,7 +15,7 @@ const myBeer = {
     'breweryId': 1,
     'servingTemp': 25,
     'type': 'gowno',
-    'description': 'zaq',
+    'description': 'zaq'
 }
 
 const updBeer = {
@@ -69,7 +69,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchBeers: () => dispatch(fetchBeers()),
-        addBeer: beer => dispatch(addBeer(beer)),
+        addBeer: (beer, file) => dispatch(addBeer(beer, file)),
         deleteBeer: id => dispatch(deleteBeer(id)),
         updateBeer: beer => dispatch(updateBeer(beer)),
         addBrewery: brewery => dispatch(addBrewery(brewery)),

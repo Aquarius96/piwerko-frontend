@@ -69,7 +69,7 @@ export function register(user) {
             console.log('err' + error);
             console.log('resp' + error.response.data);
             console.log('req' + error.request);
-            dispatch(registerFailure(error.message));
+            dispatch(registerFailure(error.response.data));
         })
     }
 }

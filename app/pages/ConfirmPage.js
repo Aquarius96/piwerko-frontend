@@ -28,8 +28,11 @@ class ConfirmPage extends Component {
         data.id = this.props.match.params.id;
         data.key = this.props.match.params.code; 
         this.props.confirm(data);
-        if (this.props.message) {
-            this.props.history.push('/login');
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.message) {
+            setTimeout(this.props.history.push('/login'), 3000);
         }
     }
 

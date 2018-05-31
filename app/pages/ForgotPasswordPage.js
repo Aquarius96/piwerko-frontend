@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import Loader from '../components/Loader';
 import { forgotPassword } from '../actions/user';
+import '../styles/LoginPage.scss';
+import '../styles/button.scss';
 
 const mapStateToProps = state => {
     return {
@@ -43,12 +45,14 @@ class ForgotPasswordPage extends Component {
             return <div>msg{this.props.message}</div>
         }
         return (
-        <div className="form">
+        <div className="login-page container">
+            <div className="form">
             <form onSubmit={this.handleSubmit}>
                 <input name="password" type="text" placeholder="Wpisz nowe hasło..." required/>
-                <button onClick={this.handleSubmit}>Zapisz nowe hasło</button>
-            </form>
-            <p>dzialaj gownie</p>
+                <button className="zaloguj-zarejestruj" onClick={this.handleSubmit}>Zapisz nowe hasło</button>
+            </form>            
+            </div>
+            
         </div>
         );        
     }

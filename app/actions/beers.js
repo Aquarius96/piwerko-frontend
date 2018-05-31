@@ -102,16 +102,27 @@ export function addBeerFailure(error) {
     }
 }
 
+
+
 export function addBeer(beer, file) {
     return function action(dispatch) {
         dispatch(addBeerBegin());
-        return axios.post('http://localhost:8080/api/beer/add', beer, file)
-        .then(response => dispatch(addBeerSuccess(response.data)))
+        return axios.post('http://localhost:8080/api/beer/add', beer)
+        .then(res => {
+            console.log(res.data);            
+            axios.post('http://localhost:8080/api/beer/addphoto/' + res.data.id, file, {headers: {'username': 'Admin'}})
+            .then(response => {
+                console.log(response.data);
+                dispatch(addBeerSuccess(response.data));
+            }
+            )
+            .catch(error => console.log(error.response.data))
+        })        
         .catch(error => {
             console.log('err' + error);
             console.log('resp' + error.response.data);
             console.log('req' + error.request);
-            dispatch(addBeerFailure(error.message));
+            dispatch(addBeerFailure(error.response.data));
         })
     }
 }
