@@ -1,0 +1,75 @@
+.single-brewery-page{
+text-align:center;
+h1 {
+    color:#B45D24;
+    font-size: 40px;
+    margin-bottom:20px;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 35% 35% 30%;
+    height: 500px;
+    }
+.item1{  // logo browaru
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+.item2{  // dane browaru
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+}
+.item3{  // mapa 
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    border: 2px solid #683C1F;
+
+}
+.item4{ // opis browaru
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 3;
+}
+p{
+    color:#B45D24;
+    font-size: 20px;
+    margin: 0px;
+    padding-top:5px;
+}
+.p-opis-browaru{
+    color:#B45D24;
+    font-size: 20px;
+    margin-top: 30px; 
+    text-align: justify;
+}
+.produkty-wrapper{
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: 80px 80px 80px;
+}
+
+.produkty{
+    border: 2px solid #683C1F;
+    height: 80px;
+    margin:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+}
