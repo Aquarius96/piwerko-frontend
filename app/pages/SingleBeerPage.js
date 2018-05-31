@@ -50,16 +50,34 @@ class SingleBeerPage extends Component {
         </div>
         </div>
         <div className="item7">
-        <p>Najgorsze piwo na świecie, nigdy nie piłem takiego ścieka, jakie to jest kurwa okropne, jak takie gówno można pić, piwo dla biedaków co ich nie stać na ksiazece tfu kurwa.</p>
+        <p>Najgorsze piwo na świecie, nigdy nie piłem takiego ścieka, jakie to jest okropne, jak takie gówno można pić, piwo dla biedaków co ich nie stać na ksiazece tfu.</p>
         </div> 
 
         </div>
-        <h2>Komentarze:</h2>
+        <h2>Co sądzisz o tym piwie?</h2>
         <textarea name="body" className="textarea"type="text"
                   placeholder="Dodaj komentarz..."
                   title="Wpisz miasto"></textarea>
         <button className="dodaj-komentarz">Dodaj komentarz</button>
+        
+        <h3>Komentarze innych użytkowników:</h3>
+        <div className="space"></div>
 
+        <div className="komentarz-pojedynczego-uzytkownika">
+        <div className="wrapper-komentarze">
+        <div className="user-nickname">
+        <p> Los Marcinos</p>
+        <img src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'} height="90" width="90" />
+        </div>
+        <div className="komentarz-uzytkownika">
+        <p> ale to piwo jest mierne matkoooo ale to piwo jest mierne matkoooo ale to piwo jest mierne matkoooo ale to piwo jest mierne matkoooo ale to piwo jest mierne matkoooo ale to piwo jest mierne matkoooo ale to piwo jest mierne matkoooo ale to piwo jest mierne matkoooo  </p>
+        </div>
+        <div className="ocena-uzytkownika">
+        <p className="p-ocena"> 1</p>
+        </div>
+        </div>
+        </div>
+        
         </div>
         );
     }

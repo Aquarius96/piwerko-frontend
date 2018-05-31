@@ -27,7 +27,7 @@
         height: 50px;
         font-size: 16px;
         padding: 10px 20px 12px ;
-        border: 2px solid #683C1F;
+        border: 1px solid #683C1F;
         margin-bottom: 12px;
       }
       .my-input2 {
@@ -35,7 +35,7 @@
         height: 50px;
         font-size: 16px;
         padding: 10px 20px 12px ;
-        border: 2px solid #683C1F;
+        border: 1px solid #683C1F;
       }
       select {
         -webkit-appearance: none;
@@ -44,7 +44,7 @@
         appearance: none;
         outline: 0;
         box-shadow: none;
-        border: 2px solid #683C1F;
+        border: 1px solid #683C1F;
         background: white;
         background-image: none;
       }
@@ -78,7 +78,7 @@
           padding: 0 1em;
           background: white;
           pointer-events: none;
-          border: 2px solid #683C1F;
+          border: 1px solid #683C1F;
           color: #3D4944;
         }
         &:hover::after {

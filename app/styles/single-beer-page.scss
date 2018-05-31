@@ -1,16 +1,7 @@
+:root {
+    --rows: 5;
+}
 .single-beer-page{
-<<<<<<< HEAD
-    .wrapper {
-        display: grid;
-        grid-template-columns: 100px 100px 100px;
-        grid-template-rows: 100px 100px 100px;
-    }
-    
-    
-    
-    
-    }
-=======
     text-align: center;
 .wrapper {
     display: grid;
@@ -52,7 +43,6 @@
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 2;
-    border: 2px solid #683C1F;
     margin:5px;
 }
 .item6{  // podobne piwa
@@ -60,7 +50,6 @@
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 4;
-    border: 2px solid #683C1F;
     margin:5px;
 }
 .item7{   // opis piwa
@@ -68,7 +57,6 @@
     grid-column-end: 2;
     grid-row-start: 3;
     grid-row-end: 3;
-    border: 2px solid #683C1F;
     margin:5px;
 }
 
@@ -147,8 +135,8 @@ p{
 .podobne-piwo{
     width:80%;
     border: 2px solid #683C1F;
-    height: 80px;
-    margin:6px auto;
+    height: 70px;
+    margin:15px auto;
     
 }
 .textarea{
@@ -159,7 +147,44 @@ p{
     padding:10px;
     resize: none;
 }
-
+h3 {
+    color:#B45D24;
+    font-size: 30px;
+    float:left;
+    padding:20px 0 10px 0;
+}
+.space{
+    margin-bottom:75px;
+}
+.wrapper-komentarze{
+    display: grid;
+    grid-template-columns: 20% 70% 10%;
+    grid-template-rows: repeat(var(--rows), 150px);
+}
+.user-nickname{
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+.komentarz-uzytkownika{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    height: 130px;
+    margin-top:8px;
+    text-align: justify;
+    padding:0px 15px 0px 15px;
+}
+.ocena-uzytkownika{
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+.komentarz-pojedynczego-uzytkownika{
+    border: 2px solid #683C1F;
+    width:100%;
+    height: 150px;
+    margin-bottom:25px;
+}
+.p-ocena{
+    font-size:80px;
+}
 
 }
->>>>>>> 208bcda750d3d46bad6da7b5fd72d21df6ff6ffd
