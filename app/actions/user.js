@@ -143,3 +143,38 @@ export function forgotPassword(data) {
         })
     }
 }
+
+export function changeAvatarBegin() {
+    return {
+        type: types.CHANGE_AVATAR_BEGIN
+    }
+}
+
+export function changeAvatarSuccess(user) {
+    return {
+        type: types.CHANGE_AVATAR_SUCCESS,
+        payload: {user}
+    }
+}
+
+export function changeAvatarFailure(error) {
+    return {
+        type: types.CHANGE_AVATAR_FAILURE,
+        payload: {error}
+    }
+}
+
+export function changeAvatar(file) {
+    return function action(dispatch) {
+        console.log('zmieniam avatar');
+        dispatch(changeAvatarBegin());
+        return axios.post('http://localhost:8080/api/user/avatar', file)
+        .then(response => dispatch(changeAvatarSuccess(response.data.message)))
+        .catch(error => {
+            console.log('err' + error);
+            console.log('resp' + error.response.data);
+            console.log('req' + error.request);
+            dispatch(changeAvatarFailure(error.response.data));
+        })
+    }
+}

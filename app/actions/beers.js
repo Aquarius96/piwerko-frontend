@@ -104,24 +104,23 @@ export function addBeerFailure(error) {
 
 
 
-export function addBeer(beer, file) {
+export function addBeer(beer, file, photoAdded) {
     return function action(dispatch) {
-        dispatch(addBeerBegin());
-        return axios.post('http://localhost:8080/api/beer/add', beer)
-        .then(res => {
-            console.log(res.data);            
-            axios.post('http://localhost:8080/api/beer/addphoto/' + res.data.id, file, {headers: {'username': 'Admin'}})
-            .then(response => {
-                console.log(response.data);
+        dispatch(addBeerBegin());        
+        return axios.post('http://localhost:8080/api/beer/add', beer, {headers: {'Content-Type': 'application/json', 'username': 'Admin'}})
+        .then(res => {                 
+            if(photoAdded) {
+                axios.post('http://localhost:8080/api/beer/addphoto/' + res.data.id, file, {headers: {'Content-Type': 'application/json', 'username': 'Admin'}})
+            .then(response => {                
                 dispatch(addBeerSuccess(response.data));
             }
             )
-            .catch(error => console.log(error.response.data))
+            .catch(error => dispatch(addBeerFailure(error.response.data)))
+            } else {
+                dispatch(addBeerSuccess(res.data));
+            }           
         })        
-        .catch(error => {
-            console.log('err' + error);
-            console.log('resp' + error.response.data);
-            console.log('req' + error.request);
+        .catch(error => {            
             dispatch(addBeerFailure(error.response.data));
         })
     }

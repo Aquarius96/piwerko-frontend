@@ -12,12 +12,14 @@ export default function userReducer(state = initialState, action) {
         case types.REGISTER_BEGIN:
         case types.CONFIRM_BEGIN:
         case types.FORGOT_PASSWORD_BEGIN:
+        case types.CHANGE_AVATAR_BEGIN:
             return {
                 ...state,
                 loading: true,
                 error: null
             }
         case types.LOGIN_SUCCESS:
+        case types.CHANGE_AVATAR_SUCCESS:
             return {
                 ...state,
                 loading: false
@@ -37,7 +39,8 @@ export default function userReducer(state = initialState, action) {
         case types.LOGIN_FAILURE:
         case types.REGISTER_FAILURE:
         case types.CONFIRM_FAILURE:
-        case types.FORGOT_PASSWORD_FAILURE:                   
+        case types.FORGOT_PASSWORD_FAILURE:
+        case types.CHANGE_AVATAR_FAILURE:                   
             return {
                 ...state,
                 loading: false,

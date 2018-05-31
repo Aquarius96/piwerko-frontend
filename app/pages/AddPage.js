@@ -5,8 +5,9 @@ import '../styles/add-beer-brewery.scss';
 import '../styles/button.scss';
 import { addBeer } from '../actions/beers';
 import { fetchBreweries, addBrewery } from '../actions/breweries';
+import { changeAvatar } from '../actions/user';
 import Loader from '../components/Loader';
- 
+
 const mapStateToProps = state => {
     return {
         breweries: state.breweriesReducer.breweries,
@@ -17,16 +18,17 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addBeer: (beer, file) => dispatch(addBeer(beer, file)),
-        addBrewery: (brewery, file) => dispatch(addBrewery(brewery, file)),
+        addBeer: (beer, file, photoAdded) => dispatch(addBeer(beer, file, photoAdded)),
+        addBrewery: (brewery, file, photoAdded) => dispatch(addBrewery(brewery, file, photoAdded)),
         fetchBreweries: () => dispatch(fetchBreweries()),
+        changeAvatar: file => dispatch(changeAvatar(file))
     }
 }
 
 class AddPage extends Component {
     constructor(props) {
         super(props);
-        this.state = ({beer: {}, brewery: {}, file: '', formData: {}, showForm: 'beer'});        
+        this.state = ({beer: {}, brewery: {}, file: null, formData: {}, showForm: 'beer'});        
     }
 
     componentDidMount() {
@@ -42,37 +44,50 @@ class AddPage extends Component {
                 imagePreviewUrl: reader.result
             });
         }    
-        reader.readAsDataURL(file);                
+        reader.readAsDataURL(file);                      
     }
  
     handleBeerInputChange = (e) => {
         const beer = Object.assign({}, this.state.beer);
         beer[e.target.name] = e.target.value;
         this.setState({beer: beer});
-        console.log('dziala');
-        console.log(this.state.beer);
     }
 
     handleBreweryInputChange = (e) => {
         const brewery = Object.assign({}, this.state.brewery);
         brewery[e.target.name] = e.target.value;
         this.setState({brewery: brewery});
-        console.log('dziala');
-        console.log(this.state.brewery);
     }
 
     addBeer = (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('file', this.state.file);
-        this.props.addBeer(this.state.beer, formData);
+        const formData = new FormData();        
+        formData.append('file', this.state.file);        
+        if(this.state.file) {
+            this.props.addBeer(this.state.beer, formData, true);
+        } else {
+            this.props.addBeer(this.state.beer, formData, false);
+        }        
     }
 
     addBrewery = (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('file', this.state.file);
-        this.props.addBrewery(this.state.brewery, formData);
+        if(this.state.file) {
+            console.log('dz');
+            this.props.addBrewery(this.state.brewery, formData, true);
+        } else {
+            console.log('niedz');
+            this.props.addBrewery(this.state.brewery, formData, false);
+        }       
+    }
+
+    addAvatar = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', this.state.file);
+        this.props.changeAvatar(formData);
     }
 
     handleFormChange = (e) => {
@@ -218,7 +233,7 @@ class AddPage extends Component {
                 <button className="dodaj-piwo" onClick={this.addBeer}>Dodaj Piwo</button> :
                 <button className="dodaj-piwo" onClick={this.addBrewery}>Dodaj Browar</button>
             }
-                        
+             <button className="dodaj-piwo" onClick={this.addAvatar}>dodaj avatar test dla dawida</button>           
             </div>
             </form>
         </div>
@@ -233,6 +248,7 @@ AddPage.propTypes = {
     fetchBreweries: PropTypes.func,
     loading: PropTypes.bool,
     error: PropTypes.string,
+    changeAvatar: PropTypes.func
 }
  
 export default connect(mapStateToProps, mapDispatchToProps)(AddPage);

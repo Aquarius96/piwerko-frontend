@@ -61,19 +61,22 @@ export function addBreweryFailure(error) {
     }
 }
 
-export function addBrewery(brewery, file) {
+export function addBrewery(brewery, file, photoAdded) {
     return function action(dispatch) {
         dispatch(addBreweryBegin());
-        return axios.post('http://localhost:8080/api/brewery/add', brewery)
+        return axios.post('http://localhost:8080/api/brewery/add', brewery, {headers: {'Content-Type': 'application/json', 'username': 'Admin'}})
         .then(res => {
-            console.log(res.data);            
-            axios.post('http://localhost:8080/api/brewery/addphoto/' + res.data.id, file, {headers: {'username': 'Admin', 'Content-Type': 'application/json'}})
-            .then(response => {
-                console.log(response.data);
-                dispatch(addBrewerySuccess(response.data));
-            }
-            )
-            .catch(error => console.log(error.response.data))
+            if(photoAdded) {
+                console.log('dodane');
+                axios.post('http://localhost:8080/api/brewery/addphoto/' + res.data.id, file, {headers: {'Content-Type': 'application/json', 'username': 'Admin'}})
+                .then(response => {                    
+                    dispatch(addBrewerySuccess(response.data));
+                }
+                )
+                .catch(error => console.log(error.response.data))
+            } else {
+                dispatch(addBrewerySuccess(res.data));
+            }                      
         })        
         .catch(error => {
             dispatch(addBreweryFailure(error.response.data));
