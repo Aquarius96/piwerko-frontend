@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import '../styles/single-beer-page.scss';
+import '../styles/button.scss';
 
 class SingleBeerPage extends Component {
     constructor(props) {
@@ -6,7 +8,16 @@ class SingleBeerPage extends Component {
     }
     render() {
         return (
-        <div className="SingleBeerPage container">SingleBeerPage works!</div>
+        <div className="SingleBeerPage container">
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
         );
     }
 }

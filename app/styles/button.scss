@@ -78,10 +78,11 @@ cursor: pointer;
 }
 .wybierz-plik {
   @extend .button;
-  width:70%;
+  width:50%;
 }
 .dodaj-piwo{
   @extend .button;
   width:170px;
   margin-top:20px;
+  margin-right: 25px;
 }
