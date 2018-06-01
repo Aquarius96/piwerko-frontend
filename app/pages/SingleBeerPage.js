@@ -39,9 +39,8 @@ class SingleBeerPage extends Component {
 
         </div>
         <div className="item6">
+        <button className="dodaj-do-ulubionych">Dodaj do ulubionych</button>
         <p>Podobne piwa:</p>
-        <div className="podobne-piwo">
-        </div>
         <div className="podobne-piwo">
         </div>
         <div className="podobne-piwo">

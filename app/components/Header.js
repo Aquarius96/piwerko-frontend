@@ -13,7 +13,7 @@ class Header extends Component {
 
                 <nav className="navbar navbar-expand-lg navbar-custom">
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <a className="navbar-brand" href="#">Piwerko</a>
+                    <Link className="navbar-brand" to="/">Piwerko</Link>
                         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
 
                             <ul className="navbar-nav ml-auto">
