@@ -15,7 +15,7 @@ export default class ExpectingBreweries extends Component {
         return (
             <div className="expecting-breweries container">
                 <div className="form">
-                    <h1>Oczekujące Piwa</h1>
+                    <h1>Oczekujące Browary</h1>
                     <div>
                         <ExpectingBrewery/>
                         <ExpectingBrewery/>
