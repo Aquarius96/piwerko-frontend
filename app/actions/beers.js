@@ -70,15 +70,47 @@ export function fetchFavoriteBeers(id) {
                 dispatch(fetchFavoriteBeersSuccess(response.data));
             })
             .catch(error => {
-                dispatch(fetchFavoriteBeersFailure(error.message));
+                dispatch(fetchFavoriteBeersFailure(error.response.data));
             });
     }
 }
 
-export function fetchSingleBeer(id) {
+export function fetchSingleBeerBegin() {
     return {
-        type: types.FETCH_SINGLE_BEER,
-        payload: {id}
+        type: types.FETCH_SINGLE_BEER_BEGIN
+    }
+}
+
+export function fetchSingleBeerSuccess(beer) {
+    return {
+        type: types.FETCH_SINGLE_BEER_SUCCESS,
+        payload: {beer}
+    }
+}
+
+export function fetchSingleBeerFailure(error) {
+    return {
+        type: types.FETCH_SINGLE_BEER_FAILURE,
+        payload: {error}
+    }
+}
+
+export function fetchSingleBeer(id) {
+    return function action(dispatch) {
+        dispatch(fetchSingleBeerBegin());
+        return axios.get('http://localhost:8080/api/beer/getbyid/' + id)
+            .then(response => {
+                console.log(response.data);
+                let newBeer = {};
+                newBeer = response.data.beer;
+                newBeer.rate = response.data.rate;                
+                console.log('new beer is');
+                console.log(newBeer);
+                dispatch(fetchSingleBeerSuccess(newBeer));
+            })
+            .catch(error => {
+                dispatch(fetchSingleBeerFailure(error.message));
+            });
     }
 }
 
@@ -132,10 +164,10 @@ export function addFavoriteBeerBegin() {
     }
 }
 
-export function addFavoriteBeerSuccess(beer, file) {
+export function addFavoriteBeerSuccess(beer) {
     return {
         type: types.ADD_FAVORITE_BEER_SUCCESS,
-        payload: {beer, file}
+        payload: {beer}
     }
 }
 
@@ -146,16 +178,50 @@ export function addFavoriteBeerFailure(error) {
     }
 }
 
-export function addFavoriteBeer(beer) {
+export function addFavoriteBeer(data) {
     return function action(dispatch) {
         dispatch(addFavoriteBeerBegin());        
-        return axios.post('http://localhost:8080/api/Favorite/add', beer)
+        return axios.post('http://localhost:8080/api/Favorite/add', data)
         .then(response => dispatch(addFavoriteBeerSuccess(response.data)))
         .catch(error => {
             console.log('err' + error);
             console.log('resp' + error.response.data);
             console.log('req' + error.request);
-            dispatch(addFavoriteBeerFailure(error.message));
+            dispatch(addFavoriteBeerFailure(error.response.data));
+        })
+    }
+}
+
+export function deleteFavoriteBeerBegin() {
+    return {
+        type: types.DELETE_FAVORITE_BEER_BEGIN
+    }
+}
+
+export function deleteFavoriteBeerSuccess(beer) {
+    return {
+        type: types.DELETE_FAVORITE_BEER_SUCCESS,
+        payload: {beer}
+    }
+}
+
+export function deleteFavoriteBeerFailure(error) {
+    return {
+        type: types.DELETE_FAVORITE_BEER_FAILURE,
+        payload: {error}
+    }
+}
+
+export function deleteFavoriteBeer(data) {
+    return function action(dispatch) {
+        dispatch(deleteFavoriteBeerBegin());        
+        return axios.post('http://localhost:8080/api/Favorite/del', data)
+        .then(response => dispatch(deleteFavoriteBeerSuccess(response.data)))
+        .catch(error => {
+            console.log('err' + error);
+            console.log('resp' + error.response.data);
+            console.log('req' + error.request);
+            dispatch(deleteFavoriteBeerFailure(error.response.data));
         })
     }
 }
@@ -236,37 +302,6 @@ export function sortBeersByName(sortType) {
     }
 }
 
-export function addRateBegin() {
-    return {
-        type: types.ADD_RATE_BEGIN        
-    }
-}
-
-export function addRateSuccess(data) {
-    return {
-        type: types.ADD_RATE_SUCCESS,
-        payload: {data}
-    }
-}
-
-export function addRateFailure(error) {
-    return {
-        type: types.ADD_RATE_FAILURE,
-        payload: {error}
-    }
-}
-
-export function addRate(data) { // beerId, userId, value
-    return function action(dispatch) {
-        dispatch(addRateBegin());
-        return axios.post('http://localhost:8080/api/rate/test', data)
-        .then((response) => dispatch(addRateSuccess(response.data)))
-        .catch(error => {
-            dispatch(addRateFailure(error.response));
-        })
-    }
-}
-
 export function fetchSingleRateBegin() {
     return {
         type: types.FETCH_SINGLE_RATE_BEGIN        
@@ -288,6 +323,7 @@ export function fetchSingleRateFailure(error) {
 }
 
 export function fetchSingleRate(data) { // userId, beerId
+    console.log('dziala');
     return function action(dispatch) {
         dispatch(fetchSingleRateBegin());
         return axios.post('http://localhost:8080/api/rate/getrate', data)
@@ -297,5 +333,38 @@ export function fetchSingleRate(data) { // userId, beerId
         })
     }
 }
+
+export function addRateBegin() {
+    return {
+        type: types.ADD_RATE_BEGIN        
+    }
+}
+
+export function addRateSuccess(data, rateValue) {
+    return {
+        type: types.ADD_RATE_SUCCESS,
+        payload: {data, rateValue}
+    }
+}
+
+export function addRateFailure(error) {
+    return {
+        type: types.ADD_RATE_FAILURE,
+        payload: {error}
+    }
+}
+
+export function addRate(data) { // beerId, userId, value
+    return function action(dispatch) {
+        dispatch(addRateBegin());
+        return axios.post('http://localhost:8080/api/rate/test', data)
+        .then((response) => dispatch(addRateSuccess(response.data, data.value)))        
+        .catch(error => {
+            dispatch(addRateFailure(error));
+        })
+    }
+}
+
+
 
 
