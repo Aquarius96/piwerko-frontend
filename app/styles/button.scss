@@ -99,24 +99,19 @@ cursor: pointer;
   margin:10px 0 10px 0;
 }
 
-.exp-beer-1{
+.exp-beer-1,
+.exp-beer-2,
+.exp-beer-3,
+.exp-brewery-1,
+.exp-brewery-2,
+.exp-brewery-3
+{
   @extend .button;
   width: 100px;
   margin-right: 5px;
   margin-left: 5px;
 }
-.exp-beer-2{
-  @extend .button;
-  width: 100px;
-  margin-right: 5px;
-  margin-left: 5px;
-}
-.exp-beer-3{
-  @extend .button;
-  width: 100px;
-  margin-right: 5px;
-  margin-left: 5px;
-}
+
 .dodaj-do-ulubionych{
   @extend .button;
   width:186px;
