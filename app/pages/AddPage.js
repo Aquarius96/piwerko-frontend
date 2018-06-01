@@ -44,7 +44,7 @@ class AddPage extends Component {
                 imagePreviewUrl: reader.result
             });
         }    
-        reader.readAsDataURL(file);                      
+        reader.readAsDataURL(file);
     }
  
     handleBeerInputChange = (e) => {

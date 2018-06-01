@@ -6,7 +6,7 @@
         border: 2px solid #683C1F;
         height: 600px;
         padding: 10px;
-        overflow: hidden;
+        overflow: auto;
     }
     .exp-beer{
         border: 2px solid #683C1F;
@@ -14,7 +14,19 @@
 
         display: grid;
         grid-template-columns: 15% 85%;
-        grid-template-rows: 50% 50%;
+        grid-template-rows: 50px 50px;
+
+        margin: 2px;
+    }
+    .exp-beer-detailed{
+        border: 2px solid #683C1F;
+        height: 200px;
+
+        display: grid;
+        grid-template-columns: 15% 85%;
+        grid-template-rows: 50px 50px 100px;
+
+        margin: 2px;
     }
     .exp-beer-logo{
         grid-row-start: 1;
@@ -36,5 +48,10 @@
         grid-column-start: 2;
         grid-column-end: 3;
         text-align: center;
+    }
+    .exp-beer-details{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        padding: 10px;
     }
 }
