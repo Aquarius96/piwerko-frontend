@@ -156,8 +156,10 @@ class AddPage extends Component {
                   ></input>
                   <div className="select">
                     <select name="type">
-                        <option selected value="gowno">Typ Piwa</option>
-                        <option value="inny typ">Browar</option>
+                        <option selected value="">Typ Piwa</option>
+                        <option value="lager">Lager</option>
+                        <option value="stout">Stout</option>
+                        <option value="ciemne">Ciemne</option>
                     </select>
                 </div>
                 <div className="select">
