@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import '../styles/header.scss';
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
+const mapStateToProps = state => {
+    return {
+        loading: state.userReducer.loading
+    }
+}
 
 class Header extends Component {
     constructor(props) {
@@ -25,7 +32,7 @@ class Header extends Component {
         const token = localStorage.getItem('token');        
         if(token) {
             const user = jwtDecode(token);
-            this.setState({user: user});            
+            this.setState({user: user});                       
             console.log(user);
         } else {
             this.setState({user: null});
@@ -35,6 +42,7 @@ class Header extends Component {
 
     logOff = () => {
         localStorage.removeItem('token');
+        this.setState({user: null});
     }
 
     render() {
@@ -86,4 +94,8 @@ class Header extends Component {
     }
 }
 
-export default Header;
+Header.propTypes = {
+    loading: PropTypes.bool
+}
+
+export default connect(mapStateToProps)(Header);

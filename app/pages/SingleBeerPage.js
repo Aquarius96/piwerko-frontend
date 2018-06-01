@@ -1,14 +1,58 @@
-import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import '../styles/single-beer-page.scss';
 import '../styles/button.scss';
+import jwtDecode from 'jwt-decode';
+import {fetchSingleRate, addRate} from '../actions/beers';
+
+const mapStateToProps = state => {
+    return {
+        beer: state.beersReducer.singleBeer,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchSingleRate: (data) => dispatch(fetchSingleRate(data)),
+        addRate: data => dispatch(addRate(data))
+    }
+}
 
 class SingleBeerPage extends Component {
     constructor(props) {
         super(props);
     }
-    handleClick = (e) => {        
+
+    componentDidMount() {
+        this.checkToken();
+        const data = {};
+        const data1 = {};
+        data.userId = 1;
+        data.beerId = 70002;
+        data1.userId = 2;
+        data1.beerId = 70002;
+        data1.value = -145230; 
+        this.props.fetchSingleRate(data);
+        this.props.addRate(data1);
+    }
+
+    checkToken = () => {
+        const token = localStorage.getItem('token');        
+        if(token) {
+            const user = jwtDecode(token);
+            this.setState({user: user});                       
+            console.log(user);
+        } else {
+            this.setState({user: null});
+            console.log('brak usera');
+        }        
+    }
+
+    pickRate = (e) => {        
         console.log(document.getElementById(e.target.htmlFor).value);
     }
+
     render() {
         return (
             <div className="single-beer-page container">
@@ -16,19 +60,19 @@ class SingleBeerPage extends Component {
                     <div className="item1">
                         <fieldset className="rating">
                             <legend>Oceń piwo:</legend>
-                            <input type="radio" id="star5" name="rating" value="5" /><label htmlFor="star5" title="Świetne!" onClick={this.handleClick}>5 stars</label>
-                            <input type="radio" id="star4" name="rating" value="4" /><label htmlFor="star4" title="Dobre" onClick={this.handleClick}>4 stars</label>
-                            <input type="radio" id="star3" name="rating" value="3" /><label htmlFor="star3" title="Może być" onClick={this.handleClick}>3 stars</label>
-                            <input type="radio" id="star2" name="rating" value="2" /><label htmlFor="star2" title="Słabe" onClick={this.handleClick}>2 stars</label>
-                            <input type="radio" id="star1" name="rating" value="1" /><label htmlFor="star1" title="Okropne" onClick={this.handleClick}>1 star</label>
+                            <input type="radio" id="star5" name="rating" value="5" /><label htmlFor="star5" title="Świetne!" onClick={this.pickRate}>5 stars</label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label htmlFor="star4" title="Dobre" onClick={this.pickRate}>4 stars</label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label htmlFor="star3" title="Może być" onClick={this.pickRate}>3 stars</label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label htmlFor="star2" title="Słabe" onClick={this.pickRate}>2 stars</label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label htmlFor="star1" title="Okropne" onClick={this.pickRate}>1 star</label>
                         </fieldset>
                     </div>
                     <div className="item2">
                         <h1>Harnaś syf największy</h1>
                     </div>
                     <div className="item3">
-                        <p>Ogólna ocena piwa:</p>
-                        <p>1/5</p>
+                        
+                        <h1>1/5</h1>
                     </div>
                     <div className="item4">
                         <img src="https://ocen-piwo.pl/upload/harnas.png" height="350" />
@@ -85,4 +129,10 @@ class SingleBeerPage extends Component {
     }
 }
 
-export default SingleBeerPage;
+SingleBeerPage.propTypes = {
+    beer: PropTypes.object,
+    fetchSingleRate: PropTypes.func,
+    addRate: PropTypes.func
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleBeerPage);

@@ -27,7 +27,7 @@ export function login(user) {
         return axios.post('http://localhost:8080/api/user/signin', user)
         .then(response => {
             localStorage.setItem('token', response.data);
-            console.log('dziala');
+            console.log('dziala');            
             dispatch(loginSuccess(response.data));            
         })
         .catch(error => {
@@ -45,10 +45,10 @@ export function registerBegin() {
     }
 }
 
-export function registerSuccess(user) {
+export function registerSuccess(message) {
     return {
         type: types.REGISTER_SUCCESS,
-        payload: {user}
+        payload: {message}
     }
 }
 
@@ -176,5 +176,11 @@ export function changeAvatar(file) {
             console.log('req' + error.request);
             dispatch(changeAvatarFailure(error.response.data));
         })
+    }
+}
+
+export function logout() {
+    return {
+        type: types.LOGOUT
     }
 }

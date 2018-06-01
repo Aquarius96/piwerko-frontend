@@ -236,4 +236,66 @@ export function sortBeersByName(sortType) {
     }
 }
 
+export function addRateBegin() {
+    return {
+        type: types.ADD_RATE_BEGIN        
+    }
+}
+
+export function addRateSuccess(data) {
+    return {
+        type: types.ADD_RATE_SUCCESS,
+        payload: {data}
+    }
+}
+
+export function addRateFailure(error) {
+    return {
+        type: types.ADD_RATE_FAILURE,
+        payload: {error}
+    }
+}
+
+export function addRate(data) { // beerId, userId, value
+    return function action(dispatch) {
+        dispatch(addRateBegin());
+        return axios.post('http://localhost:8080/api/rate/test', data)
+        .then((response) => dispatch(addRateSuccess(response.data)))
+        .catch(error => {
+            dispatch(addRateFailure(error.response));
+        })
+    }
+}
+
+export function fetchSingleRateBegin() {
+    return {
+        type: types.FETCH_SINGLE_RATE_BEGIN        
+    }
+}
+
+export function fetchSingleRateSuccess(rate) {
+    return {
+        type: types.FETCH_SINGLE_RATE_SUCCESS,
+        payload: {rate}
+    }
+}
+
+export function fetchSingleRateFailure(error) {
+    return {
+        type: types.FETCH_SINGLE_RATE_FAILURE,
+        payload: {error}
+    }
+}
+
+export function fetchSingleRate(data) { // userId, beerId
+    return function action(dispatch) {
+        dispatch(fetchSingleRateBegin());
+        return axios.post('http://localhost:8080/api/rate/getrate', data)
+        .then((response) => dispatch(fetchSingleRateSuccess(response.data)))
+        .catch(error => {
+            dispatch(fetchSingleRateFailure(error.response.data));
+        })
+    }
+}
+
 

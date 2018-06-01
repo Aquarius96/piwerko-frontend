@@ -1,7 +1,15 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import '../styles/select.scss';
 import '../styles/beer-base-page.scss';
+import { fetchSingleBeer } from '../actions/beers';
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchSingleBeer: id => dispatch(fetchSingleBeer(id)),        
+    }
+}
 
 class BeersList extends Component {
     constructor(props) {
@@ -9,6 +17,7 @@ class BeersList extends Component {
     }
 
     switchPage = (id) => {
+        this.props.fetchSingleBeer(id);
         this.props.history.push('/beer/' + id);
     }
     
@@ -50,7 +59,8 @@ class BeersList extends Component {
 
 BeersList.propTypes = {
     beers: PropTypes.array,
-    history: PropTypes.object
+    history: PropTypes.object,
+    fetchSingleBeer: PropTypes.func
 }
 
-export default BeersList;
+export default connect(null, mapDispatchToProps)(BeersList);

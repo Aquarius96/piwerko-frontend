@@ -4,6 +4,16 @@ import { connect } from 'react-redux';
 import { register, login } from '../actions/user';
 import '../styles/LoginPage.scss';
 import '../styles/button.scss';
+import Loader from '../components/Loader';
+
+const mapStateToProps = state => {
+    return {
+        loading: state.userReducer.loading,
+        didLogin: state.userReducer.didLogin,
+        message: state.userReducer.message,
+        error: state.userReducer.error
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -31,6 +41,18 @@ class LoginPage extends Component {
             }
         }
         ); // register / forgot
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.didLogin) {
+            this.props.history.push('/');
+        }
+        if(nextProps.message) {
+            window.alert(nextProps.message);
+        }
+        if(nextProps.error) {
+            window.alert(nextProps.error);
+        }
     }
 
     switchForm = (name) => {
@@ -63,9 +85,12 @@ class LoginPage extends Component {
         e.preventDefault();
         console.log(this.state.registerData);
         this.props.register(this.state.registerData);
-    }
+    }    
 
     render() {
+        if(this.props.loading) {
+            return <Loader />
+        }
         return (
             <div className="login-page container">
             
@@ -123,7 +148,12 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
     login: PropTypes.func,
-    register: PropTypes.func
+    register: PropTypes.func,
+    history: PropTypes.object,
+    didLogin: PropTypes.bool,
+    loading: PropTypes.bool,
+    message: PropTypes.string,
+    error: PropTypes.string
 }
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

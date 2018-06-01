@@ -3,7 +3,8 @@ import * as types from '../types/index';
 const initialState = {
     loading: false,
     error: null,
-    message: null
+    message: null,
+    didLogin: false
 }
 
 export default function userReducer(state = initialState, action) {
@@ -19,6 +20,11 @@ export default function userReducer(state = initialState, action) {
                 error: null
             }
         case types.LOGIN_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                didLogin: true
+            }
         case types.CHANGE_AVATAR_SUCCESS:
             return {
                 ...state,
@@ -27,7 +33,8 @@ export default function userReducer(state = initialState, action) {
         case types.REGISTER_SUCCESS:
             return {
                 ...state,
-                loading: false
+                loading: false,
+                message: action.payload.message
             }
         case types.CONFIRM_SUCCESS:
         case types.FORGOT_PASSWORD_SUCCESS:
@@ -45,6 +52,11 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: action.payload.error
+            }
+        case types.LOGOUT:
+            return {
+                ...state,
+                didLogin: false
             }
         default:
             return state;

@@ -17,7 +17,9 @@ export default function beersReducer(state = initialState, action) {
         case types.FETCH_FAVORITE_BEERS_DATA_BEGIN:
         case types.ADD_BEER_BEGIN:
         case types.DELETE_BEER_BEGIN:
-        case types.UPDATE_BEER_BEGIN:        
+        case types.UPDATE_BEER_BEGIN:
+        case types.ADD_RATE_BEGIN:
+        case types.FETCH_SINGLE_RATE_BEGIN:        
             return {
                 ...state,
                 loading: true,
@@ -35,6 +37,12 @@ export default function beersReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 favoriteBeers: action.payload.beers
+            }
+        case types.FETCH_SINGLE_RATE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                singleBeer: [...state.singleBeer, action.payload.rate]
             }
         case types.ADD_BEER_SUCCESS:
             return {
