@@ -1,0 +1,44 @@
+:root {
+    --rows: 100;
+}
+.main-page{
+h1 {
+    color:#B45D24;
+    font-size: 40px;
+    margin-bottom:35px;
+    text-align: center;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: 5% 10% 70% 25%;
+    grid-template-rows: repeat(var(--rows), 100px);
+}
+.beer-form{
+    border-bottom: 1px solid #683C1F;
+    height: 70px;
+}
+.item1{
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+.item2{
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+.item3{
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+.item4{
+    grid-column-start: 4;
+    grid-column-end: 4;
+}
+.p-ranking{
+    font-size:80px;
+    color:#B45D24;
+}
+p{
+    font-size:40px;
+    color:#B45D24;
+}
+}
