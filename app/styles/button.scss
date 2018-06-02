@@ -125,3 +125,16 @@ input[type="file"] {
   @extend .button;
   width:60px;
 }
+
+.admin-toggle-button{
+  @extend .button;
+  width: 150px;
+}
+
+.user-ban,
+.user-delete {
+  @extend .button;
+  width: 100px;
+  margin-right: 5px;
+  margin-left: 5px;
+}

@@ -11,7 +11,7 @@ export default class ExpectingBeer extends Component {
     }
 
     details = () => {
-        console.log('szczegóły');
+        console.log('szczegóły piwa');
         this.setState({
             showDetails: !this.state.showDetails
         })

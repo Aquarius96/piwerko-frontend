@@ -1,0 +1,38 @@
+.users-list {
+    .form {
+        z-index: 1;
+        background: white;
+        margin: 0 auto 100px;
+        border: 2px solid #683C1F;
+        height: 600px;
+        padding: 10px;
+        overflow: auto;
+    }
+    .user{
+        border: 2px solid #683C1F;
+        height: 100px;
+
+        display: grid;
+        grid-template-columns: 15% 60% 25%;
+
+        margin: 2px;
+    }
+    .user-logo{
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding: 10px;
+        margin: 0 auto;
+    }
+    .user-details{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    .user-buttons{
+        grid-column-start: 3;
+        grid-column-end: 4;
+        text-align: center;
+        margin-top: 30px;
+    }
+}
