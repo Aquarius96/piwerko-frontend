@@ -62,7 +62,6 @@ class ProfilePage extends Component {
                             <div className="item1"><button className="zmien-avatar">Zmień avatar</button></div>
                         </div>
 
-                        <div className="new-form">
                             <h1>Moje ulubione piwa</h1>
 
                             <div className="fav-beer">
@@ -73,7 +72,6 @@ class ProfilePage extends Component {
                                 <div className="fav-beer-rating"> Ocena: 3/5 </div>
                             </div>
 
-                        </div>
                     </div>
                 </div>
             </div>
