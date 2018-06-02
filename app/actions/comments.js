@@ -28,9 +28,20 @@ export function fetchBeerComments(beerId) {
             .then(response => {
                 console.log('commentss');
                 console.log(response.data);
-                dispatch(fetchBeerCommentsSuccess(response.data));
+                const arr = [];
+                for(let i = 0; i < response.data.length; i++) {
+                    arr.push(response.data[i].comment);
+                    arr[i].rate = response.data[i].rate;
+                    arr[i].avatar_URL = response.data[i].avatar_URL;
+                    arr[i].username = response.data[i].username;
+                }
+                console.log(arr);
+                dispatch(fetchBeerCommentsSuccess(arr));
             })
             .catch(error => {
+                console.log('err' + error);
+                console.log('resp' + error.response.data);
+                console.log('req' + error.request);
                 dispatch(fetchBeerCommentsFailure(error.response.data));
             });
     }
