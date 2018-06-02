@@ -34,10 +34,37 @@ export function fetchBreweries() {
     }
 }
 
-export function fetchSingleBrewery(id) {
+export function fetchSingleBreweryBegin() {
     return {
-        type: types.FETCH_SINGLE_BREWERY,
-        payload: {id}
+        type: types.FETCH_SINGLE_BREWERY_BEGIN
+    }
+}
+
+export function fetchSingleBrewerySuccess(brewery) {
+    return {
+        type: types.FETCH_SINGLE_BREWERY_SUCCESS,
+        payload: {brewery}
+    }
+}
+
+export function fetchSingleBreweryFailure(error) {
+    return {
+        type: types.FETCH_SINGLE_BREWERY_FAILURE,
+        payload: {error}
+    }
+}
+
+export function fetchSingleBrewery(id) {
+    return function action(dispatch) {
+        dispatch(fetchSingleBreweryBegin());
+        return axios.get('http://localhost:8080/api/brewery/getbyid/' + id)
+            .then(response => {
+                console.log(response.data);                
+                dispatch(fetchSingleBrewerySuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchSingleBreweryFailure(error.response.data));
+            });
     }
 }
 

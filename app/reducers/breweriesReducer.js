@@ -3,6 +3,7 @@ import * as types from '../types/index';
 const initialState = {
     breweries: [],
     singleBrewery: {},
+    singleBreweryBeers: [],
     loading: false,
     error: null,
     filterText: '',
@@ -16,6 +17,7 @@ export default function breweriesReducer(state = initialState, action) {
         case types.ADD_BREWERY_BEGIN:
         case types.DELETE_BREWERY_BEGIN:
         case types.UPDATE_BREWERY_BEGIN:
+        case types.FETCH_SINGLE_BREWERY_BEGIN:
             return {
                 ...state,
                 loading: true,
@@ -27,6 +29,12 @@ export default function breweriesReducer(state = initialState, action) {
                 loading: false,
                 breweries: action.payload.breweries,
                 filteredBreweries: action.payload.breweries
+            }
+        case types.FETCH_SINGLE_BREWERY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                singleBrewery: action.payload.brewery
             }
         case types.ADD_BREWERY_SUCCESS:
             return {
@@ -61,6 +69,7 @@ export default function breweriesReducer(state = initialState, action) {
                 breweries: [],
                 filteredBreweries: []
             }
+        case types.FETCH_SINGLE_BREWERY_FAILURE:
         case types.ADD_BREWERY_FAILURE:
         case types.DELETE_BREWERY_FAILURE:
         case types.UPDATE_BREWERY_FAILURE:
@@ -79,12 +88,7 @@ export default function breweriesReducer(state = initialState, action) {
             return {
                 ...state,
                 sortType: action.payload.sortType 
-            }
-        case types.FETCH_SINGLE_BREWERY:
-            return {
-                ...state,
-                singleBrewery: state.breweries.filter((brewery) => brewery.id === action.payload.id)[0]
-            }
+            }        
         default:
             return state;
     }

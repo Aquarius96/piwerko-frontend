@@ -9,6 +9,7 @@ const initialState = {
     filterText: '',
     filteredBeers: [],
     favoriteBeers: [],
+    similarBeers: [],
     sortType: ''
 }
 
@@ -23,7 +24,8 @@ export default function beersReducer(state = initialState, action) {
         case types.FETCH_SINGLE_RATE_BEGIN:
         case types.FETCH_SINGLE_BEER_BEGIN:
         case types.ADD_FAVORITE_BEER_BEGIN:
-        case types.DELETE_FAVORITE_BEER_BEGIN:        
+        case types.DELETE_FAVORITE_BEER_BEGIN:
+        case types.FETCH_SIMILAR_BEERS_BEGIN:        
             return {
                 ...state,
                 loading: true,
@@ -35,6 +37,12 @@ export default function beersReducer(state = initialState, action) {
                 loading: false,
                 beers: action.payload.beers,
                 filteredBeers: action.payload.beers
+            }
+        case types.FETCH_SIMILAR_BEERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                similarBeers: action.payload.beers
             }
         case types.FETCH_FAVORITE_BEERS_DATA_SUCCESS:
             return {
@@ -111,6 +119,13 @@ export default function beersReducer(state = initialState, action) {
                 error: action.payload.error,
                 beers: [],
                 filteredBeers: []
+            }
+        case types.FETCH_SIMILAR_BEERS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+                similarBeers: []
             }
         case types.FETCH_FAVORITE_BEERS_DATA_FAILURE:
             return {

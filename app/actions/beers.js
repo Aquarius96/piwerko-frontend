@@ -109,7 +109,7 @@ export function fetchSingleBeer(id) {
                 dispatch(fetchSingleBeerSuccess(newBeer));
             })
             .catch(error => {
-                dispatch(fetchSingleBeerFailure(error.message));
+                dispatch(fetchSingleBeerFailure(error.response.data));
             });
     }
 }
@@ -365,6 +365,39 @@ export function addRate(data) { // beerId, userId, value
     }
 }
 
+export function fetchSimilarBeersBegin() {
+    return {
+        type: types.FETCH_SIMILAR_BEERS_BEGIN
+    }
+}
+
+export function fetchSimilarBeersSuccess(beers) {
+    return {
+        type: types.FETCH_SIMILAR_BEERS_SUCCESS,
+        payload: {beers}
+    }
+}
+
+export function fetchSimilarBeersFailure(error) {
+    return {
+        type: types.FETCH_SIMILAR_BEERS_FAILURE,
+        payload: {error}
+    }
+}
+
+export function fetchSimilarBeers(beerId) {
+    return function action(dispatch) {
+        dispatch(fetchSimilarBeersBegin());
+        return axios.get('http://localhost:8080/api/beer/get/similary/' + beerId)
+            .then(response => {
+                console.log(response.data);                
+                dispatch(fetchSimilarBeersSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchSimilarBeersFailure(error.response.data));
+            });
+    }
+}
 
 
 
