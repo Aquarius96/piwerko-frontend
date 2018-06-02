@@ -186,5 +186,58 @@ h3 {
 .p-ocena{
     font-size:80px;
 }
+.p-dodane-przez{
+    color:#B45D24;
+    font-size: 15px;
+    margin-top:-10px;
+}
+
+
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+     transform: $transforms;
+}
+
+.close{
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    &:hover {
+      &::before, &::after {
+        background: #B45D24;
+      }
+    }
+  
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      margin-top: -1px;
+      background: #683C1F;
+    }
+    &::before {
+        @include transform(rotate(45deg));
+    }
+    &::after {
+        @include transform(rotate(-45deg));
+    }
+    &.thick {
+        &::before, &::after {
+          height: 4px;
+          margin-top: -2px;
+        }
+      }
+  }
+
+
+
 
 }

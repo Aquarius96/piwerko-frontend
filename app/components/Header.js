@@ -40,7 +40,7 @@ class Header extends Component {
         if(token) {
             const user = jwtDecode(token);
             this.setState({user: user});
-            this.props.fetchFavoriteBeers(user.id);
+           // this.props.fetchFavoriteBeers(user.id);
             console.log(user);
         } else {
             this.setState({user: null});

@@ -89,11 +89,6 @@ class BeerBasePage extends Component {
         }
         return (
             <div className="BeerBasePage container">
-                <p>BeerBasePage works!</p>
-                <p>and is fully loaded!</p>
-                <p>you searched {this.props.filterText}</p>
-                <p>These are your beers: {this.props.beers.length}</p>
-                <p>Strona {this.props.match.params.page}</p>
                 <Pagination history={this.props.history} dataLength={this.props.beers.length} dataPerPage={10} route="/beerbase/" current ={this.props.match.params.page}/>
                 <div className="ustawienie-inputa">
                 <input

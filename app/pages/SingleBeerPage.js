@@ -157,6 +157,8 @@ class SingleBeerPage extends Component {
                     </div>
                     <div className="item2">
                         <h1>Harnaś syf największy</h1>
+                        <p className="p-dodane-przez">Piwo zostało dodane przez użytkownika: hedan huj</p>
+
                     </div>
                     <div className="item3">
                         
@@ -171,7 +173,6 @@ class SingleBeerPage extends Component {
                         <p>Browar: {this.props.singleBeer.breweryId}</p>
                         <p>Temperatura podawania: {this.props.singleBeer.servingTemp}</p>
                         <p>Typ piwa: {this.props.singleBeer.type}</p>
-
         </div>
         <div className="item6">        
         {(this.props.favoriteBeers.filter(beer => beer.id === this.props.singleBeer.id).length > 0) ?
@@ -214,6 +215,7 @@ class SingleBeerPage extends Component {
                     <p>{comment.content}</p>
                 </div>
                 <div className="ocena-uzytkownika">
+                <span className="close thick"></span>
                     <p className="p-ocena"> 1</p>
                 </div>
                 

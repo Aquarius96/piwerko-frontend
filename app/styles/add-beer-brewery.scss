@@ -5,21 +5,18 @@
     }
     .info-form{
     z-index: 1;
-    background: #FFFFFF;
     width: 100%;
     margin: 0 auto 50px;
     padding: 25px;
-    border: 2px solid #683C1F;
     max-height: 476px;
     }
     .avatar-form{
     z-index: 1;
-    background: #FFFFFF;
     width: 92%;
     margin: 0 auto 50px;
     padding: 25px;
     text-align: center;
-    border: 2px solid #683C1F;
+    border: 1px solid #683C1F;
     max-height: 476px;
     }
     .my-input {
@@ -99,7 +96,7 @@
         width: 98%;
         height: 200px;
         font-size: 16px;
-        border: 2px solid #683C1F;
+        border: 1px solid #683C1F;
         padding:10px;
         resize: none;
     }
