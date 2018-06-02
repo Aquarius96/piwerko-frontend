@@ -3,15 +3,15 @@ import * as types from '../types/index';
 const initialState = {
     comments: [],
     loading: false,
-    error: null,
+    error: null,    
 }
 
-export default function beersReducer(state = initialState, action) {
+export default function commentsReducer(state = initialState, action) {
     switch (action.type) {
         case types.FETCH_BEER_COMMENTS_BEGIN:
-        case types.ADD_BEER_COMMENTS_BEGIN:
-        case types.DELETE_BEER_COMMENTS_BEGIN:
-        case types.UPDATE_BEER_COMMENTS_BEGIN:
+        case types.ADD_BEER_COMMENT_BEGIN:
+        case types.DELETE_BEER_COMMENT_BEGIN:
+        case types.UPDATE_BEER_COMMENT_BEGIN:
             return {
                 ...state,
                 loading: true,

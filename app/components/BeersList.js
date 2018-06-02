@@ -16,8 +16,7 @@ class BeersList extends Component {
         super(props);
     }
 
-    switchPage = (id) => {
-        this.props.fetchSingleBeer(id);
+    switchPage = (id) => {                
         this.props.history.push('/beer/' + id);
     }
     

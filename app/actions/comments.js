@@ -1,16 +1,16 @@
 import * as types from '../types/index';
 import axios from 'axios';
 
-export function fetchBeerCommentsBegin(beerId) {
+export function fetchBeerCommentsBegin() {
     return {
         type: types.FETCH_BEER_COMMENTS_BEGIN
     }
 }
 
-export function fetchBeerCommentsSuccess(beerComments) {
+export function fetchBeerCommentsSuccess(comments) {
     return {
         type: types.FETCH_BEER_COMMENTS_SUCCESS,
-        payload: {beerComments}
+        payload: {comments}
     }
 }
 
@@ -21,11 +21,13 @@ export function fetchBeerCommentsFailure(error) {
     }
 }
 
-export function fetchBeerComments() {
+export function fetchBeerComments(beerId) {
     return function action(dispatch) {
         dispatch(fetchBeerCommentsBegin());
-        return axios.get('http://localhost:8080/api/comment/get')
+        return axios.get('http://localhost:8080/api/comment/get/' + beerId)
             .then(response => {
+                console.log('commentss');
+                console.log(response.data);
                 dispatch(fetchBeerCommentsSuccess(response.data));
             })
             .catch(error => {
@@ -36,96 +38,97 @@ export function fetchBeerComments() {
 
 export function addBeerCommentBegin() {
     return {
-        type: types.ADD_BEER_COMMENTS_BEGIN
+        type: types.ADD_BEER_COMMENT_BEGIN
     }
 }
 
-export function addBeerCommentSuccess(beer, file) {
+export function addBeerCommentSuccess(comment) {
     return {
-        type: types.ADD_BEER_COMMENTS_SUCCESS,
-        payload: {beer, file}
+        type: types.ADD_BEER_COMMENT_SUCCESS,
+        payload: {comment}
     }
 }
 
 export function addBeerCommentFailure(error) {
     return {
-        type: types.ADD_BEER_COMMENTS_FAILURE,
+        type: types.ADD_BEER_COMMENT_FAILURE,
         payload: {error}
     }
 }
 
-export function addBeerComment(beer, file) {
+export function addBeerComment(data) {
     return function action(dispatch) {
-        dispatch(addBeerBegin());
-        return axios.post('http://localhost:8080/api/comment/add', beer, file)
-        .then(response => dispatch(addBeerSuccess(response.data)))
+        dispatch(addBeerCommentBegin());
+        return axios.post('http://localhost:8080/api/comment/add', data)
+        .then(response => dispatch(addBeerCommentSuccess(response.data)))
         .catch(error => {
             console.log('err' + error);
             console.log('resp' + error.response.data);
             console.log('req' + error.request);
-            dispatch(addBeerFailure(error.message));
+            dispatch(addBeerCommentFailure(error.response.data));
         })
     }
 }
 
 export function deleteBeerCommentBegin() {
     return {
-        type: types.DELETE_BEER_COMMENTS_BEGIN
+        type: types.DELETE_BEER_COMMENT_BEGIN
     }
 }
 
 export function deleteBeerCommentSuccess(id) {
     return {
-        type: types.DELETE_BEER_COMMENTS_SUCCESS,
+        type: types.DELETE_BEER_COMMENT_SUCCESS,
         payload: {id}
     }
 }
 
 export function deleteBeerCommentFailure(error) {
     return {
-        type: types.DELETE_BEER_COMMENTS_FAILURE,
+        type: types.DELETE_BEER_COMMENT_FAILURE,
         payload: {error}
     }
 }
 
-export function deleteBeerComment(beer) {
+export function deleteBeerComment(comment) {
     return function action(dispatch) {
-        dispatch(deleteBeerBegin());
-        return axios.post('http://localhost:8080/api/comment/delete', beer)
-        .then(() => dispatch(deleteBeerSuccess(beer.id)))
+        dispatch(deleteBeerCommentBegin());
+        return axios.post('http://localhost:8080/api/comment/delete', comment)
+        .then(() => dispatch(deleteBeerCommentSuccess(comment.id)))
         .catch(error => {
-            dispatch(deleteBeerFailure(error.message));
+            dispatch(deleteBeerCommentFailure(error.response.data));
         })
     }
 }
 
 export function updateBeerCommentBegin() {
     return {
-        type: types.UPDATE_BEER_COMMENTS_BEGIN
+        type: types.UPDATE_BEER_COMMENT_BEGIN
     }
 }
 
-export function updateBeerCommentSuccess(beer) {
+export function updateBeerCommentSuccess(comment) {
     return {
-        type: types.UPDATE_BEER_COMMENTS_SUCCESS,
-        payload: {beer}
+        type: types.UPDATE_BEER_COMMENT_SUCCESS,
+        payload: {comment}
     }
 }
 
 export function updateBeerCommentFailure(error) {
     return {
-        type: types.UPDATE_BEER_COMMENTS_FAILURE,
+        type: types.UPDATE_BEER_COMMENT_FAILURE,
         payload: {error}
     }
 }
 
-export function updateBeerComment(beer) {
+export function updateBeerComment(comment) {
     return function action(dispatch) {
-        dispatch(updateBeerBegin());
-        return axios.put('http://localhost:8080/api/comment/update', beer)
-        .then(() => dispatch(updateBeerSuccess(beer)))
+        dispatch(updateBeerCommentBegin());
+        return axios.put('http://localhost:8080/api/comment/update', comment)
+        .then(() => dispatch(updateBeerCommentSuccess(comment)))
         .catch(error => {
-            dispatch(updateBeerFailure(error.message));
+            dispatch(updateBeerCommentFailure(error.response.data));
         })
     }
 }
+

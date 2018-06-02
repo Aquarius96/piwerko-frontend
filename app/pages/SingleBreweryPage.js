@@ -1,11 +1,35 @@
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import '../styles/single-brewery-page.scss';
+import Loader from '../components/Loader';
+import {fetchSingleBrewery} from '../actions/breweries';
+
+const mapStateToProps = state => {
+    return {
+        brewery: state.breweriesReducer.singleBrewery,
+        loading: state.breweriesReducer.loading        
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchSingleBrewery: id => dispatch(fetchSingleBrewery(id))
+    }
+}
 
 class SingleBreweryPage extends Component {
     constructor(props) {
         super(props);
     }
+
+    componentDidMount() {
+        this.props.fetchSingleBrewery(this.props.match.params.id);
+    }
+
     render() {
+        if(this.props.loading) {
+            return <Loader />
+        }
         return (
         <div className="single-brewery-page container">
         <h1>Browar Kormoran</h1>
@@ -37,19 +61,18 @@ class SingleBreweryPage extends Component {
         <div className="produkty"></div>
         <div className="produkty"></div>
         <div className="produkty"></div>
-        <div className="produkty"></div>
-
-        
-        
-        
-        
-        
-        
-        
+        <div className="produkty"></div>                                                        
         </div>
         </div>
         );
     }
 }
 
-export default SingleBreweryPage;
+SingleBreweryPage.propTypes = {
+    singleBrewery: PropTypes.object,
+    loading: PropTypes.bool,
+    fetchSingleBrewery: PropTypes.func,
+    match: PropTypes.object
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleBreweryPage);

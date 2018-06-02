@@ -3,11 +3,13 @@ import * as types from '../types/index';
 const initialState = {
     beers: [],
     singleBeer: {},
+    singleRate: null,
     loading: false,
     error: null,   
     filterText: '',
     filteredBeers: [],
     favoriteBeers: [],
+    similarBeers: [],
     sortType: ''
 }
 
@@ -19,7 +21,11 @@ export default function beersReducer(state = initialState, action) {
         case types.DELETE_BEER_BEGIN:
         case types.UPDATE_BEER_BEGIN:
         case types.ADD_RATE_BEGIN:
-        case types.FETCH_SINGLE_RATE_BEGIN:        
+        case types.FETCH_SINGLE_RATE_BEGIN:
+        case types.FETCH_SINGLE_BEER_BEGIN:
+        case types.ADD_FAVORITE_BEER_BEGIN:
+        case types.DELETE_FAVORITE_BEER_BEGIN:
+        case types.FETCH_SIMILAR_BEERS_BEGIN:        
             return {
                 ...state,
                 loading: true,
@@ -32,6 +38,12 @@ export default function beersReducer(state = initialState, action) {
                 beers: action.payload.beers,
                 filteredBeers: action.payload.beers
             }
+        case types.FETCH_SIMILAR_BEERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                similarBeers: action.payload.beers
+            }
         case types.FETCH_FAVORITE_BEERS_DATA_SUCCESS:
             return {
                 ...state,
@@ -42,7 +54,19 @@ export default function beersReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                singleBeer: [...state.singleBeer, action.payload.rate]
+                singleRate: action.payload.rate
+            }
+        case types.FETCH_SINGLE_BEER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                singleBeer: action.payload.beer
+            }
+        case types.ADD_FAVORITE_BEER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                favoriteBeers: [...state.favoriteBeers, action.payload.beer]
             }
         case types.ADD_BEER_SUCCESS:
             return {
@@ -58,6 +82,12 @@ export default function beersReducer(state = initialState, action) {
                 beers: state.beers.filter(beer => beer.id !== action.payload.id),
                 filteredBeers: state.beers.filter(beer => beer.id !== action.payload.id)
             }
+        case types.DELETE_FAVORITE_BEER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                favoriteBeers: state.favoriteBeers.filter(beer => beer.beerId !== action.payload.beerIid && beer.userId !== action.payload.userId),                
+            }
         case types.UPDATE_BEER_SUCCESS:
             return {
                 ...state,
@@ -68,6 +98,19 @@ export default function beersReducer(state = initialState, action) {
                 filteredBeers: state.beers.map(beer => {
                     return beer.id !== action.payload.beer.id ? beer : action.payload.beer;
                 })
+            }
+        case types.ADD_RATE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                singleBeer: {
+                    ...state.singleBeer,
+                    rate: action.payload.data
+                },
+                beers: state.beers.map(beer => {
+                    return beer.id !== state.singleBeer.id ? beer : {...beer, rate: action.payload.data}
+                }),
+                singleRate: action.payload.rateValue                                 
             }        
         case types.FETCH_BEERS_DATA_FAILURE:
             return {
@@ -76,6 +119,13 @@ export default function beersReducer(state = initialState, action) {
                 error: action.payload.error,
                 beers: [],
                 filteredBeers: []
+            }
+        case types.FETCH_SIMILAR_BEERS_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+                similarBeers: []
             }
         case types.FETCH_FAVORITE_BEERS_DATA_FAILURE:
             return {
@@ -86,7 +136,17 @@ export default function beersReducer(state = initialState, action) {
             }
         case types.ADD_BEER_FAILURE:
         case types.DELETE_BEER_FAILURE:
-        case types.UPDATE_BEER_FAILURE:        
+        case types.UPDATE_BEER_FAILURE:
+        case types.FETCH_SINGLE_RATE_FAILURE:
+        case types.FETCH_SINGLE_BEER_FAILURE:
+        case types.ADD_RATE_FAILURE:
+        case types.ADD_FAVORITE_BEER_FAILURE:
+        case types.DELETE_FAVORITE_BEER_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            }        
         case types.FILTER_BEERS:
             return {
                 ...state,
@@ -97,12 +157,7 @@ export default function beersReducer(state = initialState, action) {
             return {
                 ...state,
                 sortType: action.payload.sortType 
-            }
-        case types.FETCH_SINGLE_BEER:
-            return {
-                ...state,
-                singleBeer: state.beers.filter((beer) => beer.id === action.payload.id)[0]
-            }
+            }        
         default:
             return state;
     }

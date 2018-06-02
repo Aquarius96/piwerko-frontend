@@ -6,6 +6,52 @@
         border: 2px solid #683C1F;
         height: 600px;
         padding: 10px;
-        overflow: hidden;
+        overflow: auto;
+    }
+    .exp-brewery{
+        border: 2px solid #683C1F;
+        height: 100px;
+
+        display: grid;
+        grid-template-columns: 15% 85%;
+        grid-template-rows: 50px 50px;
+
+        margin: 2px;
+    }
+    .exp-brewery-detailed{
+        border: 2px solid #683C1F;
+        height: 200px;
+
+        display: grid;
+        grid-template-columns: 15% 85%;
+        grid-template-rows: 50px 50px 100px;
+
+        margin: 2px;
+    }
+    .exp-brewery-logo{
+        grid-row-start: 1;
+        grid-row-end: 3;
+        padding: 10px;
+        margin: 0 auto;
+    }
+    .exp-brewery-name{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        padding: 5px;
+    }
+    .exp-brewery-name h2{
+        text-align: center;
+        color:#B45D24;
+        font-size: 20px;
+    }
+    .exp-brewery-buttons{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        text-align: center;
+    }
+    .exp-brewery-details{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        padding: 10px;
     }
 }

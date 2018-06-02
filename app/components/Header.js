@@ -4,12 +4,19 @@ import { connect } from 'react-redux';
 import '../styles/header.scss';
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
+import {fetchFavoriteBeers} from '../actions/beers';
 
 const mapStateToProps = state => {
     return {
         loading: state.userReducer.loading
     }
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchFavoriteBeers: (id) => dispatch(fetchFavoriteBeers(id)),        
+    };
+};
 
 class Header extends Component {
     constructor(props) {
@@ -32,7 +39,8 @@ class Header extends Component {
         const token = localStorage.getItem('token');        
         if(token) {
             const user = jwtDecode(token);
-            this.setState({user: user});                       
+            this.setState({user: user});
+            this.props.fetchFavoriteBeers(user.id);
             console.log(user);
         } else {
             this.setState({user: null});
@@ -95,7 +103,8 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    fetchFavoriteBeers: PropTypes.func
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

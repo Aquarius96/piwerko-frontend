@@ -25,15 +25,13 @@ export default (
 		<Route exact path="/brewerybase/:page" component= {BreweryBasePage} />
 		<Route exact path="/contact" component= {ContactPage} />
 		<Route exact path="/login" component= {LoginPage} />
-		<Route exact path="/profile" component= {ProfilePage} />
-		<Route exact path="/beer" component= {SingleBeerPage} />
-		<Route exact path="/brewery" component= {SingleBreweryPage} />
+		<Route exact path="/profile" component= {ProfilePage} />		
 		<Route exact path="/test" component= {TestPage} />
 		<Route exact path="/error" component= {ErrorPage} />
 		<Route exact path="/confirm/:id/:code" component= {ConfirmPage} />
 		<Route exact path="/forgot/:id/:code" component= {ForgotPasswordPage} />
-		<Route exact path="/beer/:page" component= {SingleBeerPage} />
-		<Route exact path="/brewery/:page" component= {SingleBreweryPage} />
+		<Route exact path="/beer/:id" component= {SingleBeerPage} />
+		<Route exact path="/brewery/:id" component= {SingleBreweryPage} />
 
 
 	</Switch>
