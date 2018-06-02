@@ -219,11 +219,14 @@ class AddPage extends Component {
                 <div className="image-form">
                 {$imagePreview}
                 </div>
+
                 <div className="button-form">
-                <input id="file" className="fileInput" 
+                <label htmlFor="file-upload" className="custom-file-upload">Wybierz plik</label>
+
+                <input id="file-upload" 
                         type="file"                    
                         onChange={(e)=>this.handleImageChange(e)} />
-                        <button className="wybierz-plik" htmlFor="file">Wybierz plik</button>
+
                 </div>
             </div>
             </div>

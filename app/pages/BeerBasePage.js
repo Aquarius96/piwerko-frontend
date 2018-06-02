@@ -89,16 +89,15 @@ class BeerBasePage extends Component {
         }
         return (
             <div className="BeerBasePage container">
-                <Pagination history={this.props.history} dataLength={this.props.beers.length} dataPerPage={10} route="/beerbase/" current ={this.props.match.params.page}/>
-                <div className="ustawienie-inputa">
+                <div className="ustawienie-inputa3">
                 <input
                   type="text"
-                  className="my-input"
+                  className="my-input3"
                   placeholder="Wyszukaj obiekt..."
                   title="Wpisz miasto"
                   onChange={this.handleTextChange}></input>
               </div>
-              <div className="ustawienie-inputa">
+              <div className="ustawienie-inputa3">
 
                 <div className="select">
                     <select onChange={this.handleSortChange}>
@@ -117,6 +116,7 @@ class BeerBasePage extends Component {
                     </select>
                 </div>
                 <BeersList history={this.props.history} beers={this.state.pickedBeers} page={this.props.match.params.page} />
+                <Pagination history={this.props.history} dataLength={this.props.beers.length} dataPerPage={10} route="/beerbase/" current ={this.props.match.params.page}/>
             </div>
             );
     }

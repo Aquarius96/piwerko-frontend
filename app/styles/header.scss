@@ -24,13 +24,14 @@
         text-align: center;
       }
       .navbar-custom {
-        background-color: #3D4944;
+        background-color: #EDF1F2;
         .navbar-brand, .navbar-text, .navbar-nav .nav-link {
-          color: white;
+          color: #B45D24;
         }
         .nav-item {
           &.active .nav-link, &:hover .nav-link {
-            color: #CEB790;
+            color: #B45D24;
+            border-bottom: 2px solid #B45D24;
           }
         }
       }

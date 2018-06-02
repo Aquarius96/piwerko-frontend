@@ -37,10 +37,11 @@
     h1 {
         color:#B45D24;
         font-size: 31px;
-        padding-bottom: 8px;
+        padding-bottom: 20px;
         text-align: center;
     }
     p {
+        color:#B45D24;
         text-align:center;
         margin: 0px;
     }
@@ -62,7 +63,7 @@
         grid-template-rows: 50px;
         width: 450px;
 
-        border: 2px solid #683C1F;
+        border: 1px solid #683C1F;
         margin: 0 auto;
     }
     .fav-beer-logo {
@@ -79,5 +80,15 @@
         font-size: 16px;
         font-weight: 400;
         margin-top: 10px;
+        color:#B45D24;
     }
+    input {
+        border: 0;
+        box-sizing: border-box;
+        border-bottom: 1px solid #683C1F;
+        color: #777777;
+        width:80%;
+        margin:auto;
+        text-align:center;
+      }
 }

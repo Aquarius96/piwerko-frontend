@@ -90,10 +90,10 @@ class BreweryBasePage extends Component {
         return (
             <div className="BreweryBasePage container">
                 <Pagination history={this.props.history} dataLength={this.props.breweries.length} dataPerPage={10} route="/brewerybase/" current ={this.props.match.params.page}/>
-                <div className="ustawienie-inputa">
+                <div className="ustawienie-inputa4">
                 <input
                   type="text"
-                  className="my-input"
+                  className="my-input4"
                   placeholder="Wyszukaj obiekt..."
                   title="Wpisz miasto"
                   onChange={this.handleTextChange}></input>

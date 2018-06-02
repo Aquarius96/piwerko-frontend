@@ -34,7 +34,7 @@ class BreweriesList extends Component {
                                 </div>
                                 <div className="info-form">
                                 <p> ul.{brewery.street} {brewery.streetNumber}</p>
-                                <p>34-300 {brewery.city}</p>
+                                <p>34-200 {brewery.city}</p>
                                 </div>
                             </div>
                             <button className="sprawdz-szczegoly-brewery" onClick={() => this.switchPage(brewery.id)}>Sprawdź szczegóły</button>

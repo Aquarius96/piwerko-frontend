@@ -35,10 +35,12 @@ class ProfilePage extends Component {
                                 {this.state.editing ?
                                     <div>
                                         <h1>Marcin</h1>
-                                        <p>Imię: <input type="text" value="Marcin" /> </p>
-                                        <p>Nazwisko: <input type="text" value="Zapadka" /></p>
-                                        <p>Data urodzenia: <input type="text" value="25.05.1996" /></p>
-                                        <p>E-mail: <input type="text" value="Marcin@wp.pl" /></p>
+                                        <input type="text" value="Marcin" />
+                                        <input type="text" value="Zapadka" />
+                                        <input type="text" value="25.05.1996" />
+                                        <input type="text" value="Marcin@wp.pl" />
+                                        
+
                                     </div> :
                                     <div>
                                         <h1>Marcin</h1>
