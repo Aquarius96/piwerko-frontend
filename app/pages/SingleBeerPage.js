@@ -182,10 +182,34 @@ class SingleBeerPage extends Component {
         
         <p>Podobne piwa:</p>
         <div className="podobne-piwo">
+        <div className="podobne-piwa-wrapper">
+        <div className="podobne-piwa-zdjecie">
+        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+        </div>
+        <div className="podobne-piwa-nazwa">
+        <p className="p-podobne-piwa">Harnaś</p>
+        </div>
+        </div>
         </div>
         <div className="podobne-piwo">
+        <div className="podobne-piwa-wrapper">
+        <div className="podobne-piwa-zdjecie">
+        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+        </div>
+        <div className="podobne-piwa-nazwa">
+        <p className="p-podobne-piwa">Książęce</p>
+        </div>
+        </div>
         </div>
         <div className="podobne-piwo">
+        <div className="podobne-piwa-wrapper">
+        <div className="podobne-piwa-zdjecie">
+        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+        </div>
+        <div className="podobne-piwa-nazwa">
+        <p className="p-podobne-piwa">Stern Extra Strong</p>
+        </div>
+        </div>
         </div>
         </div>
         <div className="item7">

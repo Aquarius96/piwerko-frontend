@@ -20,7 +20,7 @@
 }
 .wrapper {
     display: grid;
-    grid-template-columns: 500px 615px;
+    grid-template-columns: 50% 50%;
     grid-template-rows: repeat(var(--rows), 300px);
 }
 .brewery-wrapper {

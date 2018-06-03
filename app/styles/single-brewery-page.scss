@@ -7,8 +7,8 @@ h1 {
 }
 .wrapper {
     display: grid;
-    grid-template-columns: 40% 60%;
-    grid-template-rows: 35% 35% 30%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 30%;
     height: 500px;
     }
 .item1{  // logo browaru
@@ -22,21 +22,13 @@ h1 {
     grid-column-end: 1;
     grid-row-start: 2;
     grid-row-end: 3;
-
 }
-.item3{  // mapa 
+.item3{  // opis browaru 
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 3;
-    border: 2px solid #683C1F;
-
-}
-.item4{ // opis browaru
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 3;
+    border-left: 2px solid #683C1F;
 }
 p{
     color:#B45D24;
@@ -49,6 +41,7 @@ p{
     font-size: 20px;
     margin-top: 30px; 
     text-align: justify;
+    margin-left:20px;
 }
 .produkty-wrapper{
     display: grid;
@@ -61,5 +54,17 @@ p{
     height: 80px;
     margin:10px;
 }
-
+.pojedynczy-produkt-wrapper{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+.produkt-zdjecie{
+}
+.produkt-nazwa{
+}
+.p-produkt{
+    float:left;
+    font-size:30px;
+    margin-top:8px;
+}
 }

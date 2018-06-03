@@ -37,7 +37,7 @@ class ContactPage extends Component {
     render() {
         return (
         <form className="contact-page container" onChange={this.handleInputChange}>
-            <p>Chcesz skontaktować się z administratorem? Wypełnij poniższy formularz!</p>
+            <h1>Chcesz skontaktować się z administratorem? Wypełnij poniższy formularz!</h1>
             <div className="form">
             <input name="username" className="my-input"type="text"
                   placeholder="Jak masz na imię?"

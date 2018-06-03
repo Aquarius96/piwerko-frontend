@@ -236,8 +236,17 @@ h3 {
         }
       }
   }
-
-
-
-
+.podobne-piwa-wrapper{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+.podobne-piwa-zdjecie{
+}
+.podobne-piwa-nazwa{
+}
+.p-podobne-piwa{
+    float:left;
+    font-size:25px;
+    margin-top:8px;
+}
 }

@@ -35,7 +35,7 @@ class SingleBreweryPage extends Component {
         <h1>Browar Kormoran</h1>
         <div className="wrapper">
         <div className="item1">
-        <img src="http://www.interservis.pl/wp-content/uploads/2016/03/Beznazwy-4.jpg" height="150" width="250"/>
+        <img src="http://www.interservis.pl/wp-content/uploads/2016/03/Beznazwy-4.jpg" height="250" width="550"/>
         </div>
         <div className="item2">
         <p>Miasto:</p>
@@ -44,24 +44,38 @@ class SingleBreweryPage extends Component {
         <p>Strona www:</p>
         </div>
         <div className="item3">
-        <p>Tu bedzie mapka google</p>
-        </div>
-        <div className="item4">
         <p className="p-opis-browaru">A tu bedzie opis browaru</p>
         </div>
         </div>
         
         <h1>Produkty</h1>
         <div className="produkty-wrapper">
-        <div className="produkty"></div>
-        <div className="produkty"></div>
-        <div className="produkty"></div>
-        <div className="produkty"></div>
-        <div className="produkty"></div>
-        <div className="produkty"></div>
-        <div className="produkty"></div>
-        <div className="produkty"></div>
-        <div className="produkty"></div>                                                        
+        <div className="produkty">
+        <div className="pojedynczy-produkt-wrapper">
+        <div className="produkt-zdjecie">
+        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="70" />
+        </div>
+        <div className="produkt-nazwa">
+        <p className="p-produkt">Harnaś</p>
+        </div>
+        </div>
+        </div>
+        <div className="produkty">
+        </div>
+        <div className="produkty">
+        </div>
+        <div className="produkty">
+        </div>
+        <div className="produkty">
+        </div>
+        <div className="produkty">
+        </div>
+        <div className="produkty">
+        </div>
+        <div className="produkty">
+        </div>
+        <div className="produkty">
+        </div>                                                        
         </div>
         </div>
         );

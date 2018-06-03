@@ -56,6 +56,14 @@
     }
     .item1 {
         text-align: center;
+        grid-column-start: 1;
+        grid-column-end: 1;
+        margin-left:5px;
+    }
+    .item2{
+        grid-column-start: 2;
+        grid-column-end: 2;
+        text-align:center;
     }
     .fav-beer {
         display: grid;
@@ -87,7 +95,7 @@
         box-sizing: border-box;
         border-bottom: 1px solid #683C1F;
         color: #777777;
-        width:80%;
+        width:70%;
         margin:auto;
         text-align:center;
       }

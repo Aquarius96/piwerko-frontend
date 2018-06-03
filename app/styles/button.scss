@@ -66,11 +66,12 @@ cursor: pointer;
 }
 .edytuj-dane {
   @extend .button;
-  width:60%;
+  width:40%;
+  margin-right: 5px;
 }
 .zmien-haslo {
   @extend .button;
-  width:75%;
+  width:40%;
 }
 .zmien-avatar {
   @extend .button;
