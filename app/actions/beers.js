@@ -120,10 +120,10 @@ export function addBeerBegin() {
     }
 }
 
-export function addBeerSuccess(beer, file) {
+export function addBeerSuccess(beer, message) {
     return {
         type: types.ADD_BEER_SUCCESS,
-        payload: {beer, file}
+        payload: {beer, message}
     }
 }
 
@@ -144,12 +144,12 @@ export function addBeer(beer, file, photoAdded, username) {
             if(photoAdded) {
                 axios.post('http://localhost:8080/api/beer/addphoto/' + res.data.id, file, {headers: {'Content-Type': 'application/json', 'username': username}})
             .then(response => {                
-                dispatch(addBeerSuccess(response.data));
+                dispatch(addBeerSuccess(response.data, 'Pomyślnie dodano piwo do bazy. Po zatwierdzeniu przez administratora pojawi się na stronie.'));
             }
             )
             .catch(error => dispatch(addBeerFailure(error.response.data)))
             } else {
-                dispatch(addBeerSuccess(res.data));
+                dispatch(addBeerSuccess(res.data, 'Pomyślnie dodano piwo do bazy. Po zatwierdzeniu przez administratora pojawi się na stronie.'));
             }           
         })        
         .catch(error => {            
@@ -164,10 +164,10 @@ export function addFavoriteBeerBegin() {
     }
 }
 
-export function addFavoriteBeerSuccess(beer) {
+export function addFavoriteBeerSuccess(beer, message) {
     return {
         type: types.ADD_FAVORITE_BEER_SUCCESS,
-        payload: {beer}
+        payload: {beer, message}
     }
 }
 
@@ -396,6 +396,71 @@ export function fetchSimilarBeers(beerId) {
             .catch(error => {
                 dispatch(fetchSimilarBeersFailure(error.response.data));
             });
+    }
+}
+
+export function fetchUnconfirmedBeersBegin() {
+    return {
+        type: types.FETCH_UNCONFIRMED_BEERS_BEGIN
+    }
+}
+
+export function fetchUnconfirmedBeersSuccess(beers) {
+    return {
+        type: types.FETCH_UNCONFIRMED_BEERS_SUCCESS,
+        payload: {beers}
+    }
+}
+
+export function fetchUnconfirmedBeersFailure(error) {
+    return {
+        type: types.FETCH_UNCONFIRMED_BEERS_FAILURE,
+        payload: {error}
+    }
+}
+
+export function fetchUnconfirmedBeers() {
+    return function action(dispatch) {
+        dispatch(fetchUnconfirmedBeersBegin());
+        return axios.get('http://localhost:8080/api/beer/get/unconfirmed/')
+            .then(response => {
+                console.log(response.data);                
+                dispatch(fetchUnconfirmedBeersSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchUnconfirmedBeersFailure(error.response.data));
+            });
+    }
+}
+
+export function confirmBeerBegin() {
+    return {
+        type: types.CONFIRM_BEER_BEGIN
+    }
+}
+
+export function confirmBeerSuccess(id) {
+    return {
+        type: types.CONFIRM_BEER_SUCCESS,
+        payload: {id}
+    }
+}
+
+export function confirmBeerFailure(error) {
+    return {
+        type: types.CONFIRM_BEER_FAILURE,
+        payload: {error}
+    }
+}
+
+export function confirmBeer(beer) {
+    return function action(dispatch) {
+        dispatch(confirmBeerBegin());
+        return axios.post('http://localhost:8080/api/beer/confirm', beer)
+        .then(() => dispatch(confirmBeerSuccess(beer.id)))
+        .catch(error => {
+            dispatch(confirmBeerFailure(error.message));
+        })
     }
 }
 

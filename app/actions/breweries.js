@@ -187,3 +187,34 @@ export function sortBreweriesByName(sortType) {
     }
 }
 
+export function confirmBreweryBegin() {
+    return {
+        type: types.CONFIRM_BREWERY_BEGIN
+    }
+}
+
+export function confirmBrewerySuccess(id) {
+    return {
+        type: types.CONFIRM_BREWERY_SUCCESS,
+        payload: {id}
+    }
+}
+
+export function confirmBreweryFailure(error) {
+    return {
+        type: types.CONFIRM_BREWERY_FAILURE,
+        payload: {error}
+    }
+}
+
+export function confirmBrewery(brewery) {
+    return function action(dispatch) {
+        dispatch(confirmBreweryBegin());
+        return axios.post('http://localhost:8080/api/brewery/confirm', brewery)
+        .then(() => dispatch(confirmBrewerySuccess(brewery.id)))
+        .catch(error => {
+            dispatch(confirmBreweryFailure(error.response.data));
+        })
+    }
+}
+
