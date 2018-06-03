@@ -63,28 +63,28 @@ class AdminPage extends Component {
     }
 
     confirmBeer = (id) => {        
-        const userId = parseInt(this.state.user.id, 10);
+        const userId = this.state.user.id;
         const data = {};
         data.id = id;        
         this.props.confirmBeer(data, userId);
     }
 
     confirmBrewery = (id) => {
-        const userId = parseInt(this.state.user.id, 10);
+        const userId = this.state.user.id;
         const data = {};
         data.id = id;
         this.props.confirmBrewery(data, userId);
     }
 
     deleteBeer = (id) => {        
-        const userId = parseInt(this.state.user.id, 10);
+        const userId = this.state.user.id;
         const data = {};
         data.id = id;        
         this.props.deleteBeer(data, userId);
     }
 
     deleteBrewery = (id) => {
-        const userId = parseInt(this.state.user.id, 10);
+        const userId = this.state.user.id;
         const data = {};
         data.id = id;
         this.props.deleteBrewery(data, userId);

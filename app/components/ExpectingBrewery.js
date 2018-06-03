@@ -42,7 +42,7 @@ export default class ExpectingBrewery extends Component {
                     <button className="exp-brewery-2" onClick={() => this.props.confirm(this.props.brewery.id)}>
                         Zatwierdź
                     </button>
-                    <button className="exp-brewery-3" onClick={this.discardBrewery}>
+                    <button className="exp-brewery-3" onClick={() => this.props.delete(this.props.brewery.id)}>
                         Odrzuć
                     </button>
                 </div>
@@ -60,6 +60,7 @@ export default class ExpectingBrewery extends Component {
 
 ExpectingBrewery.propTypes = {
     brewery: PropTypes.object,
-    confirm: PropTypes.func
+    confirm: PropTypes.func,
+    delete: PropTypes.func
 }
 

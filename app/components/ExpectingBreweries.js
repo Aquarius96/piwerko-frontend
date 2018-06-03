@@ -19,7 +19,7 @@ export default class ExpectingBreweries extends Component {
                     <h1>Oczekujące browary</h1>
                     <div>
                         {this.props.breweries.map(brewery => {
-                            return <ExpectingBrewery confirm={this.props.confirm} brewery={brewery}/>
+                            return <ExpectingBrewery delete={this.props.delete} confirm={this.props.confirm} brewery={brewery}/>
                         })}                                                
                     </div>
                 </div>
@@ -30,5 +30,6 @@ export default class ExpectingBreweries extends Component {
 
 ExpectingBreweries.propTypes = {
     confirm: PropTypes.func,
+    delete: PropTypes.func,
     breweries: PropTypes.array
 }
