@@ -21,12 +21,19 @@ export default function breweriesReducer(state = initialState, action) {
         case types.UPDATE_BREWERY_BEGIN:
         case types.FETCH_SINGLE_BREWERY_BEGIN:
         case types.FETCH_UNCONFIRMED_BREWERIES_BEGIN:
-        case types.CONFIRM_BREWERY_BEGIN:        
+        case types.CONFIRM_BREWERY_BEGIN:
+        case types.FETCH_SINGLE_BREWERY_BEERS_BEGIN:        
             return {
                 ...state,
                 loading: true,
                 error: null,
                 message: null
+            }
+        case types.FETCH_SINGLE_BREWERY_BEERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                singleBreweryBeers: action.payload.beers
             }        
         case types.CONFIRM_BREWERY_SUCCESS:
             return {
@@ -101,6 +108,7 @@ export default function breweriesReducer(state = initialState, action) {
         case types.UPDATE_BREWERY_FAILURE:
         case types.FETCH_UNCONFIRMED_BREWERIES_FAILURE:
         case types.CONFIRM_BREWERY_FAILURE:
+        case types.FETCH_SINGLE_BREWERY_BEERS_FAILURE:
             return {
                 ...state,
                 loading: false,

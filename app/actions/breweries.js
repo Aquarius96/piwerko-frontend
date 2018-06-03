@@ -34,6 +34,39 @@ export function fetchBreweries() {
     }
 }
 
+export function fetchSingleBreweryBeersBegin() {
+    return {
+        type: types.FETCH_SINGLE_BREWERY_BEERS_BEGIN
+    }
+}
+
+export function fetchSingleBreweryBeersSuccess(beers) {
+    return {
+        type: types.FETCH_SINGLE_BREWERY_BEERS_SUCCESS,
+        payload: {beers}
+    }
+}
+
+export function fetchSingleBreweryBeersFailure(error) {
+    return {
+        type: types.FETCH_SINGLE_BREWERY_BEERS_FAILURE,
+        payload: {error}
+    }
+}
+
+export function fetchSingleBreweryBeers(id) {
+    return function action(dispatch) {
+        dispatch(fetchSingleBreweryBeersBegin());
+        return axios.get('http://localhost:8080/api/beer/getbybreweryid/' + id)
+            .then(response => {
+                dispatch(fetchSingleBreweryBeersSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchSingleBreweryBeersFailure(error.response.data));
+            });
+    }
+}
+
 export function fetchUnconfirmedBreweriesBegin() {
     return {
         type: types.FETCH_UNCONFIRMED_BREWERIES_BEGIN

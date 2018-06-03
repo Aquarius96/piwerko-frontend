@@ -9,6 +9,7 @@ import UsersList from '../components/UsersList';
 import { fetchUnconfirmedBeers, confirmBeer, deleteBeer} from '../actions/beers';
 import {fetchUnconfirmedBreweries, confirmBrewery, deleteBrewery} from '../actions/breweries';
 import jwtDecode from 'jwt-decode';
+import Loader from '../components/Loader';
 
 const mapStateToProps = state => {
     return {
@@ -105,6 +106,9 @@ class AdminPage extends Component {
     }
 
     render() {
+        if(this.props.beersLoading || this.props.breweriesLoading) {
+            return <Loader />
+        }
         return (
             <div className="admin-page container">
                 <div className="admin-page-button">
@@ -139,7 +143,9 @@ AdminPage.propTypes = {
     confirmBeer: PropTypes.func,
     confirmBrewery: PropTypes.func,
     deleteBeer: PropTypes.func,
-    deleteBrewery: PropTypes.func
+    deleteBrewery: PropTypes.func,
+    beersLoading: PropTypes.bool,
+    breweriesLoading: PropTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPage);

@@ -185,10 +185,12 @@ class SingleBeerPage extends Component {
                         <img src={this.props.singleBeer.photo_URL}/>
                     </div>
                     <div className="item5">
-                        <p>Alkohol: {this.props.singleBeer.alcohol}</p>
-                        <p>IBU: {this.props.singleBeer.ibu}</p>
+                    <Link to={'/brewery/' + this.props.singleBeer.breweryId}>
                         <p>Browar: {this.props.singleBeer.breweryName}</p>
-                        <p>Temperatura podawania: {this.props.singleBeer.servingTemp}</p>
+                     </Link>                        
+                        <p>Alkohol: {this.props.singleBeer.alcohol}%</p>
+                        <p>IBU: {this.props.singleBeer.ibu}</p>                        
+                        <p>Temperatura podawania: {this.props.singleBeer.servingTemp}°C</p>
                         <p>Typ piwa: {this.props.singleBeer.type}</p>
         </div>
         <div className="item6">        
@@ -213,7 +215,7 @@ class SingleBeerPage extends Component {
         })}                        
         </div>
         <div className="item7">
-        <p>Najgorsze piwo na świecie, nigdy nie piłem takiego ścieka, jakie to jest okropne, jak takie gówno można pić, piwo dla biedaków co ich nie stać na ksiazece tfu.</p>
+        <p>{this.props.singleBeer.description}</p>
         </div> 
 
         </div>
@@ -241,16 +243,16 @@ class SingleBeerPage extends Component {
                     <div className="wrapper-komentarze">
                         <div className="user-nickname">
                         <p> {comment.username}</p>
-                        <img className="img-avatar" src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'}/>                        
+                        <img className="img-avatar" src={comment.avatar_URL}/>                        
                     </div>
                     <div className="komentarz-uzytkownika">
                         <p>{comment.content}</p>
                     </div>
                     <div className="ocena-uzytkownika">
-                    {(this.state.user && comment.userId === parseInt(this.state.user.id, 10) || this.state.user.isAdmin) ?
+                    {this.state.user && (comment.userId === parseInt(this.state.user.id, 10) || this.state.user.isAdmin) ?
                         <span className="close thick" onClick={() => this.deleteComment(comment.id)}></span> : null }                    
                         <p className="p-ocena"> {comment.rate ? comment.rate : '?'}</p>
-                        <p className="data">20.15.2018</p>                        
+                        <p className="data">{comment.dateTime.split('-')[2] + '-'}{comment.dateTime.split('-')[1] + '-'}{comment.dateTime.split('-')[0]}</p>                        
                     </div>                
 
             </div>
