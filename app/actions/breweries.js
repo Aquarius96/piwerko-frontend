@@ -74,10 +74,10 @@ export function addBreweryBegin() {
     }
 }
 
-export function addBrewerySuccess(brewery, file) {
+export function addBrewerySuccess(brewery, message) {
     return {
         type: types.ADD_BREWERY_SUCCESS,
-        payload: {brewery, file}
+        payload: {brewery, message}
     }
 }
 
@@ -88,21 +88,21 @@ export function addBreweryFailure(error) {
     }
 }
 
-export function addBrewery(brewery, file, photoAdded) {
+export function addBrewery(brewery, file, photoAdded, username) {
     return function action(dispatch) {
         dispatch(addBreweryBegin());
-        return axios.post('http://localhost:8080/api/brewery/add', brewery, {headers: {'Content-Type': 'application/json', 'username': 'Admin'}})
+        return axios.post('http://localhost:8080/api/brewery/add', brewery, {headers: {'Content-Type': 'application/json', 'username': username}})
         .then(res => {
             if(photoAdded) {
                 console.log('dodane');
-                axios.post('http://localhost:8080/api/brewery/addphoto/' + res.data.id, file, {headers: {'Content-Type': 'application/json', 'username': 'Admin'}})
+                axios.post('http://localhost:8080/api/brewery/addphoto/' + res.data.id, file, {headers: {'Content-Type': 'application/json', 'username': username}})
                 .then(response => {                    
-                    dispatch(addBrewerySuccess(response.data));
+                    dispatch(addBrewerySuccess(response.data, 'Pomyślnie dodano browar do bazy. Po zatwierdzeniu przez administratora pojawi się na stronie.'));
                 }
                 )
                 .catch(error => console.log(error.response.data))
             } else {
-                dispatch(addBrewerySuccess(res.data));
+                dispatch(addBrewerySuccess(res.data, 'Pomyślnie dodano browar do bazy. Po zatwierdzeniu przez administratora pojawi się na stronie.'));
             }                      
         })        
         .catch(error => {

@@ -7,19 +7,21 @@ import { addBeer } from '../actions/beers';
 import { fetchBreweries, addBrewery } from '../actions/breweries';
 import { changeAvatar } from '../actions/user';
 import Loader from '../components/Loader';
+import jwtDecode from 'jwt-decode';
 
 const mapStateToProps = state => {
     return {
         breweries: state.breweriesReducer.breweries,
         loading: state.breweriesReducer.loading,
         error: state.breweriesReducer.error,
+        breweryMessage: state.breweriesReducer.message
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addBeer: (beer, file, photoAdded) => dispatch(addBeer(beer, file, photoAdded)),
-        addBrewery: (brewery, file, photoAdded) => dispatch(addBrewery(brewery, file, photoAdded)),
+        addBeer: (beer, file, photoAdded, username) => dispatch(addBeer(beer, file, photoAdded, username)),
+        addBrewery: (brewery, file, photoAdded, username) => dispatch(addBrewery(brewery, file, photoAdded, username)),
         fetchBreweries: () => dispatch(fetchBreweries()),
         changeAvatar: file => dispatch(changeAvatar(file))
     }
@@ -28,11 +30,31 @@ const mapDispatchToProps = dispatch => {
 class AddPage extends Component {
     constructor(props) {
         super(props);
-        this.state = ({beer: {}, brewery: {}, file: null, formData: {}, showForm: 'beer'});        
+        this.state = ({user: null, beer: {}, brewery: {}, file: null, formData: {}, showForm: 'beer'});        
     }
 
     componentDidMount() {
         this.props.fetchBreweries();
+        this.checkToken();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.breweryMessage) {
+            window.alert(nextProps.breweryMessage);
+        }
+    }
+
+    checkToken = () => {
+        const token = localStorage.getItem('token');        
+        if(token) {
+            const user = jwtDecode(token);
+            this.setState({user: user});
+           // this.props.fetchFavoriteBeers(user.id);
+            console.log(user);
+        } else {
+            this.setState({user: null});
+            console.log('brak usera');
+        }        
     }
  
     handleImageChange = (e) => {            
@@ -64,9 +86,9 @@ class AddPage extends Component {
         const formData = new FormData();        
         formData.append('file', this.state.file);        
         if(this.state.file) {
-            this.props.addBeer(this.state.beer, formData, true);
+            this.props.addBeer(this.state.beer, formData, true, this.state.user.username);
         } else {
-            this.props.addBeer(this.state.beer, formData, false);
+            this.props.addBeer(this.state.beer, formData, false, this.state.user.username);
         }        
     }
 
@@ -76,10 +98,12 @@ class AddPage extends Component {
         formData.append('file', this.state.file);
         if(this.state.file) {
             console.log('dz');
-            this.props.addBrewery(this.state.brewery, formData, true);
+            this.props.addBrewery(this.state.brewery, formData, true, this.state.user.username);
         } else {
             console.log('niedz');
-            this.props.addBrewery(this.state.brewery, formData, false);
+            this.props.addBrewery(this.state.brewery, formData, false, this.state.user.username);
+            console.log(this.state.brewery);
+            console.log(this.state.user.username);
         }       
     }
 
@@ -126,8 +150,8 @@ class AddPage extends Component {
             <div className="wrapper">
                 <div className="info-form">
                 <div className="select">
-                    <select onChange={this.handleFormChange}>
-                        <option selected value="beer">Piwo</option>
+                    <select onChange={this.handleFormChange} defaultValue="beer">
+                        <option value="beer">Piwo</option>
                         <option value="brewery">Browar</option>
                     </select>
                 </div>
@@ -155,8 +179,9 @@ class AddPage extends Component {
                   title="Wpisz IBU"
                   ></input>
                   <div className="select">
-                    <select name="type">
-                        <option selected value="">Typ Piwa</option>
+                    <select name="type"
+                    defaultValue="">
+                        <option >Typ Piwa</option>
                         <option value="lager">Lager</option>
                         <option value="stout">Stout</option>
                         <option value="ciemne">Ciemne</option>
@@ -164,7 +189,7 @@ class AddPage extends Component {
                 </div>
                 <div className="select">
                     <select name="breweryId">
-                        <option selected value="">Browar</option>
+                        <option >Browar</option>
                         {this.props.breweries.map(brewery => {
                             return <option value={brewery.id}>{brewery.name}</option>
                         })}
@@ -208,6 +233,13 @@ class AddPage extends Component {
                   placeholder="Nr budynku"
                   title="Wpisz nr budynku"
                   ></input>
+                  <input
+                  name="web_Url"  
+                  type="text"
+                  className="my-input"
+                  placeholder="Strona internetowa browaru"
+                  title="Wpisz nazwę browaru"
+                  ></input>
                     </div>
                 }
                 
@@ -237,8 +269,7 @@ class AddPage extends Component {
             {(this.state.showForm === 'beer') ? 
                 <button className="dodaj-piwo" onClick={this.addBeer}>Dodaj Piwo</button> :
                 <button className="dodaj-piwo" onClick={this.addBrewery}>Dodaj Browar</button>
-            }
-             <button className="dodaj-piwo" onClick={this.addAvatar}>dodaj avatar test dla dawida</button>           
+            }                       
             </div>
             </form>
         </div>
@@ -253,7 +284,8 @@ AddPage.propTypes = {
     fetchBreweries: PropTypes.func,
     loading: PropTypes.bool,
     error: PropTypes.string,
-    changeAvatar: PropTypes.func
+    changeAvatar: PropTypes.func,
+    breweryMessage: PropTypes.string
 }
  
 export default connect(mapStateToProps, mapDispatchToProps)(AddPage);

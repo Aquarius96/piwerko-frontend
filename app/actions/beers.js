@@ -136,13 +136,13 @@ export function addBeerFailure(error) {
 
 
 
-export function addBeer(beer, file, photoAdded) {
+export function addBeer(beer, file, photoAdded, username) {
     return function action(dispatch) {
         dispatch(addBeerBegin());        
-        return axios.post('http://localhost:8080/api/beer/add', beer, {headers: {'Content-Type': 'application/json', 'username': 'Admin'}})
+        return axios.post('http://localhost:8080/api/beer/add', beer, {headers: {'Content-Type': 'application/json', 'username': username}})
         .then(res => {                 
             if(photoAdded) {
-                axios.post('http://localhost:8080/api/beer/addphoto/' + res.data.id, file, {headers: {'Content-Type': 'application/json', 'username': 'Admin'}})
+                axios.post('http://localhost:8080/api/beer/addphoto/' + res.data.id, file, {headers: {'Content-Type': 'application/json', 'username': username}})
             .then(response => {                
                 dispatch(addBeerSuccess(response.data));
             }

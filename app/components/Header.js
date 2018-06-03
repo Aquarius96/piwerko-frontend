@@ -26,7 +26,7 @@ class Header extends Component {
 
     componentDidMount() {
         console.log('dzialam');
-        this.checkToken();        
+        this.checkToken();               
     }
 
     componentWillReceiveProps(nextProps) {
@@ -78,9 +78,10 @@ class Header extends Component {
                                 <li className="nav-item">
                                     <Link className="a nav-link" to="/profile"> Mój profil </Link>
                                 </li> : null }
+                                {this.state.user && parseInt(this.state.user.isAdmin, 10) ?
                                 <li className="nav-item">
-                                <Link className="a nav-link" to="/admin"> Admin </Link>
-                                </li>
+                                    <Link className="a nav-link" to="/admin"> Admin </Link>
+                                </li> : null }                                                                
                                 {this.state.user ?
                                 <li className="nav-item">
                                     <Link className="a nav-link" to="/" onClick={this.logOff}> Wyloguj się </Link>
