@@ -108,8 +108,7 @@ class AdminPage extends Component {
         return (
             <div className="admin-page container">
                 <div className="admin-page-button">
-                    <button className="admin-toggle-button" onClick={this.handleToggle}>{this.state.toggleText}</button>
-                    <button className="admin-toggle-button" onClick={() => this.confirmBrewery(30002)}>akcpetuj</button>
+                    <button className="admin-toggle-button" onClick={this.handleToggle}>{this.state.toggleText}</button>                    
                 </div>
 
                 {this.state.toggle ?

@@ -31,18 +31,15 @@ export function fetchBeerComments(beerId) {
                 const arr = [];
                 for(let i = 0; i < response.data.length; i++) {
                     arr.push(response.data[i].comment);
-                    arr[i].rate = response.data[i].rate;
+                    arr[i].rate = response.data[i].rate ? response.data[i].rate.value : '?';
                     arr[i].avatar_URL = response.data[i].avatar_URL;
                     arr[i].username = response.data[i].username;
                 }
                 console.log(arr);
                 dispatch(fetchBeerCommentsSuccess(arr));
             })
-            .catch(error => {
-                console.log('err' + error);
-                console.log('resp' + error.response.data);
-                console.log('req' + error.request);
-                dispatch(fetchBeerCommentsFailure(error.response.data));
+            .catch(error => {                                               
+                dispatch(fetchBeerCommentsFailure(error));
             });
     }
 }
@@ -72,8 +69,7 @@ export function addBeerComment(data) {
         dispatch(addBeerCommentBegin());
         return axios.post('http://localhost:8080/api/comment/add', data)
         .then(response => dispatch(addBeerCommentSuccess(response.data)))
-        .catch(error => {
-            console.log('err' + error);
+        .catch(error => {            
             console.log('resp' + error.response.data);
             console.log('req' + error.request);
             dispatch(addBeerCommentFailure(error.response.data));
@@ -101,10 +97,10 @@ export function deleteBeerCommentFailure(error) {
     }
 }
 
-export function deleteBeerComment(comment) {
+export function deleteBeerComment(comment, userId) {
     return function action(dispatch) {
         dispatch(deleteBeerCommentBegin());
-        return axios.post('http://localhost:8080/api/comment/delete', comment)
+        return axios.post('http://localhost:8080/api/comment/delete', comment, {headers: {'Content-Type': 'application/json', 'user_id': userId}})
         .then(() => dispatch(deleteBeerCommentSuccess(comment.id)))
         .catch(error => {
             dispatch(deleteBeerCommentFailure(error.response.data));
@@ -139,6 +135,39 @@ export function updateBeerComment(comment) {
         .then(() => dispatch(updateBeerCommentSuccess(comment)))
         .catch(error => {
             dispatch(updateBeerCommentFailure(error.response.data));
+        })
+    }
+}
+
+export function deleteCommentBegin() {
+    return {
+        type: types.DELETE_COMMENT_BEGIN
+    }
+}
+
+export function deleteCommentSuccess(id) {
+    return {
+        type: types.DELETE_COMMENT_SUCCESS,
+        payload: {id}
+    }
+}
+
+export function deleteCommentFailure(error) {
+    return {
+        type: types.DELETE_COMMENT_FAILURE,
+        payload: {error}
+    }
+}
+
+export function deleteComment(comment, userId) {
+    return function action(dispatch) {
+        console.log('srid');
+        console.log(userId);
+        dispatch(deleteCommentBegin());
+        return axios.post('http://localhost:8080/api/comment/delete', comment, {headers: {'Content-Type': 'application/json', 'user_id': userId}})
+        .then(() => dispatch(deleteCommentSuccess(comment.id)))
+        .catch(error => {
+            dispatch(deleteCommentFailure(error.response.data));
         })
     }
 }

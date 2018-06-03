@@ -71,7 +71,7 @@ export function fetchFavoriteBeers(id) {
                 dispatch(fetchFavoriteBeersSuccess(response.data));
             })
             .catch(error => {
-                dispatch(fetchFavoriteBeersFailure(error.response.data));
+                dispatch(fetchFavoriteBeersFailure(error));
             });
     }
 }
@@ -397,7 +397,7 @@ export function fetchSimilarBeers(beerId) {
                 dispatch(fetchSimilarBeersSuccess(response.data));
             })
             .catch(error => {
-                dispatch(fetchSimilarBeersFailure(error.response.data));
+                dispatch(fetchSimilarBeersFailure(error));
             });
     }
 }

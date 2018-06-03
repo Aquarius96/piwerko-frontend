@@ -168,10 +168,17 @@ export default function beersReducer(state = initialState, action) {
                 favoriteBeers: [],
                 message: null
             }
+        case types.FETCH_SINGLE_RATE_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error,
+                message: null,
+                singleRate: null
+            }
         case types.ADD_BEER_FAILURE:
         case types.DELETE_BEER_FAILURE:
-        case types.UPDATE_BEER_FAILURE:
-        case types.FETCH_SINGLE_RATE_FAILURE:
+        case types.UPDATE_BEER_FAILURE:    
         case types.FETCH_SINGLE_BEER_FAILURE:
         case types.ADD_RATE_FAILURE:
         case types.ADD_FAVORITE_BEER_FAILURE:

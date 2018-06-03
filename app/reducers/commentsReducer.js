@@ -11,7 +11,7 @@ export default function commentsReducer(state = initialState, action) {
         case types.FETCH_BEER_COMMENTS_BEGIN:
         case types.ADD_BEER_COMMENT_BEGIN:
         case types.DELETE_BEER_COMMENT_BEGIN:
-        case types.UPDATE_BEER_COMMENT_BEGIN:
+        case types.UPDATE_BEER_COMMENT_BEGIN:       
             return {
                 ...state,
                 loading: true,
