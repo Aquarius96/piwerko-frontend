@@ -21,7 +21,7 @@ class MainPage extends Component {
                         <p>Harnaś</p>
                         </div>
                         <div className="item4">
-                        <p>Ocena:1</p>
+                        <p>Ocena: 1,01</p>
                         </div>
                         </div>
                 </div>
@@ -37,7 +37,7 @@ class MainPage extends Component {
                         <p>Harnaś</p>
                         </div>
                         <div className="item4">
-                        <p>Ocena:1</p>
+                        <p>Ocena: 1,01</p>
                         </div>
                         </div>
                 </div>
@@ -54,7 +54,7 @@ class MainPage extends Component {
                         <p>Harnaś</p>
                         </div>
                         <div className="item4">
-                        <p>Ocena:1</p>
+                        <p>Ocena: 1,01</p>
                         </div>
                         </div>
                 </div>
@@ -71,7 +71,7 @@ class MainPage extends Component {
                         <p>Harnaś</p>
                         </div>
                         <div className="item4">
-                        <p>Ocena:1</p>
+                        <p>Ocena: 1,01</p>
                         </div>
                         </div>
                 </div>
@@ -88,7 +88,7 @@ class MainPage extends Component {
                         <p>Harnaś</p>
                         </div>
                         <div className="item4">
-                        <p>Ocena:1</p>
+                        <p>Ocena: 1,01</p>
                         </div>
                         </div>
                 </div>

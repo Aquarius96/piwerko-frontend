@@ -24,7 +24,7 @@ export function fetchBreweriesFailure(error) {
 export function fetchBreweries() {
     return function action(dispatch) {
         dispatch(fetchBreweriesBegin());
-        return axios.get('http://localhost:8080/api/brewery/get/unconfirmed')
+        return axios.get('http://localhost:8080/api/brewery/get/confirmed')
             .then(response => {
                 dispatch(fetchBreweriesSuccess(response.data));
             })

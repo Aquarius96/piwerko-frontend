@@ -10,7 +10,7 @@ h1 {
 }
 .wrapper {
     display: grid;
-    grid-template-columns: 5% 10% 70% 25%;
+    grid-template-columns: 5% 10% 70% 15%;
     grid-template-rows: repeat(var(--rows), 100px);
 }
 .beer-form{
@@ -38,7 +38,8 @@ h1 {
     color:#B45D24;
 }
 p{
-    font-size:40px;
+    font-size:30px;
     color:#B45D24;
+    margin-top:10px;
 }
 }
