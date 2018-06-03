@@ -34,6 +34,39 @@ export function fetchBreweries() {
     }
 }
 
+export function fetchUnconfirmedBreweriesBegin() {
+    return {
+        type: types.FETCH_UNCONFIRMED_BREWERIES_BEGIN
+    }
+}
+
+export function fetchUnconfirmedBreweriesSuccess(breweries) {
+    return {
+        type: types.FETCH_UNCONFIRMED_BREWERIES_SUCCESS,
+        payload: {breweries}
+    }
+}
+
+export function fetchUnconfirmedBreweriesFailure(error) {
+    return {
+        type: types.FETCH_UNCONFIRMED_BREWERIES_FAILURE,
+        payload: {error}
+    }
+}
+
+export function fetchUnconfirmedBreweries() {
+    return function action(dispatch) {
+        dispatch(fetchUnconfirmedBreweriesBegin());
+        return axios.get('http://localhost:8080/api/brewery/get/unconfirmed')
+            .then(response => {
+                dispatch(fetchUnconfirmedBreweriesSuccess(response.data));
+            })
+            .catch(error => {
+                dispatch(fetchUnconfirmedBreweriesFailure(error.response.data));
+            });
+    }
+}
+
 export function fetchSingleBreweryBegin() {
     return {
         type: types.FETCH_SINGLE_BREWERY_BEGIN
@@ -131,10 +164,10 @@ export function deleteBreweryFailure(error) {
     }
 }
 
-export function deleteBrewery(brewery) {
+export function deleteBrewery(brewery, userId) {
     return function action(dispatch) {
         dispatch(deleteBreweryBegin());
-        return axios.post('http://localhost:8080/api/brewery/delete', brewery)
+        return axios.post('http://localhost:8080/api/brewery/delete', brewery, {headers: {'Content-Type': 'application/json', 'user_id': userId}})
         .then(() => dispatch(deleteBrewerySuccess(brewery.id)))
         .catch(error => {
             dispatch(deleteBreweryFailure(error.response.data));
@@ -207,10 +240,10 @@ export function confirmBreweryFailure(error) {
     }
 }
 
-export function confirmBrewery(brewery) {
+export function confirmBrewery(brewery, userId) {
     return function action(dispatch) {
         dispatch(confirmBreweryBegin());
-        return axios.post('http://localhost:8080/api/brewery/confirm', brewery)
+        return axios.post('http://localhost:8080/api/brewery/confirm', brewery, {headers: {'Content-Type': 'application/json', 'user_id': userId}})
         .then(() => dispatch(confirmBrewerySuccess(brewery.id)))
         .catch(error => {
             dispatch(confirmBreweryFailure(error.response.data));

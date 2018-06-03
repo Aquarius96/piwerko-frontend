@@ -8,6 +8,7 @@ const initialState = {
     error: null,
     filterText: '',
     filteredBreweries: [],
+    unconfirmedBreweries: [],
     sortType: '',
     message: null
 }
@@ -18,11 +19,27 @@ export default function breweriesReducer(state = initialState, action) {
         case types.ADD_BREWERY_BEGIN:
         case types.DELETE_BREWERY_BEGIN:
         case types.UPDATE_BREWERY_BEGIN:
-        case types.FETCH_SINGLE_BREWERY_BEGIN:        
+        case types.FETCH_SINGLE_BREWERY_BEGIN:
+        case types.FETCH_UNCONFIRMED_BREWERIES_BEGIN:
+        case types.CONFIRM_BREWERY_BEGIN:        
             return {
                 ...state,
                 loading: true,
                 error: null,
+                message: null
+            }        
+        case types.CONFIRM_BREWERY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                unconfirmedBreweries: state.unconfirmedBreweries.filter(brewery => brewery.id !== action.payload.id),
+                message: null
+            }
+        case types.FETCH_UNCONFIRMED_BREWERIES_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                unconfirmedBreweries: action.payload.breweries,                
                 message: null
             }
         case types.FETCH_BREWERIES_DATA_SUCCESS:
@@ -54,6 +71,7 @@ export default function breweriesReducer(state = initialState, action) {
                 loading: false,
                 breweries: state.breweries.filter(brewery => brewery.id !== action.payload.id),
                 filteredBreweries: state.breweries.filter(brewery => brewery.id !== action.payload.id),
+                unconfirmedBreweries: state.unconfirmedBreweries.filter(brewery => brewery.id !== action.payload.id),
                 message: null
             }
         case types.UPDATE_BREWERY_SUCCESS:
@@ -81,6 +99,8 @@ export default function breweriesReducer(state = initialState, action) {
         case types.ADD_BREWERY_FAILURE:
         case types.DELETE_BREWERY_FAILURE:
         case types.UPDATE_BREWERY_FAILURE:
+        case types.FETCH_UNCONFIRMED_BREWERIES_FAILURE:
+        case types.CONFIRM_BREWERY_FAILURE:
             return {
                 ...state,
                 loading: false,

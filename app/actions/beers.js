@@ -31,6 +31,7 @@ export function fetchBeers() {
                 for(let i = 0; i < response.data.length; i++) {
                     arr.push(response.data[i].beer);
                     arr[i].rate = response.data[i].rate;
+                    arr[i].breweryName = response.data[i].name;
                 }
                 console.log(arr);
                 dispatch(fetchBeersSuccess(arr));
@@ -246,13 +247,15 @@ export function deleteBeerFailure(error) {
     }
 }
 
-export function deleteBeer(beer) {
+export function deleteBeer(beer, userId) {
     return function action(dispatch) {
+        console.log('srid');
+        console.log(userId);
         dispatch(deleteBeerBegin());
-        return axios.post('http://localhost:8080/api/beer/delete', beer)
+        return axios.post('http://localhost:8080/api/beer/delete', beer, {headers: {'Content-Type': 'application/json', 'user_id': userId}})
         .then(() => dispatch(deleteBeerSuccess(beer.id)))
         .catch(error => {
-            dispatch(deleteBeerFailure(error.message));
+            dispatch(deleteBeerFailure(error.response.data));
         })
     }
 }
@@ -424,8 +427,15 @@ export function fetchUnconfirmedBeers() {
         dispatch(fetchUnconfirmedBeersBegin());
         return axios.get('http://localhost:8080/api/beer/get/unconfirmed/')
             .then(response => {
-                console.log(response.data);                
-                dispatch(fetchUnconfirmedBeersSuccess(response.data));
+                console.log('beeeers');
+                console.log(response.data);
+                const arr = [];                
+                for(let i = 0; i < response.data.length; i++) {
+                    arr.push(response.data[i].beer);                    
+                    arr[i].breweryName = response.data[i].name;
+                }
+                console.log(arr);                
+                dispatch(fetchUnconfirmedBeersSuccess(arr));
             })
             .catch(error => {
                 dispatch(fetchUnconfirmedBeersFailure(error.response.data));
@@ -453,13 +463,13 @@ export function confirmBeerFailure(error) {
     }
 }
 
-export function confirmBeer(beer) {
+export function confirmBeer(beer, userId) {
     return function action(dispatch) {
         dispatch(confirmBeerBegin());
-        return axios.post('http://localhost:8080/api/beer/confirm', beer)
+        return axios.post('http://localhost:8080/api/beer/confirm', beer, {headers: {'Content-Type': 'application/json', 'user_id': userId}})
         .then(() => dispatch(confirmBeerSuccess(beer.id)))
         .catch(error => {
-            dispatch(confirmBeerFailure(error.message));
+            dispatch(confirmBeerFailure(error.response.data));
         })
     }
 }

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ExpectingBrewery from './ExpectingBrewery';
 import '../styles/expecting-breweries.scss';
@@ -17,13 +18,17 @@ export default class ExpectingBreweries extends Component {
                 <div className="form">
                     <h1>Oczekujące browary</h1>
                     <div>
-                        <ExpectingBrewery/>
-                        <ExpectingBrewery/>
-                        <ExpectingBrewery/>
-                        <ExpectingBrewery/>
+                        {this.props.breweries.map(brewery => {
+                            return <ExpectingBrewery confirm={this.props.confirm} brewery={brewery}/>
+                        })}                                                
                     </div>
                 </div>
             </div>
         )
     }
+}
+
+ExpectingBreweries.propTypes = {
+    confirm: PropTypes.func,
+    breweries: PropTypes.array
 }

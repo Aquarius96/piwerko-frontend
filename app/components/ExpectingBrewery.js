@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import '../styles/expecting-breweries.scss';
 
@@ -32,13 +33,13 @@ export default class ExpectingBrewery extends Component {
                     <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="70" />
                 </div>
                 <div className="exp-brewery-name">
-                    <h2>Warka</h2>
+                    <h2>{this.props.brewery.name}</h2>
                 </div>
                 <div className="exp-brewery-buttons">
                     <button className="exp-brewery-1" onClick={this.details}>
                         Szczegóły
                     </button>
-                    <button className="exp-brewery-2" onClick={this.confirmBrewery}>
+                    <button className="exp-brewery-2" onClick={() => this.props.confirm(this.props.brewery.id)}>
                         Zatwierdź
                     </button>
                     <button className="exp-brewery-3" onClick={this.discardBrewery}>
@@ -47,10 +48,18 @@ export default class ExpectingBrewery extends Component {
                 </div>
                 {this.state.showDetails ? 
                 <div className="exp-brewery-details">
-                    Szczegóły Browaru...
+                    Miasto: {this.props.brewery.city} <br/>
+                    Ulica: {this.props.brewery.street} <br/>
+                    Nr budynku: {this.props.brewery.streetNumber} <br/>
+                    Strona www: {this.props.brewery.web_Url} <br/> 
                 </div> : null }
             </div>
         )
     }
+}
+
+ExpectingBrewery.propTypes = {
+    brewery: PropTypes.object,
+    confirm: PropTypes.func
 }
 
