@@ -233,14 +233,15 @@ class SingleBeerPage extends Component {
             <div className="wrapper-komentarze">
                 <div className="user-nickname">
                     <p> Los Marcinos</p>
-                    <img src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'} height="90" width="90" />
+                    <img className="img-avatar" src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'} />
                 </div>
                 <div className="komentarz-uzytkownika">
                     <p>{comment.content}</p>
                 </div>
                 <div className="ocena-uzytkownika">
                 <span className="close thick"></span>
-                    <p className="p-ocena"> 1</p>
+                    <p className="p-ocena"> 1</p> <br />
+                    <p className="data">20.15.2018</p>
                 </div>
                 
             </div>
