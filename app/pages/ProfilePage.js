@@ -7,14 +7,24 @@ class ProfilePage extends Component {
         super(props)
 
         this.state = {
-            editing: false
+            editing: false,
+            editingPassword: false
         }
     }
 
     handleEditProfileData = (e) => {
         e.preventDefault();
         this.setState({
-            editing: !this.state.editing
+            editing: true,
+            editingPassword: false            
+        });
+    }
+
+    handleEditPassword = (e) => {
+        e.preventDefault();
+        this.setState({
+            editing: true,
+            editingPassword: true            
         });
     }
 
@@ -23,7 +33,7 @@ class ProfilePage extends Component {
         this.setState({
             editing: !this.state.editing
         });
-    }
+    }   
 
     render() {
         return (
@@ -32,24 +42,30 @@ class ProfilePage extends Component {
                     <div className="new-form">
                         <div className="wrapper">
                             <div className="profile-info-form">
-                                {this.state.editing ?
+                                {this.state.editing && !this.state.editingPassword ?
                                     <div>
                                         <h1>Marcin</h1>
                                         <input type="text" value="Marcin" />
                                         <input type="text" value="Zapadka" />
                                         <input type="text" value="25.05.1996" />
-                                        <input type="text" value="Marcin@wp.pl" />
-                                        
-
-                                    </div> :
+                                        <input type="text" value="Marcin@wp.pl" />                                        
+                                    </div> :  null}
+                                {this.state.editing && this.state.editingPassword ?                                 
                                     <div>
                                         <h1>Marcin</h1>
-                                        <p>Imię: Marcin</p>
-                                        <p>Nazwisko: Zapadka</p>
-                                        <p>Data urodzenia: 25.05.1996</p>
-                                        <p>E-mail: Marcin@wp.pl</p>
-                                    </div>
+                                        <input type="text" value="Marcin" />
+                                        <input type="text" value="Zapadka" />                                        
+                                    </div> : null
                                 }
+                                {!this.state.editing ?
+                                <div>
+                                    <h1>Marcin</h1>
+                                    <p>Imię: Marcin</p>
+                                    <p>Nazwisko: Zapadka</p>
+                                    <p>Data urodzenia: 25.05.1996</p>
+                                    <p>E-mail: Marcin@wp.pl</p>
+                                </div> : null
+                                }                                
                             </div>
                             <div className="image-form">
                                 <div className="sep"></div>
@@ -57,9 +73,17 @@ class ProfilePage extends Component {
                             </div>
                             <div className="item1">
                                 {this.state.editing ?
-                                    <button className="edytuj-dane" onClick={this.handleSaveProfileData}>Zapisz</button> :
+                                    <span>
+                                    <button className="edytuj-dane" onClick={this.handleSaveProfileData}>Zapisz</button> 
+                                    <button className="edytuj-dane" onClick={this.handleSaveProfileData}>Wróć</button>
+                                    </span>
+                                    :
+                                    <span>
                                     <button className="edytuj-dane" onClick={this.handleEditProfileData}>Edytuj dane</button>
+                                    <button className="edytuj-dane" onClick={this.handleEditPassword}>Zmień hasło</button>
+                                    </span>
                                 }
+                                
                             </div>
                             <div className="item1"><button className="zmien-avatar">Zmień avatar</button></div>
                         </div>

@@ -78,7 +78,7 @@ class Header extends Component {
                                 <li className="nav-item">
                                     <Link className="a nav-link" to="/profile"> Mój profil </Link>
                                 </li> : null }
-                                {this.state.user && parseInt(this.state.user.isAdmin, 10) ?
+                                {this.state.user && (this.state.user.isAdmin === 'True') ?
                                 <li className="nav-item">
                                     <Link className="a nav-link" to="/admin"> Admin </Link>
                                 </li> : null }                                                                

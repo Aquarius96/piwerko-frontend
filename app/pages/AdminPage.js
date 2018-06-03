@@ -1,9 +1,27 @@
-import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import '../styles/admin-page.scss';
 import '../styles/button.scss';
 import ExpectingBeers from '../components/ExpectingBeers';
 import ExpectingBreweries from '../components/ExpectingBreweries';
 import UsersList from '../components/UsersList';
+import { fetchUnconfirmedBeers} from '../actions/beers';
+
+
+const mapStateToProps = state => {
+    return {
+        unconfirmedBeers: state.beersReducer.unconfirmedBeers,
+        
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchUnconfirmedBeers: () => dispatch(fetchUnconfirmedBeers()),
+        
+    };
+};
 
 class AdminPage extends Component {
     constructor(props) {
@@ -13,6 +31,11 @@ class AdminPage extends Component {
             toggle: true,
             toggleText: 'Użytkownicy'
         }
+    }
+
+    componentDidMount() {
+        this.props.fetchUnconfirmedBeers();
+        // this.props.fetchUnconfirmedBreweries();
     }
 
     handleToggle = (e) => {
@@ -56,4 +79,11 @@ class AdminPage extends Component {
     }
 }
 
-export default AdminPage;
+AdminPage.propTypes = {
+    unconfirmedBeers: PropTypes.array,
+    unconfirmedBreweries: PropTypes,
+    fetchUnconfirmedBeers: PropTypes.func,
+    fetchUnconfirmedBreweries: PropTypes.func
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPage);

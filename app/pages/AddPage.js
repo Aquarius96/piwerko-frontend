@@ -14,7 +14,9 @@ const mapStateToProps = state => {
         breweries: state.breweriesReducer.breweries,
         loading: state.breweriesReducer.loading,
         error: state.breweriesReducer.error,
-        breweryMessage: state.breweriesReducer.message
+        breweryMessage: state.breweriesReducer.message,
+        beerMessage: state.beersReducer.message,
+        beersLoading: state.beersReducer.loading
     }
 }
 
@@ -42,6 +44,10 @@ class AddPage extends Component {
         if(nextProps.breweryMessage) {
             window.alert(nextProps.breweryMessage);
         }
+        if(nextProps.beerMessage) {
+            window.alert(nextProps.beerMessage);
+        }
+        this.setState({showForm: 'beer'});
     }
 
     checkToken = () => {
@@ -133,10 +139,10 @@ class AddPage extends Component {
         } else {
             $imagePreview = (<div className="previewText">Wybierz zdjęcie</div>);
         }
-        if(this.props.loading) {
+        if(this.props.loading || this.props.beersLoading) {
             return <Loader />
         }
-        if(!this.props.loading && this.props.error) {
+        if(!this.props.loading && !this.props.beersLoading && this.props.error) {
             return (
                 <div className="AddPage container">
                     <p>Something went wrong. Your data was not loaded properly.</p>
@@ -285,7 +291,9 @@ AddPage.propTypes = {
     loading: PropTypes.bool,
     error: PropTypes.string,
     changeAvatar: PropTypes.func,
-    breweryMessage: PropTypes.string
+    breweryMessage: PropTypes.string,
+    beerMessage: PropTypes.string,
+    beersLoading: PropTypes.bool
 }
  
 export default connect(mapStateToProps, mapDispatchToProps)(AddPage);

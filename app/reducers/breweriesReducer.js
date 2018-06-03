@@ -18,7 +18,7 @@ export default function breweriesReducer(state = initialState, action) {
         case types.ADD_BREWERY_BEGIN:
         case types.DELETE_BREWERY_BEGIN:
         case types.UPDATE_BREWERY_BEGIN:
-        case types.FETCH_SINGLE_BREWERY_BEGIN:
+        case types.FETCH_SINGLE_BREWERY_BEGIN:        
             return {
                 ...state,
                 loading: true,
