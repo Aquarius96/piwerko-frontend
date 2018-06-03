@@ -165,7 +165,7 @@ class SingleBeerPage extends Component {
                         <h1>{this.props.singleBeer.rate}/5</h1>
                     </div>
                     <div className="item4">
-                        <img src={this.props.singleBeer.photo_URL} height="350" />
+                        <img src={this.props.singleBeer.photo_URL}/>
                     </div>
                     <div className="item5">
                         <p>Alkohol: {this.props.singleBeer.alcohol}</p>
@@ -184,7 +184,7 @@ class SingleBeerPage extends Component {
         <div className="podobne-piwo">
         <div className="podobne-piwa-wrapper">
         <div className="podobne-piwa-zdjecie">
-        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+        <img className="img-podobne" src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
         </div>
         <div className="podobne-piwa-nazwa">
         <p className="p-podobne-piwa">Harnaś</p>
@@ -194,7 +194,7 @@ class SingleBeerPage extends Component {
         <div className="podobne-piwo">
         <div className="podobne-piwa-wrapper">
         <div className="podobne-piwa-zdjecie">
-        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+        <img className="img-podobne" src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
         </div>
         <div className="podobne-piwa-nazwa">
         <p className="p-podobne-piwa">Książęce</p>
@@ -204,7 +204,7 @@ class SingleBeerPage extends Component {
         <div className="podobne-piwo">
         <div className="podobne-piwa-wrapper">
         <div className="podobne-piwa-zdjecie">
-        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+        <img className="img-podobne" src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
         </div>
         <div className="podobne-piwa-nazwa">
         <p className="p-podobne-piwa">Stern Extra Strong</p>

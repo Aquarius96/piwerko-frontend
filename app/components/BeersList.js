@@ -37,7 +37,7 @@ class BeersList extends Component {
                             <div className="beer-form">
                             <div className="beer-wrapper">
                                 <div className="image-form">
-                                    <img src={beer.photo_URL} height="195"/>
+                                    <img src={beer.photo_URL}/>
                                 </div>
                                 <div className="info-form">
                                     <h1>{beer.name}</h1>

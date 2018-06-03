@@ -27,17 +27,18 @@ class BreweriesList extends Component {
                         {this.props.breweries.map(brewery => {
                             return (
                                 <div className="brewery-form">
-                        <h1>{brewery.name}</h1>
+                        
                             <div className="brewery-wrapper">
                                 <div className="image-form">
-                                <img src={brewery.photo_URL} width="230"/>
+                                <img src={brewery.photo_URL}/>
                                 </div>
                                 <div className="info-form">
-                                <p> ul.{brewery.street} {brewery.streetNumber}</p>
-                                <p>34-200 {brewery.city}</p>
+                                <h1>{brewery.name}</h1>
+                                <p> ul.{brewery.street} {brewery.streetNumber}</p><br />
+                                <p>{brewery.city}</p>
+                                <button className="sprawdz-szczegoly-brewery" onClick={() => this.switchPage(brewery.id)}>Sprawdź szczegóły</button>
                                 </div>
                             </div>
-                            <button className="sprawdz-szczegoly-brewery" onClick={() => this.switchPage(brewery.id)}>Sprawdź szczegóły</button>
                         </div>     
                             );
                         })}   

@@ -70,7 +70,7 @@ class ProfilePage extends Component {
                             </div>
                             <div className="image-form">
                                 <div className="sep"></div>
-                                <img src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'} height="150" />
+                                <img src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'} />
                             </div>
                             <div className="item1">
                                 {this.state.editing ?
@@ -93,7 +93,7 @@ class ProfilePage extends Component {
  
                             <div className="fav-beer">
                                 <div className="fav-beer-logo">
-                                    <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="40" />
+                                    <img className="img-ulubione" src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
                                 </div>
                                 <div className="fav-beer-name"> Kormoran </div>
                                 <div className="fav-beer-rating"> Ocena: 3/5 </div>

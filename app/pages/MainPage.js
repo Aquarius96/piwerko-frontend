@@ -15,7 +15,7 @@ class MainPage extends Component {
                         <p> 1</p>
                         </div>
                         <div className="item2">
-                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
                         </div>
                         <div className="item3">
                         <p>Harnaś</p>
@@ -31,7 +31,7 @@ class MainPage extends Component {
                         <p> 1</p>
                         </div>
                         <div className="item2">
-                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
                         </div>
                         <div className="item3">
                         <p>Harnaś</p>
@@ -48,7 +48,7 @@ class MainPage extends Component {
                         <p> 1</p>
                         </div>
                         <div className="item2">
-                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
                         </div>
                         <div className="item3">
                         <p>Harnaś</p>
@@ -65,7 +65,7 @@ class MainPage extends Component {
                         <p> 1</p>
                         </div>
                         <div className="item2">
-                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
                         </div>
                         <div className="item3">
                         <p>Harnaś</p>
@@ -82,7 +82,7 @@ class MainPage extends Component {
                         <p> 1</p>
                         </div>
                         <div className="item2">
-                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="60" />
+                        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
                         </div>
                         <div className="item3">
                         <p>Harnaś</p>

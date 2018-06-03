@@ -159,7 +159,7 @@ h3 {
 .wrapper-komentarze{
     display: grid;
     grid-template-columns: 20% 70% 10%;
-    grid-template-rows: repeat(var(--rows), 150px);
+    grid-template-rows: repeat(var(--rows));
 }
 .user-nickname{
     grid-column-start: 1;
@@ -248,5 +248,13 @@ h3 {
     float:left;
     font-size:25px;
     margin-top:8px;
+}
+img{
+    max-width:250px;
+    max-height: 350px;
+}
+.img-podobne{
+    max-width:40px;
+    max-height: 60px;
 }
 }
