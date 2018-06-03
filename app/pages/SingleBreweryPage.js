@@ -53,7 +53,7 @@ class SingleBreweryPage extends Component {
         <div className="produkty">
         <div className="pojedynczy-produkt-wrapper">
         <div className="produkt-zdjecie">
-        <img src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" height="70" />
+        <img className="img-produkty" src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
         </div>
         <div className="produkt-nazwa">
         <p className="p-produkt">Harnaś</p>

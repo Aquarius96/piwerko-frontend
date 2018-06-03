@@ -182,7 +182,7 @@ class SingleBeerPage extends Component {
                         <h1>{this.props.singleBeer.rate}/5</h1>
                     </div>
                     <div className="item4">
-                        <img src={this.props.singleBeer.photo_URL} height="350" />
+                        <img src={this.props.singleBeer.photo_URL}/>
                     </div>
                     <div className="item5">
                         <p>Alkohol: {this.props.singleBeer.alcohol}</p>
@@ -203,14 +203,14 @@ class SingleBeerPage extends Component {
             <div className="podobne-piwo">
             <div className="podobne-piwa-wrapper">
             <div className="podobne-piwa-zdjecie">
-            <img src={beer.photo_URL} height="60" />
+            <img className="img-podobne" src={beer.photo_URL} />
             </div>
             <div className="podobne-piwa-nazwa">
             <p className="p-podobne-piwa">{beer.name}</p>
             </div>
             </div>
             </div>);
-        })}                
+        })}                        
         </div>
         <div className="item7">
         <p>Najgorsze piwo na świecie, nigdy nie piłem takiego ścieka, jakie to jest okropne, jak takie gówno można pić, piwo dla biedaków co ich nie stać na ksiazece tfu.</p>
@@ -241,7 +241,7 @@ class SingleBeerPage extends Component {
                     <div className="wrapper-komentarze">
                         <div className="user-nickname">
                         <p> {comment.username}</p>
-                        <img src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'} height="90" width="90" />                        
+                        <img className="img-avatar" src={'https://i.ytimg.com/vi/z5LhNxi1xK8/maxresdefault.jpg'}/>                        
                     </div>
                     <div className="komentarz-uzytkownika">
                         <p>{comment.content}</p>
@@ -249,10 +249,11 @@ class SingleBeerPage extends Component {
                     <div className="ocena-uzytkownika">
                     {(this.state.user && comment.userId === parseInt(this.state.user.id, 10) || this.state.user.isAdmin) ?
                         <span className="close thick" onClick={() => this.deleteComment(comment.id)}></span> : null }                    
-                        <p className="p-ocena"> {comment.rate ? comment.rate : '?'}</p>                        
+                        <p className="p-ocena"> {comment.rate ? comment.rate : '?'}</p>
+                        <p className="data">20.15.2018</p>                        
                     </div>                
-                </div>
-            
+
+            </div>
         </div>
             );            
         })}
