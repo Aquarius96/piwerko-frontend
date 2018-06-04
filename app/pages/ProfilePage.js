@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/profile-page.scss';
 import '../styles/button.scss';
+import jwtDecode from 'jwt-decode';
+import Loader from '../components/Loader';
  
 class ProfilePage extends Component {
     constructor(props) {
@@ -10,6 +12,10 @@ class ProfilePage extends Component {
             editing: false,
             editingPassword: false
         }
+    }
+
+    componentDidMount() {
+        this.checkToken();
     }
  
     handleEditProfileData = (e) => {
@@ -33,9 +39,26 @@ class ProfilePage extends Component {
         this.setState({
             editing: false
         });
-    }  
+    } 
+    
+    checkToken = () => {
+        const token = localStorage.getItem('token');        
+        if(token) {
+            console.log('jestem tutaj');
+            const user = jwtDecode(token);
+            this.setState({user: user});                       
+            console.log(user);
+            console.log(this.state.user);              
+        } else {
+            this.setState({user: null});
+            console.log('brak usera');
+        }        
+    }
  
     render() {
+        if(!this.state.user) {
+            return <Loader />            
+        }
         return (
             <div className="profile-page container">
                 <div className="form">
@@ -45,10 +68,9 @@ class ProfilePage extends Component {
                                 {this.state.editing && !this.state.editingPassword ?
                                     <div>
                                         <h1>Marcin</h1>
-                                        <input type="text" value="Marcin" />
-                                        <input type="text" value="Zapadka" />
-                                        <input type="text" value="25.05.1996" />
-                                        <input type="text" value="Marcin@wp.pl" />                                        
+                                        <input type="text" value={this.state.user.firstname} />
+                                        <input type="text" value={this.state.user.lastname} />                                        
+                                        <input type="text" value={this.state.user.email} />                                        
                                     </div> :  null}
                                 {this.state.editing && this.state.editingPassword ?                                
                                     <div>
@@ -60,11 +82,10 @@ class ProfilePage extends Component {
                                 }
                                 {!this.state.editing ?
                                 <div>
-                                    <h1>Marcin</h1>
-                                    <p>Imię: Marcin</p>
-                                    <p>Nazwisko: Zapadka</p>
-                                    <p>Data urodzenia: 25.05.1996</p>
-                                    <p>E-mail: Marcin@wp.pl</p>
+                                    <h1>{this.state.user.username}</h1>
+                                    <p>Imię: {this.state.user.firstname}</p>
+                                    <p>Nazwisko: {this.state.user.lastname}</p>                                    
+                                    <p>E-mail: {this.state.user.email}</p>
                                 </div> : null
                                 }                                
                             </div>

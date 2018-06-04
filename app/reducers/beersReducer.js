@@ -11,6 +11,7 @@ const initialState = {
     favoriteBeers: [],
     similarBeers: [],
     unconfirmedBeers: [],
+    topBeers: [],
     sortType: '',
     message: null
 }
@@ -29,12 +30,19 @@ export default function beersReducer(state = initialState, action) {
         case types.DELETE_FAVORITE_BEER_BEGIN:
         case types.FETCH_SIMILAR_BEERS_BEGIN:
         case types.CONFIRM_BEER_BEGIN:
-        case types.FETCH_UNCONFIRMED_BEERS_BEGIN:        
+        case types.FETCH_UNCONFIRMED_BEERS_BEGIN:
+        case types.FETCH_TOP_BEERS_DATA_BEGIN:        
             return {
                 ...state,
                 loading: true,
                 error: null,
                 message: null
+            }
+        case types.FETCH_TOP_BEERS_DATA_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                topBeers: action.payload.beers
             }
         case types.CONFIRM_BEER_SUCCESS:
             return {
@@ -185,6 +193,7 @@ export default function beersReducer(state = initialState, action) {
         case types.DELETE_FAVORITE_BEER_FAILURE:
         case types.CONFIRM_BEER_FAILURE:
         case types.FETCH_UNCONFIRMED_BEERS_FAILURE:
+        case types.FETCH_TOP_BEERS_DATA_FAILURE:
             return {
                 ...state,
                 loading: false,

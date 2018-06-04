@@ -3,17 +3,20 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import '../styles/single-brewery-page.scss';
 import Loader from '../components/Loader';
-import {fetchSingleBrewery} from '../actions/breweries';
+import {fetchSingleBrewery, fetchSingleBreweryBeers} from '../actions/breweries';
+import {Link} from 'react-router-dom';
 
 const mapStateToProps = state => {
     return {
         brewery: state.breweriesReducer.singleBrewery,
-        loading: state.breweriesReducer.loading        
+        loading: state.breweriesReducer.loading,
+        beers: state.breweriesReducer.singleBreweryBeers        
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        fetchSingleBrewery: id => dispatch(fetchSingleBrewery(id))
+        fetchSingleBrewery: id => dispatch(fetchSingleBrewery(id)),
+        fetchSingleBreweryBeers: id => dispatch(fetchSingleBreweryBeers(id))
     }
 }
 
@@ -24,6 +27,7 @@ class SingleBreweryPage extends Component {
 
     componentDidMount() {
         this.props.fetchSingleBrewery(this.props.match.params.id);
+        this.props.fetchSingleBreweryBeers(this.props.match.params.id)
     }
 
     render() {
@@ -32,50 +36,43 @@ class SingleBreweryPage extends Component {
         }
         return (
         <div className="single-brewery-page container">
-        <h1>Browar Kormoran</h1>
+        <h1>{this.props.brewery.name}</h1>
         <div className="wrapper">
         <div className="item1">
-        <img src="http://www.interservis.pl/wp-content/uploads/2016/03/Beznazwy-4.jpg" height="250" width="550"/>
+        <img src={this.props.brewery.photo_URL} height="250" width="550"/>
         </div>
         <div className="item2">
-        <p>Miasto:</p>
-        <p>Ulica:</p>
-        <p>Nr budynku:</p>
-        <p>Strona www:</p>
+        <p>Miasto: {this.props.brewery.city}</p>
+        <p>Ulica: {this.props.brewery.street}</p>
+        <p>Nr budynku: {this.props.brewery.streetNumber}</p>
+        <p>Strona www: {this.props.brewery.web_Url}</p>
         </div>
         <div className="item3">
-        <p className="p-opis-browaru">A tu bedzie opis browaru</p>
+        <p className="p-opis-browaru">{this.props.brewery.description}</p>
         </div>
         </div>
         
         <h1>Produkty</h1>
         <div className="produkty-wrapper">
-        <div className="produkty">
+        {this.props.beers.map(beer => {
+            return (
+                <Link to={'/beer/' + beer.id}>
+<div className="produkty">
         <div className="pojedynczy-produkt-wrapper">
         <div className="produkt-zdjecie">
-        <img className="img-produkty" src="https://drizly-products2.imgix.net/ci-michelob-ultra-244763edf588f5e5.jpeg?auto=format%2Ccompress&fm=jpeg&q=20" />
+        <img className="img-produkty" src={beer.photo_URL} />
         </div>
         <div className="produkt-nazwa">
-        <p className="p-produkt">Harnaś</p>
+        <p className="p-produkt">{beer.name}</p>
         </div>
         </div>
         </div>
-        <div className="produkty">
-        </div>
-        <div className="produkty">
-        </div>
-        <div className="produkty">
-        </div>
-        <div className="produkty">
-        </div>
-        <div className="produkty">
-        </div>
-        <div className="produkty">
-        </div>
-        <div className="produkty">
-        </div>
-        <div className="produkty">
-        </div>                                                        
+                </Link>
+        
+            );
+        })}
+        
+                                                                
         </div>
         </div>
         );
@@ -86,7 +83,10 @@ SingleBreweryPage.propTypes = {
     singleBrewery: PropTypes.object,
     loading: PropTypes.bool,
     fetchSingleBrewery: PropTypes.func,
-    match: PropTypes.object
+    match: PropTypes.object,
+    brewery: PropTypes.object,
+    fetchSingleBreweryBeers: PropTypes.func,
+    beers: PropTypes.array
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleBreweryPage);

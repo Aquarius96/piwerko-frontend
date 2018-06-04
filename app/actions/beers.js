@@ -76,6 +76,47 @@ export function fetchFavoriteBeers(id) {
     }
 }
 
+export function fetchTopBeersBegin() {
+    return {
+        type: types.FETCH_TOP_BEERS_DATA_BEGIN
+    }
+}
+
+export function fetchTopBeersSuccess(beers) {
+    return {
+        type: types.FETCH_TOP_BEERS_DATA_SUCCESS,
+        payload: {beers}
+    }
+}
+
+export function fetchTopBeersFailure(error) {
+    return {
+        type: types.FETCH_TOP_BEERS_DATA_FAILURE,
+        payload: {error}
+    }
+}
+
+export function fetchTopBeers() {
+    return function action(dispatch) {
+        dispatch(fetchTopBeersBegin());
+        return axios.get('http://localhost:8080/api/beer/top/100')
+            .then(response => {
+                console.log(response.data);
+                const arr = [];                
+                for(let i = 0; i < response.data.length; i++) {
+                    arr.push(response.data[i].beer);
+                    arr[i].rate = response.data[i].rate;                   
+                }
+                console.log('my beers are');
+                console.log(arr);
+                dispatch(fetchTopBeersSuccess(arr));
+            })
+            .catch(error => {
+                dispatch(fetchTopBeersFailure(error));
+            });
+    }
+}
+
 export function fetchSingleBeerBegin() {
     return {
         type: types.FETCH_SINGLE_BEER_BEGIN
@@ -104,7 +145,8 @@ export function fetchSingleBeer(id) {
                 console.log(response.data);
                 let newBeer = {};
                 newBeer = response.data.beer;
-                newBeer.rate = response.data.rate;                
+                newBeer.rate = response.data.rate;
+                newBeer.breweryName = response.data.name;                
                 console.log('new beer is');
                 console.log(newBeer);
                 dispatch(fetchSingleBeerSuccess(newBeer));
